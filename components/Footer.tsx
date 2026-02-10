@@ -188,7 +188,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               </li>
               <li className="flex gap-4 items-center">
                 <Mail className="w-6 h-6 text-emerald-500" />
-                <span className="text-lg">info@legifysolutions.com</span>
+                <span className="text-lg">info@ledgifysolutions.com</span>
               </li>
             </ul>
           </div>
