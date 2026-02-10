@@ -117,11 +117,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               Consult an Expert
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button 
-              className="bg-white text-emerald-900 border-2 border-emerald-900/10 px-10 py-5 rounded-2xl font-black text-xl hover:bg-emerald-50 transition-all flex items-center justify-center gap-3"
-            >
-              View Portfolios
-            </button>
+        
           </motion.div>
 
           <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-emerald-900/10 pt-10">

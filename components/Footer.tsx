@@ -41,9 +41,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
             >
               Start Free Audit
             </button>
-            <button className="bg-white text-emerald-700 px-12 py-6 rounded-2xl font-black text-xl hover:bg-emerald-50 transition-all">
-              Direct CPA Line
-            </button>
+           
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-[80px]"></div>
         </div>
@@ -197,11 +195,10 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
         </div>
 
           <div className="py-12 flex flex-col md:flex-row items-center justify-between gap-8 text-xs font-bold uppercase tracking-[0.2em] text-emerald-100/20">
-          <p>© 2024 Legify Solutions LLC. A Global Financial Partner.</p>
+          <p>© 2026 Legify Solutions LLC. A Global Financial Partner.</p>
           <div className="flex gap-6">
             <button onClick={() => setIsTermsOpen(true)} className="hover:text-white transition-colors">Terms &amp; Conditions</button>
             <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
-            <Link to="#" className="hover:text-white transition-colors">Legal Disclosures</Link>
           </div>
         </div>
 
