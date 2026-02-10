@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { setMeta } from '../utils/seo';
 import { PREMIUM_SERVICES, CORE_SERVICES, ICON_MAP } from '../constants';
 import { ArrowRight, TrendingUp } from 'lucide-react';
 
@@ -8,8 +9,18 @@ type ServicesProps = {
   handleShowDetails: (item: any) => void;
 };
 
-const ServicesPage: React.FC<ServicesProps> = ({ handleInquire, handleShowDetails }) => (
-  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-48 pb-24 bg-slate-50">
+const ServicesPage: React.FC<ServicesProps> = ({ handleInquire, handleShowDetails }) => {
+  useEffect(() => {
+    setMeta({
+      title: 'Services — Legify Solutions',
+      description: 'Explore Legify Solutions premium and core accounting services including tax strategy, CFO leadership, and IRS defense.',
+      url: window.location.href,
+      image: '/favicon.svg'
+    });
+  }, []);
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-48 pb-24 bg-slate-50">
     <div className="container mx-auto px-6">
       <div className="text-center mb-32">
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Capabilities</h2>
@@ -75,5 +86,5 @@ const ServicesPage: React.FC<ServicesProps> = ({ handleInquire, handleShowDetail
     </div>
   </motion.div>
 );
-
+}
 export default ServicesPage;

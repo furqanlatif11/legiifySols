@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import { X, Send, ShieldCheck } from "lucide-react";
 import { InquiryFormData } from "../types";
 
@@ -29,6 +30,12 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
       setFormData((prev) => ({ ...prev, service: initialService }));
     }
   }, [initialService]);
+
+  useEffect(() => {
+    if (isOpen) lockScroll();
+    else unlockScroll();
+    return () => unlockScroll();
+  }, [isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

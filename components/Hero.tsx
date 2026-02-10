@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, ArrowRight, TrendingUp } from 'lucide-react';
 
@@ -33,6 +33,21 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
+  // measure animated text height to set the slot size and avoid overlap
+  const textRef = useRef<HTMLSpanElement | null>(null);
+  const [slotHeight, setSlotHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const measure = () => {
+      if (textRef.current) setSlotHeight(textRef.current.offsetHeight);
+    };
+
+    // measure after render
+    requestAnimationFrame(measure);
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [serviceIndex]);
+
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-slate-50">
       {/* Visual Depth Elements */}
@@ -61,20 +76,31 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
 
           <motion.div variants={itemVariants} className="min-h-[220px] md:min-h-[280px]">
             <h1 className="text-6xl md:text-8xl font-black text-emerald-950 leading-[0.95] mb-8 tracking-tighter">
-              Build Your <br />
-              <div className="h-auto md:h-[1.1em] overflow-visible md:overflow-hidden relative">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={services[serviceIndex]}
-                    initial={{ y: 80, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -80, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "circOut" }}
-                    className="text-emerald-600 w-full block whitespace-normal break-words md:absolute md:left-0 md:top-0 relative"
-                  >
-                    {services[serviceIndex]}
-                  </motion.span>
-                </AnimatePresence>
+              <span className="block relative z-20">Build Your</span>
+
+              {/* Animated line slot: measures active text height and constrains overflow */}
+              <div className="mt-2 relative">
+                <div
+                  className="overflow-hidden w-full"
+                  style={{ height: slotHeight || undefined, minHeight: slotHeight ? undefined : undefined }}
+                >
+                  <div className="relative">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        ref={textRef}
+                        key={services[serviceIndex]}
+                        initial={{ y: '100%', opacity: 0 }}
+                        animate={{ y: '0%', opacity: 1 }}
+                        exit={{ y: '-100%', opacity: 0 }}
+                        transition={{ duration: 0.45, ease: 'easeOut' }}
+                        className="text-emerald-600 w-full block whitespace-normal break-words text-6xl md:text-8xl font-black"
+                        aria-live="polite"
+                      >
+                        {services[serviceIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </div>
+                </div>
               </div>
             </h1>
           </motion.div>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 import {
   Mail,
   Phone,
@@ -10,6 +11,15 @@ import {
 import { Link } from "react-router-dom";
 
 const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+
+  useEffect(() => {
+    if (isTermsOpen || isPrivacyOpen) lockScroll();
+    else unlockScroll();
+    return () => unlockScroll();
+  }, [isTermsOpen, isPrivacyOpen]);
+
   return (
     <footer id="contact" className="bg-emerald-950 text-white pt-32">
       <div className="container mx-auto px-6">
@@ -186,20 +196,47 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
           </div>
         </div>
 
-        <div className="py-12 flex flex-col md:flex-row items-center justify-between gap-8 text-xs font-bold uppercase tracking-[0.2em] text-emerald-100/20">
+          <div className="py-12 flex flex-col md:flex-row items-center justify-between gap-8 text-xs font-bold uppercase tracking-[0.2em] text-emerald-100/20">
           <p>© 2024 Legify Solutions LLC. A Global Financial Partner.</p>
-          <div className="flex gap-10">
-            <Link to="#" className="hover:text-white transition-colors">
-              Confidentiality Agreement
-            </Link>
-            <Link to="#" className="hover:text-white transition-colors">
-              Governance
-            </Link>
-            <Link to="#" className="hover:text-white transition-colors">
-              Legal Disclosures
-            </Link>
+          <div className="flex gap-6">
+            <button onClick={() => setIsTermsOpen(true)} className="hover:text-white transition-colors">Terms &amp; Conditions</button>
+            <button onClick={() => setIsPrivacyOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
+            <Link to="#" className="hover:text-white transition-colors">Legal Disclosures</Link>
           </div>
         </div>
+
+        {/* Terms & Privacy Modals */}
+        {isTermsOpen && (
+          <div className="fixed inset-0 z-60 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/50" onClick={() => setIsTermsOpen(false)}></div>
+            <div className="relative bg-white rounded-2xl max-w-3xl w-[90%] p-8 shadow-2xl z-10">
+              <h3 className="text-2xl font-black mb-4">Terms &amp; Conditions</h3>
+              <div className="text-slate-700 max-h-[60vh] overflow-auto">
+                <p className="mb-4">[Insert Terms &amp; Conditions content here...]</p>
+                <p className="mb-4">This is a placeholder. Replace with real legal content.</p>
+              </div>
+                <div className="mt-6 text-right">
+                  <button onClick={() => setIsTermsOpen(false)} className="px-6 py-2 bg-emerald-900 text-white rounded-lg font-bold">Close</button>
+                </div>
+            </div>
+          </div>
+        )}
+
+        {isPrivacyOpen && (
+          <div className="fixed inset-0 z-60 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/50" onClick={() => setIsPrivacyOpen(false)}></div>
+            <div className="relative bg-white rounded-2xl max-w-3xl w-[90%] p-8 shadow-2xl z-10">
+              <h3 className="text-2xl font-black mb-4">Privacy Policy</h3>
+              <div className="text-slate-700 max-h-[60vh] overflow-auto">
+                <p className="mb-4">[Insert Privacy Policy content here...]</p>
+                <p className="mb-4">This is a placeholder. Replace with the site's privacy policy.</p>
+              </div>
+              <div className="mt-6 text-right">
+                <button onClick={() => setIsPrivacyOpen(false)} className="px-6 py-2 bg-emerald-900 text-white rounded-lg font-bold">Close</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </footer>
   );

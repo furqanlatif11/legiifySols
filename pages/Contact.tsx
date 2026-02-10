@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Mail, Shield } from 'lucide-react';
+import { setMeta } from '../utils/seo';
 
-const ContactPage: React.FC = () => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-48 pb-24 bg-white">
+const ContactPage: React.FC = () => {
+  useEffect(() => {
+    setMeta({
+      title: 'Contact — Legify Solutions',
+      description: 'Contact Legify Solutions for institutional accounting, tax defense, and CFO services. Request a secured consultation.',
+      url: window.location.href,
+      image: '/favicon.svg'
+    });
+  }, []);
+
+  return (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-48 pb-24 bg-white">
     <div className="container mx-auto px-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center max-w-7xl mx-auto">
         <div>
@@ -55,5 +66,5 @@ const ContactPage: React.FC = () => (
     </div>
   </motion.div>
 );
-
+}
 export default ContactPage;

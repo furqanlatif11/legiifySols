@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calculator, Shield } from 'lucide-react';
+import { setMeta } from '../utils/seo';
 
-const WhyPage: React.FC = () => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-48 pb-24 bg-white">
+const WhyPage: React.FC = () => {
+  useEffect(() => {
+    setMeta({
+      title: 'Philosophy — Legify Solutions',
+      description: 'The Legify Method: precision engineering and proactive defense for financial longevity.',
+      url: window.location.href,
+      image: '/favicon.svg'
+    });
+  }, []);
+
+  return (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-48 pb-24 bg-white">
     <div className="container mx-auto px-6 max-w-5xl">
       <div className="text-center mb-32">
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">The Legify Method</h2>
@@ -49,5 +60,5 @@ const WhyPage: React.FC = () => (
     </div>
   </motion.div>
 );
-
+}
 export default WhyPage;

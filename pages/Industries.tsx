@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { INDUSTRIES, ICON_MAP } from '../constants';
+import { setMeta } from '../utils/seo';
 
 type IndustriesProps = {
   handleInquire: (s?: string) => void;
   handleShowDetails: (item: any) => void;
 };
 
-const IndustriesPage: React.FC<IndustriesProps> = ({ handleInquire, handleShowDetails }) => (
-  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-48 pb-24 bg-white">
+const IndustriesPage: React.FC<IndustriesProps> = ({ handleInquire, handleShowDetails }) => {
+  useEffect(() => {
+    setMeta({
+      title: 'Industries — Legify Solutions',
+      description: 'Industry-specific financial and tax solutions from Legify Solutions. We support SaaS, manufacturing, and high-growth enterprises.',
+      url: window.location.href,
+      image: '/favicon.svg'
+    });
+  }, []);
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-48 pb-24 bg-white">
     <div className="container mx-auto px-6">
       <div className="text-center mb-32 max-w-4xl mx-auto">
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Market Sovereignty</h2>
@@ -53,5 +64,5 @@ const IndustriesPage: React.FC<IndustriesProps> = ({ handleInquire, handleShowDe
     </div>
   </motion.div>
 );
-
+}
 export default IndustriesPage;

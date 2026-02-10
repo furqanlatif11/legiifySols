@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { setMeta } from '../utils/seo';
 import Hero from '../components/Hero';
 import WhyChoose from '../components/WhyChoose';
 import CoreServices from '../components/CoreServices';
@@ -14,8 +15,18 @@ type HomeProps = {
   handleShowDetails: (item: any) => void;
 };
 
-const HomePage: React.FC<HomeProps> = ({ handleInquire, handleShowDetails }) => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+const HomePage: React.FC<HomeProps> = ({ handleInquire, handleShowDetails }) => {
+  useEffect(() => {
+    setMeta({
+      title: 'Legify Solutions — Institutional Accounting & Tax Strategy',
+      description: 'Legify Solutions provides elite accounting, tax architecture, and CFO leadership for growth companies in the USA.',
+      url: window.location.href,
+      image: '/favicon.svg'
+    });
+  }, []);
+
+  return (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
     <Hero onInquire={() => handleInquire()} />
     <WhyChoose />
     <CoreServices onInquire={handleInquire} onShowDetails={handleShowDetails} />
@@ -26,5 +37,5 @@ const HomePage: React.FC<HomeProps> = ({ handleInquire, handleShowDetails }) => 
     <ClientTypes onInquire={handleInquire} onShowDetails={handleShowDetails} />
   </motion.div>
 );
-
+}
 export default HomePage;

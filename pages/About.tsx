@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Globe, Award } from 'lucide-react';
+import { setMeta } from '../utils/seo';
 
-const AboutPage: React.FC = () => (
-  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-48 pb-24 bg-white">
+const AboutPage: React.FC = () => {
+  useEffect(() => {
+    setMeta({
+      title: 'About — Legify Solutions',
+      description: 'Learn about Legify Solutions, our mission, culture, and institutional approach to accounting and tax strategy.',
+      url: window.location.href,
+      image: '/favicon.svg'
+    });
+  }, []);
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-48 pb-24 bg-white">
     <div className="container mx-auto px-6">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Our Pedigree</h2>
@@ -49,5 +60,5 @@ const AboutPage: React.FC = () => (
     </div>
   </motion.div>
 );
-
+}
 export default AboutPage;

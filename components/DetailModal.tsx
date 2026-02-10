@@ -1,8 +1,9 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { ICON_MAP } from '../constants';
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 interface DetailModalProps {
   isOpen: boolean;
@@ -27,6 +28,11 @@ const DetailModal: React.FC<DetailModalProps> = ({
   features = [],
   onInquire 
 }) => {
+  useEffect(() => {
+    if (isOpen) lockScroll();
+    else unlockScroll();
+    return () => unlockScroll();
+  }, [isOpen]);
   return (
     <AnimatePresence>
       {isOpen && (
