@@ -33,7 +33,7 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <div className="">
-            <img src="/assets/logos/ls-mainLogo600x200.png" alt="Legify Solutions Logo" className="w-48" />
+            <img src="/assets/logos/ls-mainLogo600x200_main.svg" alt="Legify Solutions Logo" className="w-48" />
           </div>
           
         </Link>

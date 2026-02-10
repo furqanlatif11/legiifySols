@@ -62,7 +62,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
           <motion.div variants={itemVariants} className="min-h-[220px] md:min-h-[280px]">
             <h1 className="text-6xl md:text-8xl font-black text-emerald-950 leading-[0.95] mb-8 tracking-tighter">
               Build Your <br />
-              <div className="h-[1.1em] overflow-hidden relative">
+              <div className="h-auto md:h-[1.1em] overflow-visible md:overflow-hidden relative">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={services[serviceIndex]}
@@ -70,7 +70,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: -80, opacity: 0 }}
                     transition={{ duration: 0.5, ease: "circOut" }}
-                    className="text-emerald-600 absolute left-0"
+                    className="text-emerald-600 w-full block whitespace-normal break-words md:absolute md:left-0 md:top-0 relative"
                   >
                     {services[serviceIndex]}
                   </motion.span>

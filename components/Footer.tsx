@@ -42,7 +42,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
           <div>
             <div className="flex items-center gap-3 mb-8">
               <img
-                src="/assets/logos/ls-mainLogo600x200.png"
+                src="/assets/logos/ls-mainLogo600x200_footer.svg"
                 alt="Legify Solutions Logo"
                 className="w-80"
               />
@@ -171,13 +171,12 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               <li className="flex gap-4 items-start">
                 <MapPin className="w-6 h-6 text-emerald-500 shrink-0" />
                 <span className="text-lg">
-                  509 W MAIN ST<br />
                   WALNUT RIDGE, AR 72476
                 </span>
               </li>
               <li className="flex gap-4 items-center">
                 <Phone className="w-6 h-6 text-emerald-500" />
-                <span className="text-lg">+1 870 22026004</span>
+                <span className="text-lg">+1 (870) 202-6004</span>
               </li>
               <li className="flex gap-4 items-center">
                 <Mail className="w-6 h-6 text-emerald-500" />
