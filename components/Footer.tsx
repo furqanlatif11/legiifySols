@@ -42,7 +42,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
           <div>
             <div className="flex items-center gap-3 mb-8">
               <img
-                src="/public/assets/logos/ls-mainLogo600x200.png"
+                src="/assets/logos/ls-mainLogo600x200.png"
                 alt="Legify Solutions Logo"
                 className="w-80"
               />
