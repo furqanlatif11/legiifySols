@@ -31,7 +31,7 @@ const ContactPage: React.FC = () => (
             <div className="flex gap-8 items-start">
               <div className="w-16 h-16 bg-emerald-50 rounded-3xl flex items-center justify-center text-emerald-600 shrink-0 shadow-sm"><Mail className="w-8 h-8" /></div>
               <div>
-                <h4 className="text-2xl font-black mb-2 tracking-tight">Secure Email</h4>
+                <h4 className="text-2xl font-black mb-2 tracking-tight">Hot Support</h4>
                 <p className="text-slate-500 font-bold text-lg">info@legifysolutions.com</p>
               </div>
             </div>
