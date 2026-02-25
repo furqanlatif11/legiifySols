@@ -37,12 +37,25 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
     return () => unlockScroll();
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const base = process.env.API_BASE || '/api';
+      const response = await fetch(`${base}/inquiry`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || 'Submission failed');
+      }
+
       setIsSuccess(true);
+      // clear form and close after a short delay
       setTimeout(() => {
         setIsSuccess(false);
         onClose();
@@ -54,7 +67,12 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
           message: "",
         });
       }, 2500);
-    }, 1800);
+    } catch (err: any) {
+      console.error('Inquiry submission error:', err);
+      alert('There was an error sending your inquiry. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (

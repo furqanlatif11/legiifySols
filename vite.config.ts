@@ -8,11 +8,20 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
+        proxy: {
+          // forward frontend requests to the backend server during development
+          '/api': {
+            target: 'http://localhost:5000',
+            changeOrigin: true,
+            secure: false,
+          },
+        },
       },
       plugins: [react()],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        'process.env.API_BASE': JSON.stringify(env.API_BASE || '')
       },
       resolve: {
         alias: {
