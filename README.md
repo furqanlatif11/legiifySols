@@ -34,3 +34,21 @@ This contains everything you need to run your app locally.
 When deploying, make sure your hosting platform supports running both the React app and a small Express API, and set the appropriate environment variables (`EMAIL_USER`, `EMAIL_PASS`, etc.) on the server.
 
 The frontend will hit `/api/inquiry` relative to the current origin; adjust `API_BASE` or proxy settings if you need a different path.
+
+### Vercel deployment
+
+Because the app uses `BrowserRouter`, refreshing or directly navigating to a path
+(e.g. `/services`) requires the server to always serve `index.html`. On Vercel
+this is handled by a `vercel.json` file at the project root with a rewrite rule:
+
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
+```
+
+Without that rule you'll see a `NOT_FOUND` error when reloading a sub–route; the
+`vercel.json` we added already contains the necessary rewrite. If you deploy
+elsewhere, configure an equivalent fallback.
