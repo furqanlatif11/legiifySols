@@ -47,7 +47,7 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
           <div className="">
             <img
               src="/assets/logos/ls-mainLogo600x200_main.svg"
-              alt="Legify Solutions Logo"
+              alt="Ledgify Solutions Logo"
               className="w-48"
             />
           </div>
@@ -124,7 +124,7 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                     </Link>
                   </div>
                   <span className="font-black uppercase tracking-wider">
-                    Legify
+                    Ledgify
                   </span>
                 </Link>
                 <button

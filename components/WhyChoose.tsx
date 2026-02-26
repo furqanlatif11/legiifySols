@@ -38,13 +38,13 @@ const WhyChoose: React.FC = () => {
           <div className="lg:w-1/2">
             <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">About Our Legacy</h2>
             <h3 className="text-5xl md:text-6xl font-black text-emerald-950 mb-8 tracking-tighter leading-tight">
-              The Legify Standard: <br />
+              The Ledgify Standard: <br />
               <span className="text-emerald-600/60 italic">Uncompromising Precision.</span>
             </h3>
           </div>
           <div className="lg:w-1/2">
             <p className="text-xl text-slate-600 leading-relaxed font-medium">
-              Founded on the principles of institutional integrity and digital agility, Legify Solutions LLC serves as the financial backbone for businesses that refuse to settle for standard accounting. We merge old-world financial discipline with new-world technological speed.
+              Founded on the principles of institutional integrity and digital agility, Ledgify Solutions LLC serves as the financial backbone for businesses that refuse to settle for standard accounting. We merge old-world financial discipline with new-world technological speed.
             </p>
           </div>
         </div>

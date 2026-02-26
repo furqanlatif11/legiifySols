@@ -6,10 +6,10 @@ import { setMeta } from '../utils/seo';
 const AboutPage: React.FC = () => {
   useEffect(() => {
     setMeta({
-      title: 'About — Legify Solutions',
-      description: 'Learn about Legify Solutions, our mission, culture, and institutional approach to accounting and tax strategy.',
+      title: 'About — Ledgify Solutions',
+      description: 'Learn about Ledgify Solutions, our mission, culture, and institutional approach to accounting and tax strategy.',
       url: window.location.href,
-      image: '/favicon.svg'
+      image: '/assets/logos/ledgifySols_OGImage.webp'
     });
   }, []);
 
@@ -20,7 +20,7 @@ const AboutPage: React.FC = () => {
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Our Pedigree</h2>
         <h1 className="text-5xl md:text-8xl font-black text-emerald-950 mb-10 tracking-tighter leading-none">The Architects of <br /><span className="text-emerald-600">Financial Integrity.</span></h1>
         <p className="text-2xl text-slate-600 leading-relaxed mb-16 font-medium">
-          Founded by veterans of the "Big Four" and international tax legal scholars, Legify Solutions LLC was created to bridge the gap between traditional accounting and the sophisticated needs of modern, high-growth enterprises.
+          Founded by veterans of the "Big Four" and international tax legal scholars, Ledgify Solutions LLC was created to bridge the gap between traditional accounting and the sophisticated needs of modern, high-growth enterprises.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">

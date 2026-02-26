@@ -18,10 +18,10 @@ type HomeProps = {
 const HomePage: React.FC<HomeProps> = ({ handleInquire, handleShowDetails }) => {
   useEffect(() => {
     setMeta({
-      title: 'Legify Solutions — Institutional Accounting & Tax Strategy',
-      description: 'Legify Solutions provides elite accounting, tax architecture, and CFO leadership for growth companies in the USA.',
+      title: 'Ledgify Solutions — Institutional Accounting & Tax Strategy',
+      description: 'Ledgify Solutions provides elite accounting, tax architecture, and CFO leadership for growth companies in the USA.',
       url: window.location.href,
-      image: '/assets/images/logos/ledgifySols_OGImage.png'
+      image: '/assets/logos/ledgifySols_OGImage.webp'
     });
   }, []);
 

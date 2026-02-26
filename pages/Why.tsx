@@ -6,10 +6,10 @@ import { setMeta } from '../utils/seo';
 const WhyPage: React.FC = () => {
   useEffect(() => {
     setMeta({
-      title: 'Philosophy — Legify Solutions',
-      description: 'The Legify Method: precision engineering and proactive defense for financial longevity.',
+      title: 'Philosophy — Ledgify Solutions',
+      description: 'The Ledgify Method: precision engineering and proactive defense for financial longevity.',
       url: window.location.href,
-      image: '/favicon.svg'
+      image: '/assets/logos/ledgifySols_OGImage.webp'
     });
   }, []);
 
@@ -17,7 +17,7 @@ const WhyPage: React.FC = () => {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-48 pb-24 bg-white">
     <div className="container mx-auto px-6 max-w-5xl">
       <div className="text-center mb-32">
-        <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">The Legify Method</h2>
+        <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">The Ledgify Method</h2>
         <h1 className="text-6xl md:text-8xl font-black text-emerald-950 tracking-tighter leading-none">Built for <br /><span className="text-emerald-600">Longevity.</span></h1>
       </div>
       
@@ -48,7 +48,7 @@ const WhyPage: React.FC = () => {
 
         <div className="bg-emerald-950 text-white p-20 rounded-[5rem] text-center shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
-            <h3 className="text-5xl font-black mb-10 tracking-tight">Experience the Legify Difference.</h3>
+            <h3 className="text-5xl font-black mb-10 tracking-tight">Experience the Ledgify Difference.</h3>
             <p className="text-emerald-100/60 mb-12 text-xl font-medium max-w-2xl mx-auto">Elevate your financial standing from "compliant" to "dominant". Request your initial audit today.</p>
             <a href="/contact" className="inline-block bg-emerald-500 text-white px-16 py-8 rounded-3xl font-black text-2xl hover:bg-emerald-400 transition-all shadow-2xl hover:shadow-emerald-500/40 transform hover:-translate-y-1">
               Request Secured Audit

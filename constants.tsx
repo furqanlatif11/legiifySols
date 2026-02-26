@@ -84,7 +84,7 @@ export const INDUSTRIES: Industry[] = [
     id: 'hnw-individuals',
     title: 'HNW Individuals',
     shortDesc: 'Ultra-high-net-worth estate protection and global personal tax residency strategy.',
-    fullDesc: 'Legify protects the legacies of America’s most successful families. From setting up sophisticated trusts to managing international tax residency requirements, we act as your personal financial fortress, ensuring your wealth is preserved across generations.',
+    fullDesc: 'Ledgify Solutions protects the legacies of America’s most successful families. From setting up sophisticated trusts to managing international tax residency requirements, we act as your personal financial fortress, ensuring your wealth is preserved across generations.',
     icon: 'UserCheck',
     challenges: ['Estate & Gift Tax Exposure', 'Global Asset Reporting', 'Trust & Estate Accounting'],
     mandates: ['Wealth Transfer Strategy', 'FBAR/FATCA Compliance', 'Estate Architecture']
@@ -167,7 +167,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Harrison Sterling',
     role: 'Managing Partner',
     company: 'Sterling Capital',
-    content: 'Legify doesn’t just count our money; they help us multiply it. Their tax restructuring saved us $420k in a single fiscal year.',
+    content: 'Ledgify Solutions doesn’t just count our money; they help us multiply it. Their tax restructuring saved us $420k in a single fiscal year.',
     avatar: 'https://i.pravatar.cc/150?u=harrison'
   },
   {

@@ -11,7 +11,7 @@ const TrustBadges: React.FC = () => {
             <h2 className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4">Security & Trust</h2>
             <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Your Data Protected by USA Industry Standards</h3>
             <p className="text-lg text-slate-600 mb-8">
-              At Legify Solutions, we treat your financial data with the same security as a major financial institution. Our infrastructure is built to exceed AICPA guidelines and ensure 100% privacy.
+              At Ledgify Solutions, we treat your financial data with the same security as a major financial institution. Our infrastructure is built to exceed AICPA guidelines and ensure 100% privacy.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

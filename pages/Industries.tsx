@@ -11,10 +11,10 @@ type IndustriesProps = {
 const IndustriesPage: React.FC<IndustriesProps> = ({ handleInquire, handleShowDetails }) => {
   useEffect(() => {
     setMeta({
-      title: 'Industries — Legify Solutions',
-      description: 'Industry-specific financial and tax solutions from Legify Solutions. We support SaaS, manufacturing, and high-growth enterprises.',
+      title: 'Industries — Ledgify Solutions',
+      description: 'Industry-specific financial and tax solutions from Ledgify Solutions. We support SaaS, manufacturing, and high-growth enterprises.',
       url: window.location.href,
-      image: '/favicon.svg'
+      image: '/assets/logos/ledgifySols_OGImage.webp'
     });
   }, []);
 

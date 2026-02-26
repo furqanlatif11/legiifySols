@@ -6,10 +6,10 @@ import { setMeta } from '../utils/seo';
 const ContactPage: React.FC = () => {
   useEffect(() => {
     setMeta({
-      title: 'Contact — Legify Solutions',
-      description: 'Contact Legify Solutions for institutional accounting, tax defense, and CFO services. Request a secured consultation.',
+      title: 'Contact — Ledgify Solutions',
+      description: 'Contact Ledgify Solutions for institutional accounting, tax defense, and CFO services. Request a secured consultation.',
       url: window.location.href,
-      image: '/favicon.svg'
+      image: '/assets/logos/ledgifySols_OGImage.webp'
     });
   }, []);
 

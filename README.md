@@ -35,6 +35,13 @@ When deploying, make sure your hosting platform supports running both the React 
 
 The frontend will hit `/api/inquiry` relative to the current origin; adjust `API_BASE` or proxy settings if you need a different path.
 
+### Social sharing and SEO
+
+All pages set meta tags using a small helper (`utils/seo.ts`). The default
+open‑graph/twitter image is `/assets/logos/ledgifySols_OGImage.webp` and a
+`<link rel="canonical">` tag is inserted automatically. The same URL is also
+specified in `index.html` so that crawlers see a valid image before JS runs.
+
 ### Vercel deployment
 
 Because the app uses `BrowserRouter`, refreshing or directly navigating to a path
