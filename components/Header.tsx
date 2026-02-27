@@ -90,73 +90,68 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.aside
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-0 z-50 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 lg:hidden bg-black/40"
+            onClick={() => setIsMenuOpen(false)}
           >
-            <div
-              className="absolute inset-0 bg-black/40"
-              onClick={() => setIsMenuOpen(false)}
-            />
             <motion.div
-              className="absolute right-0 top-0 bottom-0 w-[75%] max-w-sm bg-white p-8 shadow-2xl flex flex-col gap-8"
+              className="absolute right-0 top-0 bottom-0 w-4/5 max-w-xs bg-white shadow-2xl flex flex-col overflow-y-auto"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between">
+              <div className="sticky top-0 bg-white flex items-center justify-between p-6 border-b border-emerald-100">
                 <Link
                   to="/"
                   onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center gap-3"
+                  className="flex-1"
                 >
-                  <div>
-                    <Link to="/" onClick={() => setIsMenuOpen(false)}>
-                      {" "}
-                      <img
-                        src="/public/assets/logos/ls-mainLogo600x200_main.svg"
-                        alt="Mobile Nav Drawer Logo"
-                        className="w-48"
-                      />{" "}
-                    </Link>
-                  </div>
-                  <span className="font-black uppercase tracking-wider">
-                    Ledgify
-                  </span>
+                  <img
+                    src="/assets/logos/ls-mainLogo600x200_main.svg"
+                    alt="Mobile Nav Drawer Logo"
+                    className="w-32"
+                  />
                 </Link>
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   aria-label="Close menu"
+                  className="p-2 hover:bg-emerald-50 rounded-lg transition-colors"
                 >
-                  <X />
+                  <X className="w-6 h-6" />
                 </button>
               </div>
 
-              <nav className="flex-1 flex flex-col gap-6 mt-6">
+              <nav className="flex flex-col p-6 gap-1">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     to={link.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`text-2xl font-thin border-b border-emerald-200 ${location.pathname === link.path ? "text-emerald-600" : "text-emerald-950"}`}
+                    className={`px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                      location.pathname === link.path
+                        ? "bg-emerald-50 text-emerald-600 font-semibold"
+                        : "text-emerald-950 hover:bg-gray-50"
+                    }`}
                   >
                     {link.name}
                   </Link>
                 ))}
               </nav>
 
-              <div>
+              <div className="mt-auto p-6 border-t border-emerald-100">
                 <button
                   onClick={() => {
                     setIsMenuOpen(false);
                     onInquire();
                   }}
-                  className="w-full bg-emerald-900 text-white py-4 rounded-xl font-bold text-lg shadow-xl flex items-center justify-center gap-3"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-lg font-bold text-base shadow-md transition-colors flex items-center justify-center gap-2"
                 >
-                  <PhoneCall className="w-6 h-6" />
+                  <PhoneCall className="w-5 h-5" />
                   Get Started
                 </button>
               </div>
