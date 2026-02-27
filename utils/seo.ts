@@ -5,6 +5,14 @@ export function setMeta(tags: { title?: string; description?: string; url?: stri
     tags.url = window.location.href;
   }
 
+  // make sure image URLs are absolute; some social scrapers require a full URL
+  if (tags.image) {
+    const site = import.meta.env.VITE_SITE_URL || (typeof window !== 'undefined' ? window.location.origin : '');
+    if (site && tags.image.startsWith('/')) {
+      tags.image = site + tags.image;
+    }
+  }
+
   if (tags.title) document.title = tags.title;
 
   function upsert(name: string, attr: 'name' | 'property', content?: string) {

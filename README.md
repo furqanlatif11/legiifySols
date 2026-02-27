@@ -21,7 +21,7 @@ This contains everything you need to run your app locally.
    one of the variables above is empty or undefined. Make sure the file is
    loaded (restart the server after editing) and that the values are correct.
 
-3. Start the backend and frontend together:
+3. Start the backend and frontend together for local development:
    ```bash
    npm run dev:all
    ```
@@ -31,16 +31,56 @@ This contains everything you need to run your app locally.
 
 ### Deploying
 
-When deploying, make sure your hosting platform supports running both the React app and a small Express API, and set the appropriate environment variables (`EMAIL_USER`, `EMAIL_PASS`, etc.) on the server.
+This project is structured to work seamlessly on Vercel. The React app is built
+statically while API routes under the `api/` directory are converted into
+serverless functions.
 
-The frontend will hit `/api/inquiry` relative to the current origin; adjust `API_BASE` or proxy settings if you need a different path.
+1. Push the repository to a linked Vercel project.
+2. In the Vercel dashboard set the following **Environment Variables**:
+   * `EMAIL_USER` – your Gmail address (e.g. `ledgifysolutionsllc@gmail.com`)
+   * `EMAIL_PASS` – the app password or OAuth token used for SMTP
+   * `VITE_SITE_URL` – the public URL of the site (e.g. `https://legiify-sols.vercel.app`).
+  This value is exposed client‑side via `import.meta.env.VITE_SITE_URL`.
+* `VITE_API_BASE` – optional base path for API calls (defaults to `/api`).
+   * optionally `API_BASE` if you want to prefix the API path (defaults to `/api`)
+
+   These variables are available in both the build and runtime environments.
+
+3. Deploy; Vercel will automatically publish the frontend and wire up the
+   `api/inquiry.ts` serverless function. Form submissions will work exactly the
+   same as in development.
+
+4. The frontend always sends requests to `/api/inquiry` (unless `API_BASE` is
+   overridden), so the appropriate endpoint will be invoked whether you’re
+   running locally or on Vercel.
+
+If you choose another host, ensure you deploy the Node server or rewrite the
+functions accordingly and set the same environment variables. The key is that
+**production** must provide a working endpoint at `/api/inquiry`; otherwise the
+form will fail silently.
+
+The frontend will hit `/api/inquiry` relative to the current origin; adjust
+`API_BASE` or proxy settings if you need a different path.
 
 ### Social sharing and SEO
 
-All pages set meta tags using a small helper (`utils/seo.ts`). The default
-open‑graph/twitter image is `/assets/logos/ledgifySols_OGImage.webp` and a
-`<link rel="canonical">` tag is inserted automatically. The same URL is also
-specified in `index.html` so that crawlers see a valid image before JS runs.
+All pages set meta tags dynamically using a small helper (`utils/seo.ts`) once
+React hydrates. During development or client navigation the values are
+updated to reflect the current route. The helper also prefixes relative image
+paths with the configured site URL so `og:image` is always an absolute link.
+
+**Important:** many social apps and search engine crawlers do **not** execute
+JavaScript. When these bots request a URL they only see the static `index.html`
+that’s served. That file therefore includes a set of **default metadata** (title,
+description, image, canonical URL) which applies to every route. This ensures
+that sharing the site (e.g. on WhatsApp, Facebook, Twitter) will at least show
+basic information. If you need *page‑specific* metadata to appear in link
+previews you must render HTML for each route on the server or prerender the
+routes at build time; frameworks such as Next.js, Gatsby, or `vite-plugin-prerender`
+can handle this.
+
+The aHrefs audit should now report a valid canonical link and image for the
+home page; other routes still rely on client‑side updates unless pre‑rendered.
 
 ### Vercel deployment
 

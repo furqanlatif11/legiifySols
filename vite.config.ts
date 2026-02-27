@@ -21,7 +21,10 @@ export default defineConfig(({ mode }) => {
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.API_BASE': JSON.stringify(env.API_BASE || '')
+        'process.env.API_BASE': JSON.stringify(env.API_BASE || ''),
+        'process.env.SITE_URL': JSON.stringify(env.SITE_URL || ''),
+        'process.env.VITE_SITE_URL': JSON.stringify(env.VITE_SITE_URL || env.SITE_URL || ''),
+        'process.env.VITE_API_BASE': JSON.stringify(env.VITE_API_BASE || env.API_BASE || '/api')
       },
       resolve: {
         alias: {

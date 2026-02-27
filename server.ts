@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import nodemailer from 'nodemailer';
+import { sendInquiryEmail } from './lib/mail';
 
 // load environment variables from .env, then override with .env.local if present
 dotenv.config();
@@ -38,33 +38,8 @@ app.post('/api/inquiry', async (req: express.Request, res: express.Response) => 
   }
 
   try {
-    // verify credentials are present
-    const emailUser = process.env.EMAIL_USER;
-    const emailPass = process.env.EMAIL_PASS;
-    if (!emailUser || !emailPass) {
-      console.error('email credentials missing:', { emailUser, emailPass });
-      return res
-        .status(500)
-        .json({ error: 'Email credentials not configured on server.' });
-    }
-
-    // configure transporter using Gmail
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: emailUser,
-        pass: emailPass,
-      },
-    });
-
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: `New inquiry from ${fullName}`,
-      text: `Full Name: ${fullName}\nEmail: ${email}\nCompany: ${company || 'N/A'}\nService: ${service || 'N/A'}\n\n${message}`,
-    };
-
-    await transporter.sendMail(mailOptions);
+    // delegate to shared helper
+    await sendInquiryEmail({ fullName, email, company, service, message });
     return res.json({ success: true });
   } catch (err) {
     console.error('error sending mail', err);

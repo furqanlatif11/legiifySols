@@ -175,18 +175,41 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
             <h4 className="text-xl font-black mb-8 uppercase tracking-widest text-emerald-500">
               HQ Concierge
             </h4>
+
             <ul className="space-y-6 text-emerald-100/60 font-bold">
+              {/* Address */}
               <li className="flex gap-4 items-start">
-                <MapPin className="w-6 h-6 text-emerald-500 shrink-0" />
-                <span className="text-lg">WALNUT RIDGE, AR 72476</span>
+                <MapPin className="w-6 h-6 text-emerald-500 shrink-0 mt-1" />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Walnut+Ridge,+AR+72476"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg hover:text-emerald-400 transition-colors"
+                >
+                  WALNUT RIDGE, AR 72476
+                </a>
               </li>
+
+              {/* Phone */}
               <li className="flex gap-4 items-center">
-                <Phone className="w-6 h-6 text-emerald-500" />
-                <span className="text-lg">+1 (870) 202-6004</span>
+                <Phone className="w-6 h-6 text-emerald-500 shrink-0" />
+                <a
+                  href="tel:+18702026004"
+                  className="text-lg hover:text-emerald-400 transition-colors"
+                >
+                  +1 (870) 202-6004
+                </a>
               </li>
+
+              {/* Email */}
               <li className="flex gap-4 items-center">
-                <Mail className="w-6 h-6 text-emerald-500" />
-                <span className="text-lg">info@ledgifysolutions.com</span>
+                <Mail className="w-6 h-6 text-emerald-500 shrink-0" />
+                <a
+                  href="mailto:info@ledgifysolutions.com"
+                  className="text-lg hover:text-emerald-400 transition-colors"
+                >
+                  info@ledgifysolutions.com
+                </a>
               </li>
             </ul>
           </div>

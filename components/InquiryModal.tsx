@@ -42,7 +42,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
     setIsSubmitting(true);
 
     try {
-      const base = process.env.API_BASE || '/api';
+      const base = import.meta.env.VITE_API_BASE || process.env.API_BASE || '/api';
       const response = await fetch(`${base}/inquiry`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
