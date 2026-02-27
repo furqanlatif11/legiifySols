@@ -30,8 +30,6 @@
     "vite": "^6.2.0",
     "@types/express": "^4.17.17",
     "@types/cors": "^2.8.17",
-    "ts-node": "^10.9.1",
-    "concurrently": "^8.2.0",
-    "@vercel/node": "^2.18.0"
+    "ts-node": "^10.9.1"
   }
 }
