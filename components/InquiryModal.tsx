@@ -101,7 +101,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
             exit={{ scale: 0.95, opacity: 0, y: 30 }}
             className="relative w-full max-w-3xl bg-white rounded-[1.5rem] shadow-2xl overflow-hidden"
           >
-            <div className="p-10 md:p-14">
+            <div className="p-10 md:p-14 h-[80vh] overflow-y-auto">
               <div className="flex justify-between items-start mb-10">
                 <div>
                   <h2 className="text-4xl font-black text-emerald-950 tracking-tighter mb-2">
