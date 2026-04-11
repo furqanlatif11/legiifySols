@@ -5,8 +5,8 @@ import { ICON_MAP } from '../constants';
 
 const features = [
   {
-    title: 'Executive Talent',
-    description: 'Our team comprises elite CPAs and former big-four analysts with deep USA regulatory knowledge.',
+    title: 'Professional Experience',
+    description: 'Our team comprises experienced financial professionals with deep USA regulatory knowledge.',
     icon: 'Users',
     color: 'bg-emerald-900 text-emerald-100'
   },
@@ -23,8 +23,8 @@ const features = [
     color: 'bg-emerald-500 text-white'
   },
   {
-    title: 'Zero-Audit Tolerance',
-    description: 'Every statement is double-verified to ensure 100% compliance and zero IRS friction.',
+    title: 'Accuracy & Compliance',
+    description: 'Every statement is thoroughly reviewed to ensure compliance with professional standards.',
     icon: 'ShieldCheck',
     color: 'bg-emerald-950 text-emerald-400'
   }

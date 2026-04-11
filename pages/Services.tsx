@@ -13,7 +13,7 @@ const ServicesPage: React.FC<ServicesProps> = ({ handleInquire, handleShowDetail
   useEffect(() => {
     setMeta({
       title: 'Services — Ledgify Solutions',
-      description: 'Explore Ledgify Solutions premium and core accounting services including tax strategy, CFO leadership, and IRS defense.',
+      description: 'Explore Ledgify Solutions premium and core accounting services including tax strategy, CFO leadership, and financial planning.',
       url: window.location.href,
       image: '/assets/logos/ledgifySols_OGImage.webp'
     });

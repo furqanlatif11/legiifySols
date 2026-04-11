@@ -124,8 +124,9 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
             variants={itemVariants}
             className="text-xl md:text-2xl text-slate-700/80 mb-10 leading-relaxed font-medium max-w-xl"
           >
-            We provide institutional-grade accounting, aggressive tax defense,
-            and strategic CFO leadership for the USA’s most ambitious firms.
+            We help agencies, ecommerce brands, and small businesses manage
+            their books, reduce costs, and stay financially organized — without
+            hiring in-house staff.
           </motion.p>
 
           <motion.div
@@ -151,7 +152,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                 icon: <TrendingUp className="w-5 h-5" />,
               },
               {
-                label: "IRS Certified CPAs",
+                label: "Professional Team",
                 icon: <CheckCircle2 className="w-5 h-5" />,
               },
               {

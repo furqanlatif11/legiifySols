@@ -190,7 +190,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
                         <option value="">Select Service Tier</option>
                         <option value="Tax Strategy">Tax Architecture</option>
                         <option value="CFO">Fractional CFO</option>
-                        <option value="Audit">Audit Defense</option>
+                        <option value="Bookkeeping">Bookkeeping Support</option>
                         <option value="Wealth">Wealth Protection</option>
                       </select>
                     </div>

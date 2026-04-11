@@ -34,6 +34,7 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
   const navLinks = [
     { name: "Philosophy", path: "/philosophy" },
     { name: "Services", path: "/services" },
+    { name: "Pricing", path: "/pricing" },
     { name: "Who We Serve", path: "/industries" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },

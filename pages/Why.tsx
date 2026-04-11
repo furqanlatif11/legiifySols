@@ -49,9 +49,9 @@ const WhyPage: React.FC = () => {
         <div className="bg-emerald-950 text-white p-20 rounded-[5rem] text-center shadow-2xl relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-5xl font-black mb-10 tracking-tight">Experience the Ledgify Difference.</h3>
-            <p className="text-emerald-100/60 mb-12 text-xl font-medium max-w-2xl mx-auto">Elevate your financial standing from "compliant" to "dominant". Request your initial audit today.</p>
+            <p className="text-emerald-100/60 mb-12 text-xl font-medium max-w-2xl mx-auto">Elevate your financial standing from "compliant" to "strategic". Request your initial consultation today.</p>
             <a href="/contact" className="inline-block bg-emerald-500 text-white px-16 py-8 rounded-3xl font-black text-2xl hover:bg-emerald-400 transition-all shadow-2xl hover:shadow-emerald-500/40 transform hover:-translate-y-1">
-              Request Secured Audit
+              Request Consultation
             </a>
           </div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border-[100px] border-emerald-500/5 rounded-full"></div>

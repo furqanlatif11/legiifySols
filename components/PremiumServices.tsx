@@ -63,9 +63,9 @@ const PremiumServices: React.FC<{
               <ul className="space-y-8">
                 {[
                   'Bespoke Virtual CFO Integration',
-                  'Aggressive Capital Restructuring',
+                  'Strategic Capital Planning',
                   'Strategic Nexus Analysis',
-                  'High-Resolution Internal Audits',
+                  'Financial Review & Analysis',
                   'Private Wealth Tax Architecture',
                   'Exit Readiness & M&A Support'
                 ].map((item, idx) => (

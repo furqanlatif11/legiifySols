@@ -42,7 +42,7 @@ export const INDUSTRIES: Industry[] = [
     fullDesc: 'The tech sector moves at the speed of light, and legacy accounting often lags behind. We specialize in subscription-based revenue recognition, global payroll nexus for remote teams, and aggressive R&D tax credit captures that inject capital back into your product roadmap.',
     icon: 'Rocket',
     challenges: ['ASC 606 Revenue Recognition', 'Multi-state Nexus Compliance', 'Equity & Stock Option Accounting'],
-    mandates: ['R&D Tax Credit Study', 'Series A-D Audit Readiness', 'Burn-Rate Strategy']
+    mandates: ['R&D Tax Credit Study', 'Series A-D Readiness', 'Burn-Rate Strategy']
   },
   {
     id: 'real-estate',
@@ -60,16 +60,16 @@ export const INDUSTRIES: Industry[] = [
     fullDesc: 'Medical professionals face unique challenges with insurance reconciliation and high-overhead management. We handle the financial "vitals" of your practice, ensuring HIPAA-compliant data handling and optimizing physician distribution models to maximize take-home wealth.',
     icon: 'Stethoscope',
     challenges: ['HIPAA Financial Privacy', 'Insurance Billing Reconciliation', 'Equipment Lease Optimization'],
-    mandates: ['Practice Valuation', 'Distribution Strategy', 'Compliance Audit']
+    mandates: ['Practice Valuation', 'Distribution Strategy', 'Compliance Review']
   },
   {
     id: 'manufacturing',
     title: 'Mfg & Logistics',
-    shortDesc: 'Inventory valuation, supply chain cost auditing, and international trade tax strategies.',
-    fullDesc: 'Global supply chains demand precise inventory accounting (LIFO/FIFO) and Section 263A capitalization compliance. We help manufacturers identify leakage in their supply chain costs and navigate the complexities of international customs and trade taxes.',
+    shortDesc: 'Inventory valuation, supply chain cost analysis, and international trade tax strategies.',
+    fullDesc: 'Global supply chains demand precise inventory accounting (LIFO/FIFO) and Section 263A capitalization compliance. We help manufacturers identify inefficiencies in their supply chain costs and navigate the complexities of international customs and trade taxes.',
     icon: 'Truck',
-    challenges: ['Inventory Cost Capitalization', 'Duty Drawback Optimization', 'Supply Chain Cost Auditing'],
-    mandates: ['Inventory Valuation', 'Logistics Tax Shielding', 'Operational Audit']
+    challenges: ['Inventory Cost Capitalization', 'Duty Drawback Optimization', 'Supply Chain Analysis'],
+    mandates: ['Inventory Valuation', 'Logistics Tax Shielding', 'Operational Review']
   },
   {
     id: 'professional-services',
@@ -78,7 +78,7 @@ export const INDUSTRIES: Industry[] = [
     fullDesc: 'Service-based firms thrive on billable efficiency and partner distribution equity. We provide the financial structure to manage overhead, optimize partner k-1s, and ensure the firm is structured for a future buy-out or generational succession.',
     icon: 'Briefcase',
     challenges: ['Partner Equity Tracking', 'Overhead Allocation', 'Succession Planning'],
-    mandates: ['Partner Distribution Model', 'Succession Architecture', 'Profitability Audit']
+    mandates: ['Partner Distribution Model', 'Succession Architecture', 'Profitability Review']
   },
   {
     id: 'hnw-individuals',
@@ -102,11 +102,11 @@ export const CORE_SERVICES: (Service & { blueprint: string[] })[] = [
   },
   {
     id: 'bookkeeping',
-    title: 'Audit-Ready Bookkeeping',
-    description: 'Meticulous financial records maintained with double-entry precision for absolute stakeholder confidence.',
+    title: 'Compliance-Ready Bookkeeping',
+    description: 'Professional financial records maintained with double-entry precision for accuracy and organization.',
     icon: 'Calculator',
     category: 'core',
-    blueprint: ['Accrual-Basis Ledger Mgmt', 'Monthly Bank Reconciliation', 'Institutional Financial Package', 'Internal Control Audit']
+    blueprint: ['Accrual-Basis Ledger Mgmt', 'Monthly Bank Reconciliation', 'Institutional Financial Package', 'Financial Review Support']
   },
   {
     id: 'payroll-compliance',
@@ -114,7 +114,7 @@ export const CORE_SERVICES: (Service & { blueprint: string[] })[] = [
     description: 'Complex nexus and withholding management across all 50 states, ensuring labor law compliance.',
     icon: 'DollarSign',
     category: 'core',
-    blueprint: ['Nexus Determination', 'Local Tax Withholding', 'Workers Comp Audit Support', 'Quarterly Compliance Filings']
+    blueprint: ['Nexus Determination', 'Local Tax Withholding', 'Compliance Verification', 'Quarterly Compliance Filings']
   },
   {
     id: 'reporting',
@@ -136,12 +136,12 @@ export const PREMIUM_SERVICES: (Service & { blueprint: string[] })[] = [
     blueprint: ['Capital Allocation Strategy', 'Budget vs Actual Modeling', 'Board Meeting Representation', 'Funding Round Support']
   },
   {
-    id: 'irs-defense',
-    title: 'IRS Defense & Resolution',
-    description: 'Aggressive representation and negotiation for complex audits and intricate tax disputes.',
+    id: 'irs-dispute',
+    title: 'Tax Dispute Support',
+    description: 'Professional support for complex tax matters and resolution strategies.',
     icon: 'Gavel',
     category: 'premium',
-    blueprint: ['Power of Attorney Representation', 'Audit File Reconstruction', 'Settlement Negotiation', 'Tax Court Coordination']
+    blueprint: ['Documentation Preparation', 'Record Organization', 'Communication Coordination', 'Resolution Strategy Support']
   },
   {
     id: 'ma-advisory',
@@ -152,12 +152,12 @@ export const PREMIUM_SERVICES: (Service & { blueprint: string[] })[] = [
     blueprint: ['Quality of Earnings (QofE)', 'Asset Purchase Allocation', 'Synergy Analysis', 'Integration Roadmap']
   },
   {
-    id: 'forensic-accounting',
-    title: 'Forensic Investigation',
-    description: 'Detective work to identify discrepancies, embezzlement risks, and litigation support.',
+    id: 'financial-analysis',
+    title: 'Financial Analysis & Review',
+    description: 'Comprehensive financial review to identify discrepancies and unusual patterns.',
     icon: 'SearchCode',
     category: 'premium',
-    blueprint: ['Anomaly Detection Modeling', 'Asset Recovery Support', 'Expert Witness Testimony', 'Internal Fraud Auditing']
+    blueprint: ['Pattern Recognition', 'Data Analysis Support', 'Documentation Review', 'Detailed Reporting']
   }
 ];
 
@@ -189,10 +189,10 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const METRICS: Metric[] = [
-  { label: 'Asset Under Advisory', value: '$3.8B+', description: 'Trusted with massive financial legacies.' },
-  { label: 'Audit Win Rate', value: '100%', description: 'Defending every dollar with precision.' },
+  { label: 'Case Resolution', value: '100%', description: 'Successful case outcomes.' },
+  { label: 'Client Satisfaction', value: '$3.8B+', description: 'Assets managed for clients.' },
   { label: 'Client Net Growth', value: '22%', description: 'Average annual wealth increase for clients.' },
-  { label: 'Expert CPAs', value: '60+', description: 'Elite financial minds at your service.' }
+  { label: 'Professional Team', value: '60+', description: 'Experienced financial professionals.' }
 ];
 
 export const ICON_MAP: Record<string, React.ReactNode> = {

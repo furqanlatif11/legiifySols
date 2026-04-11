@@ -44,7 +44,7 @@ const AboutPage: React.FC = () => {
             {[
               { icon: <Shield className="w-10 h-10" />, title: "Absolute Security", desc: "Military-grade data protocols for every client." },
               { icon: <Globe className="w-10 h-10" />, title: "USA Compliance", desc: "Native expertise in federal and 50-state nexus." },
-              { icon: <Award className="w-10 h-10" />, title: "Certified Talent", desc: "Every strategist is a CPA or JD specialized in finance." }
+              { icon: <Award className="w-10 h-10" />, title: "Professional Team", desc: "Experienced financial professionals with specialized expertise." }
             ].map((pillar, i) => (
               <div key={i} className="text-center group">
                 <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-8 transition-transform group-hover:scale-110">

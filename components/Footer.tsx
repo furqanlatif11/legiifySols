@@ -40,7 +40,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               onClick={onInquire}
               className="bg-emerald-950 text-white px-12 py-6 rounded-2xl font-black text-xl hover:bg-black transition-all shadow-2xl"
             >
-              Start Free Audit
+              Get Free Consultation
             </button>
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-[80px]"></div>
@@ -93,7 +93,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                   to="/services"
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  Forensic Bookkeeping
+                  Financial Analysis
                 </Link>
               </li>
               <li>
@@ -109,7 +109,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                   to="/services"
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  IRS Defense
+                  Tax Dispute Support
                 </Link>
               </li>
               <li>

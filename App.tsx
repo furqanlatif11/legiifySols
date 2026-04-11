@@ -6,12 +6,14 @@ import Footer from './components/Footer';
 import InquiryModal from './components/InquiryModal';
 import DetailModal from './components/DetailModal';
 import BackToTop from './components/BackToTop';
+import StickyConsultationButton from './components/StickyConsultationButton';
 import HomePage from './pages/Home';
 import AboutPage from './pages/About';
 import ServicesPage from './pages/Services';
 import IndustriesPage from './pages/Industries';
 import ContactPage from './pages/Contact';
 import WhyPage from './pages/Why';
+import PricingPage from './pages/Pricing';
 
 // --- MAIN APP COMPONENT ---
 
@@ -42,6 +44,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage handleInquire={handleInquire} handleShowDetails={handleShowDetails} />} />
             <Route path="/industries" element={<IndustriesPage handleInquire={handleInquire} handleShowDetails={handleShowDetails} />} />
+            <Route path="/pricing" element={<PricingPage handleInquire={handleInquire} />} />
             <Route path="/philosophy" element={<WhyPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
@@ -70,6 +73,8 @@ const App: React.FC = () => {
         )}
 
         <BackToTop />
+
+        <StickyConsultationButton onClick={() => handleInquire()} />
       </div>
     </Router>
   );

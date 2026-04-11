@@ -9,6 +9,7 @@ import ProvenResults from '../components/ProvenResults';
 import Testimonials from '../components/Testimonials';
 import TrustBadges from '../components/TrustBadges';
 import ClientTypes from '../components/ClientTypes';
+import PricingSection from '@/components/PricingSection';
 
 type HomeProps = {
   handleInquire: (s?: string) => void;
@@ -32,6 +33,7 @@ const HomePage: React.FC<HomeProps> = ({ handleInquire, handleShowDetails }) => 
     <CoreServices onInquire={handleInquire} onShowDetails={handleShowDetails} />
     <PremiumServices onInquire={handleInquire} onShowDetails={handleShowDetails} />
     <ProvenResults />
+    <PricingSection onInquire={(plan) => handleInquire(plan)} />
     <Testimonials />
     <TrustBadges />
     <ClientTypes onInquire={handleInquire} onShowDetails={handleShowDetails} />
