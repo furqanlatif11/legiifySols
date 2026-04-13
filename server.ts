@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { sendInquiryEmail } from './lib/mail';
+import { sendInquiryEmail } from './lib/mail.ts';
 
 // load environment variables from .env, then override with .env.local if present
 dotenv.config();
@@ -39,6 +39,8 @@ app.post('/api/inquiry', async (req: express.Request, res: express.Response) => 
 
   try {
     // delegate to shared helper
+console.log('sending inquiry email with data:', { fullName, email, company, service, message });  
+
     await sendInquiryEmail({ fullName, email, company, service, message });
     return res.json({ success: true });
   } catch (err) {
