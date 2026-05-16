@@ -9,6 +9,8 @@ interface PricingPlan {
   features: string[];
   isPopular?: boolean;
   isCustom?: boolean;
+  minPrice?: number;
+  maxPrice?: number;
   onInquire: () => void;
 }
 
@@ -19,11 +21,26 @@ interface PricingSectionProps {
 const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
   const plans: PricingPlan[] = [
     {
+      name: "Basic",
+      price: 100,
+      minPrice: 80,
+      maxPrice: 100,
+      description: "Good for freelancers and solopreneurs",
+      features: [
+        "Up to 50 transactions",
+        "Monthly summary",
+        "Email support",
+      ],
+      onInquire: () => onInquire("Basic"),
+    },
+    {
       name: "Starter",
       price: 199,
+      minPrice: 100,
+      maxPrice: 199,
       description: "Perfect for small businesses",
       features: [
-        "Up to 100 transactions",
+        "Up to 200 transactions",
         "Monthly reports",
         "Email support",
         "Basic analytics",
@@ -33,6 +50,8 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
     {
       name: "Growth",
       price: 399,
+      minPrice: 200,
+      maxPrice: 399,
       description: "For scaling enterprises",
       features: [
         "Higher volume transactions",
@@ -45,9 +64,25 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
       onInquire: () => onInquire("Growth"),
     },
     {
-      name: "Custom Plan",
-      price: 0,
-      description: "For larger businesses",
+      name: "Pro",
+      price: 599,
+      minPrice: 400,
+      maxPrice: 599,
+      description: "Advanced features for growing teams",
+      features: [
+        "Up to 2,000 transactions",
+        "Dedicated support",
+        "Advanced analytics",
+        "Integration assistance",
+      ],
+      onInquire: () => onInquire("Pro"),
+    },
+    {
+      name: "Enterprise",
+      price: 1199,
+      minPrice: 600,
+      maxPrice: 1199,
+      description: "Full enterprise package with premium services",
       features: [
         "Unlimited transactions",
         "Dedicated account manager",
@@ -55,8 +90,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
         "24/7 premium support",
         "Strategic consulting",
       ],
-      isCustom: true,
-      onInquire: () => onInquire("Custom"),
+      onInquire: () => onInquire("Enterprise"),
     },
   ];
 
@@ -105,7 +139,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
           </h2>
           <p className="text-2xl text-slate-600 font-bold">
             Starting as low as{" "}
-            <span className="text-emerald-600">$50</span>
+            <span className="text-emerald-600">$80</span>
           </p>
         </motion.div>
 
@@ -154,9 +188,15 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
                     </div>
                   ) : (
                     <>
-                      <span className="text-5xl font-black text-emerald-950">
-                        ${plan.price}
-                      </span>
+                      {plan.minPrice !== undefined && plan.maxPrice !== undefined ? (
+                        <span className="text-4xl font-black text-emerald-950">
+                          ${plan.minPrice} - ${plan.maxPrice}
+                        </span>
+                      ) : (
+                        <span className="text-5xl font-black text-emerald-950">
+                          ${plan.price}
+                        </span>
+                      )}
                       <span className="text-slate-500 font-bold text-sm ml-2">
                         /month
                       </span>

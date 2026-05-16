@@ -286,6 +286,23 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
 
                 <section>
                   <h4 className="font-bold text-lg mb-2">
+                    Return Period for Services
+                  </h4>
+                  <p>
+                    For services (including consulting, implementations,
+                    coaching, webinars, and similar engagements), clients may
+                    request a refund within 30 days from the completion of
+                    services. The 30-day period begins on the date Ledgify
+                    Solutions LLC notifies the client that the services are
+                    complete or the completion date specified in the
+                    applicable agreement, whichever is earlier. Refunds
+                    requested after this 30-day period will generally not be
+                    eligible, except at the sole discretion of our management.
+                  </p>
+                </section>
+
+                <section>
+                  <h4 className="font-bold text-lg mb-2">
                     Non-Delivery of Product
                   </h4>
                   <p>
@@ -476,8 +493,11 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                   <p>
                     Returnable products are covered by a 30-day money-back
                     guarantee. Services, coaching, webinars, seminars, and
-                    proprietary software are non-refundable. Please refer to
-                    product sales pages for details.
+                    proprietary software are eligible for refund within 30
+                    days from completion of services (see Refund Policy for
+                    details); after the 30-day period they are generally
+                    non-refundable. Please refer to product sales pages for
+                    additional details.
                   </p>
                 </section>
 
