@@ -53,7 +53,7 @@ const WhyPage: React.FC = () => {
           <div className="relative z-10">
             <h3 className="text-5xl font-black mb-10 tracking-tight">Experience the Ledgify Difference.</h3>
             <p className="text-emerald-100/60 mb-12 text-xl font-medium max-w-2xl mx-auto">Elevate your financial standing from "compliant" to "strategic". Request your initial consultation today.</p>
-            <a href="/contact" className="inline-block bg-emerald-500 text-white px-16 py-8 rounded-3xl font-black text-2xl hover:bg-emerald-400 transition-all shadow-2xl hover:shadow-emerald-500/40 transform hover:-translate-y-1">
+            <a href="/contact" className="inline-block w-full sm:w-auto bg-emerald-500 text-white px-8 sm:px-16 py-5 sm:py-8 rounded-3xl font-black text-2xl text-center hover:bg-emerald-400 transition-all shadow-2xl hover:shadow-emerald-500/40 transform hover:-translate-y-1 sm:hover:-translate-y-1">
               Request Consultation
             </a>
           </div>
