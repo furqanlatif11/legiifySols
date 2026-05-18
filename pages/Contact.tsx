@@ -52,10 +52,10 @@ const ContactPage: React.FC = () => {
         <div className="bg-emerald-950 text-white p-12 md:p-20 rounded-[4rem] shadow-2xl relative overflow-hidden">
            <div className="relative z-10">
               <h3 className="text-4xl font-black mb-8 tracking-tight">Direct Mandate</h3>
-              <p className="text-emerald-100/60 mb-12 font-bold text-lg">Please provide your corporate details for initial due diligence.</p>
+              <p className="text-emerald-100/60 mb-12 font-bold text-lg">Please share the details that best describe your situation — individual or business.</p>
               <form className="space-y-8">
-                <input placeholder="Legal Name" className="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-emerald-500 outline-none font-black text-lg text-white" />
-                <input placeholder="Business Email" className="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-emerald-500 outline-none font-black text-lg text-white" />
+                <input placeholder="Name or Company" className="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-emerald-500 outline-none font-black text-lg text-white" />
+                <input placeholder="Email" className="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-emerald-500 outline-none font-black text-lg text-white" />
                 <textarea placeholder="Describe your financial objectives" rows={4} className="w-full bg-white/5 border border-white/10 p-6 rounded-2xl focus:border-emerald-500 outline-none font-black text-lg text-white resize-none"></textarea>
                 <button className="w-full bg-emerald-500 py-6 rounded-2xl font-black text-2xl hover:bg-emerald-400 transition-all shadow-2xl shadow-emerald-500/20">Send Mandate</button>
               </form>

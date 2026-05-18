@@ -215,6 +215,54 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
           </div>
         </div>
 
+        <div className="flex justify-center">
+          <div className="mt-6">
+            <h4 className="text-lg text-center  text-white mb-4">We Accept</h4>
+
+            <div className="flex flex-wrap items-center gap-6">
+              <div className=" flex items-center justify-center">
+                <img
+                  src="/assets/logos/visa.svg"
+                  alt="VISA"
+                  className="h-10 object-contain"
+                />
+              </div>
+
+              <div className=" flex items-center justify-center">
+                <img
+                  src="/assets/logos/mastercard.svg"
+                  alt="Mastercard"
+                  className="h-10 object-contain"
+                />
+              </div>
+
+              <div className=" flex items-center justify-center ">
+                <img
+                  src="/assets/logos/amex.svg"
+                  alt="American Express"
+                  className="h-10 object-contain"
+                />
+              </div>
+
+              <div className=" flex items-center justify-center">
+                <img
+                  src="/assets/logos/discover.svg"
+                  alt="Discover"
+                  className="h-10 object-contain"
+                />
+              </div>
+
+              <div className=" flex items-center justify-center">
+                <img
+                  src="/assets/logos/bank.svg"
+                  alt="Bank Transfer"
+                  className="h-7 object-contain text-white"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="py-12 flex flex-col md:flex-row items-center justify-between gap-8 text-xs font-bold uppercase tracking-[0.2em] text-emerald-100/20">
           <p>© 2026 Ledgify Solutions LLC. A Global Financial Partner.</p>
           <div className="flex gap-6">
@@ -294,10 +342,10 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                     request a refund within 30 days from the completion of
                     services. The 30-day period begins on the date Ledgify
                     Solutions LLC notifies the client that the services are
-                    complete or the completion date specified in the
-                    applicable agreement, whichever is earlier. Refunds
-                    requested after this 30-day period will generally not be
-                    eligible, except at the sole discretion of our management.
+                    complete or the completion date specified in the applicable
+                    agreement, whichever is earlier. Refunds requested after
+                    this 30-day period will generally not be eligible, except at
+                    the sole discretion of our management.
                   </p>
                 </section>
 
@@ -493,11 +541,10 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                   <p>
                     Returnable products are covered by a 30-day money-back
                     guarantee. Services, coaching, webinars, seminars, and
-                    proprietary software are eligible for refund within 30
-                    days from completion of services (see Refund Policy for
-                    details); after the 30-day period they are generally
-                    non-refundable. Please refer to product sales pages for
-                    additional details.
+                    proprietary software are eligible for refund within 30 days
+                    from completion of services (see Refund Policy for details);
+                    after the 30-day period they are generally non-refundable.
+                    Please refer to product sales pages for additional details.
                   </p>
                 </section>
 

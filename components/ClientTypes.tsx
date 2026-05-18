@@ -18,7 +18,12 @@ const ClientTypes: React.FC<{
           <div className="max-w-3xl">
             <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Targeted Expertise</h2>
             <h3 className="text-5xl md:text-6xl font-black text-emerald-950 tracking-tighter leading-none mb-6">Who We Serve.</h3>
-            <p className="text-xl text-slate-600 font-medium">Industry-specific financial strategies for the USA’s most complex sectors.</p>
+            <p className="text-xl text-slate-600 font-medium">
+              Financial strategies for individuals, founders, and the USA’s most complex sectors.
+            </p>
+            <p className="text-lg text-slate-500 mt-4 max-w-2xl">
+              From high-net-worth individuals to growth companies, we tailor every solution to your unique financial profile.
+            </p>
           </div>
           <Link 
             to="/industries" 

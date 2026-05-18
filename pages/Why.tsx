@@ -7,7 +7,7 @@ const WhyPage: React.FC = () => {
   useEffect(() => {
     setMeta({
       title: 'Philosophy — Ledgify Solutions',
-      description: 'The Ledgify Method: precision engineering and proactive defense for financial longevity.',
+      description: 'The Ledgify Method: precision engineering and proactive defense for individuals, founders, and enterprises.',
       url: window.location.href,
       image: '/assets/logos/ledgifySols_OGImage.webp'
     });
@@ -19,6 +19,9 @@ const WhyPage: React.FC = () => {
       <div className="text-center mb-32">
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">The Ledgify Method</h2>
         <h1 className="text-6xl md:text-8xl font-black text-emerald-950 tracking-tighter leading-none">Built for <br /><span className="text-emerald-600">Longevity.</span></h1>
+        <p className="text-2xl text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mt-10">
+          Whether you are an individual planning a secure financial future or an organization scaling with complexity, our philosophy centers on personal accountability, legal clarity, and operational certainty.
+        </p>
       </div>
       
       <div className="space-y-32">

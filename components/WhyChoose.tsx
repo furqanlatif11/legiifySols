@@ -44,7 +44,7 @@ const WhyChoose: React.FC = () => {
           </div>
           <div className="lg:w-1/2">
             <p className="text-xl text-slate-600 leading-relaxed font-medium">
-              Founded on the principles of institutional integrity and digital agility, Ledgify Solutions LLC serves as the financial backbone for businesses that refuse to settle for standard accounting. We merge old-world financial discipline with new-world technological speed.
+              Founded on the principles of institutional integrity and digital agility, Ledgify Solutions LLC serves as the financial backbone for individuals, founders, and businesses that refuse to settle for standard accounting. We merge old-world financial discipline with new-world technological speed.
             </p>
           </div>
         </div>

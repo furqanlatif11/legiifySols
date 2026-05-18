@@ -21,17 +21,16 @@ interface PricingSectionProps {
 const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
   const plans: PricingPlan[] = [
     {
-      name: "Basic",
-      price: 100,
+      name: "Individual",
+      price: 80,
       minPrice: 80,
-      maxPrice: 100,
-      description: "Good for freelancers and solopreneurs",
+      description: "Starting from $80 for individuals and solopreneurs",
       features: [
         "Up to 50 transactions",
         "Monthly summary",
         "Email support",
       ],
-      onInquire: () => onInquire("Basic"),
+      onInquire: () => onInquire("Individual"),
     },
     {
       name: "Starter",
@@ -192,13 +191,20 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
                         <span className="text-4xl font-black text-emerald-950">
                           ${plan.minPrice} - ${plan.maxPrice}
                         </span>
+                      ) : plan.minPrice !== undefined ? (
+                        <>
+                        <p className="text-slate-600 font-medium text-sm">Starting From</p>
+                        <span className="text-4xl font-black text-emerald-950">
+                           ${plan.minPrice}
+                        </span>
+                        </>
                       ) : (
                         <span className="text-5xl font-black text-emerald-950">
                           ${plan.price}
                         </span>
                       )}
                       <span className="text-slate-500 font-bold text-sm ml-2">
-                        /month
+                        
                       </span>
                     </>
                   )}
@@ -255,7 +261,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
         >
           <p className="text-slate-600 font-medium">
             All plans include a{" "}
-            <span className="text-emerald-600 font-black">free consultation</span> with our strategists to ensure the right fit for your business.
+            <span className="text-emerald-600 font-black">free consultation</span> with our strategists to ensure the right fit for individuals and businesses.
           </p>
         </motion.div>
       </div>

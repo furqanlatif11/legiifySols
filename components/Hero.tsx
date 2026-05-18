@@ -42,7 +42,11 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
 
   useEffect(() => {
     const measure = () => {
-      if (textRef.current) setSlotHeight(textRef.current.offsetHeight);
+      if (textRef.current) {
+        // add a small buffer so the animated text doesn't get clipped
+        const measured = textRef.current.offsetHeight;
+        setSlotHeight(measured + 12);
+      }
     };
 
     // measure after render
@@ -108,7 +112,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                         animate={{ y: "0%", opacity: 1 }}
                         exit={{ y: "-100%", opacity: 0 }}
                         transition={{ duration: 0.45, ease: "easeOut" }}
-                        className="text-emerald-600 w-full block whitespace-normal break-words text-6xl md:text-8xl font-black"
+                        className="text-emerald-600 w-full block whitespace-normal break-words text-6xl md:text-8xl "
                         aria-live="polite"
                       >
                         {services[serviceIndex]}
@@ -124,7 +128,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
             variants={itemVariants}
             className="text-xl md:text-2xl text-slate-700/80 mb-10 leading-relaxed font-medium max-w-xl"
           >
-            We help agencies, ecommerce brands, and small businesses manage
+            We help individuals, agencies, ecommerce brands, and small businesses manage
             their books, reduce costs, and stay financially organized — without
             hiring in-house staff.
           </motion.p>

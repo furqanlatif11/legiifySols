@@ -20,20 +20,20 @@ const AboutPage: React.FC = () => {
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Our Pedigree</h2>
         <h1 className="text-5xl md:text-8xl font-black text-emerald-950 mb-10 tracking-tighter leading-none">The Architects of <br /><span className="text-emerald-600">Financial Integrity.</span></h1>
         <p className="text-2xl text-slate-600 leading-relaxed mb-16 font-medium">
-          Founded by veterans of the "Big Four" and international tax legal scholars, Ledgify Solutions LLC was created to bridge the gap between traditional accounting and the sophisticated needs of modern, high-growth enterprises.
+          Founded by veterans of the "Big Four" and international tax legal scholars, Ledgify Solutions LLC was created to bridge the gap between traditional accounting and the sophisticated needs of modern entrepreneurs, individuals, and high-growth enterprises.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
           <div className="bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100 shadow-sm">
             <h3 className="text-3xl font-black mb-6 text-emerald-950">Our Mission</h3>
             <p className="text-slate-600 font-medium leading-relaxed text-lg">
-              To empower US businesses with the same level of financial strategy and tax architecture typically reserved for the Fortune 500. We believe precision is the ultimate form of asset protection.
+              To empower US individuals and businesses with the same level of financial strategy and tax architecture typically reserved for the Fortune 500. We believe precision is the ultimate form of asset protection.
             </p>
           </div>
           <div className="bg-emerald-950 text-white p-12 rounded-[3.5rem] shadow-2xl">
             <h3 className="text-3xl font-black mb-6 text-emerald-400">Our Culture</h3>
             <p className="text-emerald-100/60 font-medium leading-relaxed text-lg">
-              Discretion, precision, and proactive defense. Our team operates with an institutional mindset, ensuring every ledger and filing is a testament to your corporate legitimacy.
+              Discretion, precision, and proactive defense. Our team operates with an institutional mindset, ensuring every ledger and filing is a testament to your financial legitimacy.
             </p>
           </div>
         </div>

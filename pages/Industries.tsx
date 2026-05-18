@@ -12,7 +12,7 @@ const IndustriesPage: React.FC<IndustriesProps> = ({ handleInquire, handleShowDe
   useEffect(() => {
     setMeta({
       title: 'Industries — Ledgify Solutions',
-      description: 'Industry-specific financial and tax solutions from Ledgify Solutions. We support SaaS, manufacturing, and high-growth enterprises.',
+      description: 'Industry-specific financial and tax solutions from Ledgify Solutions. We support individuals, SaaS, manufacturing, and high-growth enterprises.',
       url: window.location.href,
       image: '/assets/logos/ledgifySols_OGImage.webp'
     });
@@ -25,7 +25,7 @@ const IndustriesPage: React.FC<IndustriesProps> = ({ handleInquire, handleShowDe
         <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Market Sovereignty</h2>
         <h1 className="text-6xl md:text-8xl font-black text-emerald-950 tracking-tighter leading-none mb-10">Industries We <br /><span className="text-emerald-600">Shield.</span></h1>
         <p className="text-2xl text-slate-600 font-medium leading-relaxed">
-          From venture-backed SaaS innovators to established manufacturing titans, we provide the sector-specific legal and accounting architecture required for market dominance.
+          From independent professionals and venture-backed SaaS innovators to established manufacturing titans, we provide the sector-specific legal and accounting architecture required for market confidence and growth.
         </p>
       </div>
 

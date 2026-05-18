@@ -150,7 +150,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
                     </div>
                     <div>
                       <label className="block text-xs font-black uppercase tracking-widest text-emerald-900/40 mb-2">
-                        Business Email
+                        Email
                       </label>
                       <input
                         required
@@ -158,7 +158,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="j.sterling@firm.com"
+                        placeholder="you@example.com"
                         className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all font-bold text-emerald-950"
                       />
                     </div>
@@ -166,14 +166,14 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-xs font-black uppercase tracking-widest text-emerald-900/40 mb-2">
-                        Company Name
+                        Company or Individual Name
                       </label>
                       <input
                         type="text"
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        placeholder="Organization LLC"
+                        placeholder="Organization or Personal Name"
                         className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all font-bold text-emerald-950"
                       />
                     </div>

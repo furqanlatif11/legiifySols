@@ -39,7 +39,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ handleInquire }) => {
               {
                 question: "Do you offer annual discounts?",
                 answer:
-                  "Yes, we offer 15% off when you commit to annual billing. Contact our team to learn more about volume discounts for enterprise plans.",
+                  "Yes, we offer 15% off when you commit to annual billing. Contact our team to learn more about discounts across plans for individuals, small businesses, and enterprise clients.",
               },
               {
                 question: "What's included in the free consultation?",
