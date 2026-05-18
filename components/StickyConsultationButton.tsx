@@ -13,10 +13,14 @@ const StickyConsultationButton: React.FC<StickyConsultationButtonProps> = ({ onC
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 300;
-      setIsVisible(scrolled);
+      const reachedBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 120;
+      setIsVisible(scrolled && !reachedBottom);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
