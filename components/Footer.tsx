@@ -351,12 +351,12 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
 
                 <section>
                   <h4 className="font-bold text-lg mb-2">
-                    Non-Delivery of Product
+                    Non-Delivery of Service
                   </h4>
                   <p>
                     If delivery emails are not received due to mailing issues,
                     contact us for assistance. Claims must be submitted within
-                    30 days from delivery; otherwise, the product will be
+                    30 days from delivery; otherwise, the Service will be
                     considered successfully delivered.
                   </p>
                 </section>
@@ -366,17 +366,17 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                     Download and Unzipping Issues
                   </h4>
                   <p>
-                    Problems with downloading or unzipping products must be
+                    Problems with downloading or unzipping Services must be
                     reported to our Technical Support Department. Failure to
                     report within 30 days may result in the refund being
                     declined.
                   </p>
                 </section>
 
-                <section>
+                {/* <section>
                   <h4 className="font-bold text-lg mb-2">Major Defects</h4>
                   <p>
-                    All products are tested before release, but unexpected
+                    All Services are tested before release, but unexpected
                     errors may occur. Report issues to our Technical Support
                     Team. We will attempt to fix defects within 72 hours. If
                     unresolved, a full refund or replacement of equal value will
@@ -384,7 +384,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                     to identify issues; refusal may delay or void eligibility
                     for refund.
                   </p>
-                </section>
+                </section> */}
 
                 <section>
                   <h4 className="font-bold text-lg mb-2">
@@ -392,7 +392,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                   </h4>
                   <p>
                     Issues must be reported within 30 days with clear evidence
-                    that the product differs from its description. Complaints
+                    that the Service differs from its description. Complaints
                     based on false expectations or personal preferences will not
                     be honored.
                   </p>
@@ -401,7 +401,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                 <section>
                   <h4 className="font-bold text-lg mb-2">Children Policy</h4>
                   <p>
-                    Only persons aged 18 or older may access our products. We do
+                    Only persons aged 18 or older may access our Services. We do
                     not knowingly collect information from children under 13.
                     Parents or guardians discovering that their child has
                     provided personal information should contact us immediately.
@@ -447,7 +447,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                   <p>
                     Ledgify Solutions LLC prides itself on fast and courteous
                     customer service. For any questions regarding the purchase
-                    or sale of products or services, contact us directly with
+                    or sale of services, contact us directly with
                     your name, email, and order number.
                   </p>
                 </section>
@@ -477,7 +477,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                     with permission.
                   </p>
                   <p>
-                    Products and services are for educational and entertainment
+                    Services are for educational and entertainment
                     purposes only. No income is guaranteed. Additional purchases
                     may be required to start a business. All decisions are made
                     at your own discretion.
@@ -507,7 +507,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                   </p>
                   <p>
                     Total liability shall not exceed the amount paid, if any,
-                    for accessing products or services from this site.
+                    for accessing services from this site.
                   </p>
                 </section>
 
@@ -539,12 +539,12 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                     Returns & Refund Policies
                   </h4>
                   <p>
-                    Returnable products are covered by a 30-day money-back
-                    guarantee. Services, coaching, webinars, seminars, and
+                    Returnable services are covered by a 30-day money-back
+                    guarantee. services, coaching, webinars, seminars, and
                     proprietary software are eligible for refund within 30 days
                     from completion of services (see Refund Policy for details);
                     after the 30-day period they are generally non-refundable.
-                    Please refer to product sales pages for additional details.
+                    Please refer to service sales pages for additional details.
                   </p>
                 </section>
 
