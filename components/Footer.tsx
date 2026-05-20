@@ -388,7 +388,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
 
                 <section>
                   <h4 className="font-bold text-lg mb-2">
-                    Product Not-As-Described
+                    Service Not-As-Described
                   </h4>
                   <p>
                     Issues must be reported within 30 days with clear evidence
