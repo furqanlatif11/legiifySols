@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { CheckCircle2, ArrowRight, TrendingUp } from "lucide-react";
 
 const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
@@ -19,7 +19,15 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
     return () => clearInterval(timer);
   }, []);
 
-  const containerVariants = {
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: {
+  //     opacity: 1,
+  //     transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  //   },
+  // };
+
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -27,33 +35,15 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      // use cubic-bezier array for typed easing
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
     },
   };
-
-  // measure animated text height to set the slot size and avoid overlap
-  const textRef = useRef<HTMLSpanElement | null>(null);
-  const [slotHeight, setSlotHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const measure = () => {
-      if (textRef.current) {
-        // add a small buffer so the animated text doesn't get clipped
-        const measured = textRef.current.offsetHeight;
-        setSlotHeight(measured + 12);
-      }
-    };
-
-    // measure after render
-    requestAnimationFrame(measure);
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, [serviceIndex]);
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-slate-50">
@@ -87,32 +77,33 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
             </span>
           </motion.div>
 
-          <motion.div
-            variants={itemVariants}
-            className="min-h-[220px] md:min-h-[280px]"
-          >
+          <motion.div variants={itemVariants}>
             <h1 className="text-6xl md:text-8xl font-black text-emerald-950 leading-[0.95] mb-8 tracking-tighter">
               <span className="block relative z-20">Build Your</span>
 
-              {/* Animated line slot: measures active text height and constrains overflow */}
+              {/*
+                Animated text slot — no fixed height, no overflow-hidden.
+                The outer div uses `display: grid` with a single row.
+                AnimatePresence swaps the inner span; the grid row
+                naturally sizes to whatever height the text needs,
+                so wrapped lines on small screens are never clipped.
+              */}
               <div className="mt-2 relative">
                 <div
-                  className="overflow-hidden w-full"
                   style={{
-                    height: slotHeight || undefined,
-                    minHeight: slotHeight ? undefined : undefined,
+                    display: "grid",
+                    gridTemplateRows: "1fr",
                   }}
                 >
-                  <div className="relative">
+                  <div style={{ overflow: "hidden", paddingBottom: "0.15em" }}>
                     <AnimatePresence mode="wait">
                       <motion.span
-                        ref={textRef}
                         key={services[serviceIndex]}
                         initial={{ y: "100%", opacity: 0 }}
                         animate={{ y: "0%", opacity: 1 }}
                         exit={{ y: "-100%", opacity: 0 }}
-                        transition={{ duration: 0.45, ease: "easeOut" }}
-                        className="text-emerald-600 w-full block whitespace-normal break-words text-6xl md:text-8xl "
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className="text-emerald-600 block whitespace-normal break-words text-6xl md:text-8xl leading-[0.95]"
                         aria-live="polite"
                       >
                         {services[serviceIndex]}
@@ -161,7 +152,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               },
               {
                 label: "Elite Security",
-                icon: <TrendingUp className="w-5 h-5 " />,
+                icon: <TrendingUp className="w-5 h-5" />,
               },
             ].map((item, idx) => (
               <div
