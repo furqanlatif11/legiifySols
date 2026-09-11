@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, StaticRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import InquiryModal from './components/InquiryModal';
@@ -25,7 +25,7 @@ import { firmIdentity } from './data/firm';
 
 // --- MAIN APP COMPONENT ---
 
-const App: React.FC = () => {
+const App: React.FC<{ ssrPath?: string }> = ({ ssrPath }) => {
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
@@ -58,8 +58,12 @@ const App: React.FC = () => {
     setIsDetailModalOpen(true);
   };
 
+  const RouterProvider: React.FC<React.PropsWithChildren> = ssrPath
+    ? ({ children }) => <StaticRouter location={ssrPath}>{children}</StaticRouter>
+    : BrowserRouter;
+
   return (
-    <Router>
+    <RouterProvider>
       <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
         <Header onInquire={() => handleInquire()} />
         
@@ -107,7 +111,7 @@ const App: React.FC = () => {
 
         <StickyConsultationButton onClick={() => handleInquire()} />
       </div>
-    </Router>
+    </RouterProvider>
   );
 };
 
