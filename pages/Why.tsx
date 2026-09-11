@@ -29,7 +29,7 @@ const WhyPage: React.FC = () => {
           <div className="flex-1">
             <h3 className="text-4xl font-black mb-8 tracking-tight">1. Precision Engineering</h3>
             <p className="text-xl text-slate-600 font-medium leading-relaxed">
-              We don't just "do taxes." We engineer financial frameworks. By analyzing the legal intersection of your assets and liabilities, we build a defensive perimeter around your capital that traditional accounting firms simply don't have the legal bandwidth to construct.
+              We engineer financial frameworks. By analyzing the legal intersection of your assets and liabilities, we build a defensive perimeter around your capital that traditional accounting firms simply don't have the legal bandwidth to construct.
             </p>
           </div>
           <div className="w-full md:w-1/2 h-80 bg-slate-50 rounded-[4rem] flex items-center justify-center text-emerald-900/5 shadow-inner">

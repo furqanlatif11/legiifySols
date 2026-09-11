@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,6 +14,14 @@ import IndustriesPage from './pages/Industries';
 import ContactPage from './pages/Contact';
 import WhyPage from './pages/Why';
 import PricingPage from './pages/Pricing';
+import NotFoundPage from './pages/NotFound';
+import TaxPlanning from './pages/services/TaxPlanning';
+import FinancialAnalysis from './pages/services/FinancialAnalysis';
+import VirtualCFO from './pages/services/VirtualCFO';
+import TaxResolution from './pages/services/TaxResolution';
+import SuccessionPlanning from './pages/services/SuccessionPlanning';
+import { setJsonLd, getSiteUrl } from './utils/seo';
+import { firmIdentity } from './data/firm';
 
 // --- MAIN APP COMPONENT ---
 
@@ -22,6 +30,23 @@ const App: React.FC = () => {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [selectedInquiryService, setSelectedInquiryService] = useState('');
+
+  // sitewide Organization schema, emitted once so per-page Service schema can reference the same entity
+  useEffect(() => {
+    const site = getSiteUrl();
+    setJsonLd('organization', {
+      '@context': 'https://schema.org',
+      '@type': 'AccountingService',
+      '@id': `${site}/#organization`,
+      name: firmIdentity.legalName,
+      url: site,
+      logo: `${site}/assets/logos/ls-mainLogo600x200_main.svg`,
+      email: firmIdentity.email,
+      telephone: firmIdentity.phone,
+      address: { '@type': 'PostalAddress', addressLocality: 'Walnut Ridge', addressRegion: 'AR', postalCode: '72476', addressCountry: 'US' }
+    });
+    return () => setJsonLd('organization', null);
+  }, []);
 
   const handleInquire = (service: string = '') => {
     setSelectedInquiryService(service);
@@ -43,10 +68,16 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage handleInquire={handleInquire} handleShowDetails={handleShowDetails} />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage handleInquire={handleInquire} handleShowDetails={handleShowDetails} />} />
+            <Route path="/services/tax-planning" element={<TaxPlanning handleInquire={handleInquire} />} />
+            <Route path="/services/financial-analysis" element={<FinancialAnalysis handleInquire={handleInquire} />} />
+            <Route path="/services/virtual-cfo" element={<VirtualCFO handleInquire={handleInquire} />} />
+            <Route path="/services/tax-resolution" element={<TaxResolution handleInquire={handleInquire} />} />
+            <Route path="/services/succession-planning" element={<SuccessionPlanning handleInquire={handleInquire} />} />
             <Route path="/industries" element={<IndustriesPage handleInquire={handleInquire} handleShowDetails={handleShowDetails} />} />
             <Route path="/pricing" element={<PricingPage handleInquire={handleInquire} />} />
             <Route path="/philosophy" element={<WhyPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<NotFoundPage handleInquire={handleInquire} />} />
           </Routes>
         </main>
 

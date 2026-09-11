@@ -19,7 +19,7 @@ const PremiumServices: React.FC<{
           >
             <div className="flex items-center gap-3 mb-6">
               <Star className="text-emerald-600 fill-emerald-600 w-5 h-5" />
-              <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs">The Elite Tier</h2>
+              <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs">Strategic Services</h2>
             </div>
             <h3 className="text-5xl md:text-7xl font-black mb-10 leading-[0.9] tracking-tighter">Strategic Intelligence.</h3>
             <p className="text-xl text-slate-600 font-medium mb-12 leading-relaxed max-w-lg">
@@ -78,7 +78,7 @@ const PremiumServices: React.FC<{
                 ))}
               </ul>
               <button 
-                onClick={() => onInquire('Elite Executive Advisory')}
+                  onClick={() => onInquire('Executive Advisory')}
                 className="w-full mt-16 bg-white text-emerald-950 font-black py-6 rounded-2xl text-xl hover:bg-emerald-50 transition-all shadow-xl hover:shadow-emerald-400/20 transform hover:-translate-y-1"
               >
                 Inquire for Terms

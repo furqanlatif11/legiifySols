@@ -151,7 +151,7 @@ const Hero: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                 icon: <CheckCircle2 className="w-5 h-5" />,
               },
               {
-                label: "Elite Security",
+                label: "Secure Data Handling",
                 icon: <TrendingUp className="w-5 h-5" />,
               },
             ].map((item, idx) => (

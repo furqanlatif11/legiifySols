@@ -39,7 +39,7 @@ serverless functions.
 2. In the Vercel dashboard set the following **Environment Variables**:
    * `EMAIL_USER` – your Gmail address (e.g. `ledgifysolutionsllc@gmail.com`)
    * `EMAIL_PASS` – the app password or OAuth token used for SMTP
-   * `VITE_SITE_URL` – the public URL of the site (e.g. `https://legiify-sols.vercel.app`).
+   * `VITE_SITE_URL` – the public URL of the site (`https://www.ledgifysolutions.com`, no trailing slash).
   This value is exposed client‑side via `import.meta.env.VITE_SITE_URL`.
 * `VITE_API_BASE` – optional base path for API calls (defaults to `/api`).
    * optionally `API_BASE` if you want to prefix the API path (defaults to `/api`)

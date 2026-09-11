@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, Lock, FileCheck, Award } from 'lucide-react';
+import { Shield, Lock, FileCheck, Award, Info } from 'lucide-react';
 
 const TrustBadges: React.FC = () => {
   return (
@@ -29,6 +29,13 @@ const TrustBadges: React.FC = () => {
               <p className="text-slate-600 font-medium text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 max-w-4xl mx-auto flex items-start gap-4 bg-amber-50 border border-amber-200 rounded-2xl p-6">
+          <Info className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
+          <p className="text-slate-700 font-medium text-sm leading-relaxed">
+            <span className="font-black text-amber-700">Please note:</span> Ledgify Solutions prepares, organizes, and reviews your tax documentation. We do not e-file or submit returns to the IRS or state agencies on your behalf — the final filing remains your responsibility (or your designated filer's), and we'll guide you through that step.
+          </p>
         </div>
 
         {/* <div className="bg-emerald-950 text-white rounded-[3rem] p-12 md:p-16">

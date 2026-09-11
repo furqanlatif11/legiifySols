@@ -56,7 +56,7 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               />
             </div>
             <p className="text-emerald-100/40 leading-relaxed mb-10 text-lg font-medium">
-              The premier choice for institutional accounting and strategic
+              A focused partner for institutional accounting and strategic
               growth in the USA. Protecting your legacy with absolute precision.
             </p>
             <div className="flex gap-4">
@@ -82,31 +82,31 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
             <ul className="space-y-5 text-emerald-100/60 font-bold">
               <li>
                 <Link
-                  to="/services"
+                  to="/services/tax-planning"
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  Tax Architecture
+                  Advanced Tax Strategy
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/services"
+                  to="/services/financial-analysis"
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  Financial Analysis
+                  Financial Analysis & Review
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/services"
+                  to="/services/virtual-cfo"
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  Virtual CFO
+                  Fractional CFO Leadership
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/services"
+                  to="/services/tax-resolution"
                   className="hover:text-emerald-400 transition-colors"
                 >
                   Tax Dispute Support
@@ -114,10 +114,10 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               </li>
               <li>
                 <Link
-                  to="/services"
+                  to="/services#ma-advisory"
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  Wealth Strategy
+                  M&A Due Diligence
                 </Link>
               </li>
             </ul>
@@ -261,6 +261,10 @@ const Footer: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="pt-12 pb-6 text-center text-xs font-medium text-emerald-100/30 border-t border-white/5">
+          <p>Ledgify Solutions provides tax preparation and advisory services only; we do not file tax returns on clients&apos; behalf.</p>
         </div>
 
         <div className="py-12 flex flex-col md:flex-row items-center justify-between gap-8 text-xs font-bold uppercase tracking-[0.2em] text-emerald-100/20">

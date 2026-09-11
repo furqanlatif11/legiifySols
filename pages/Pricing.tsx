@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PricingSection from "../components/PricingSection";
+import { setMeta } from "../utils/seo";
 
 interface PricingPageProps {
   handleInquire: (service: string) => void;
 }
 
 const PricingPage: React.FC<PricingPageProps> = ({ handleInquire }) => {
+  useEffect(() => {
+    setMeta({
+      title: 'Pricing — Ledgify Solutions',
+      description: 'Transparent, tiered monthly pricing for tax strategy, bookkeeping, and CFO services — from $80/month for individuals up to enterprise-scale plans.',
+      url: window.location.href,
+      image: '/assets/logos/ledgifySols_OGImage.webp'
+    });
+  }, []);
+
   return (
     <div className="pt-24">
       <PricingSection

@@ -95,7 +95,7 @@ export const CORE_SERVICES: (Service & { blueprint: string[] })[] = [
   {
     id: 'tax-strategy',
     title: 'Advanced Tax Strategy',
-    description: 'Beyond simple filing. We architect legal structures to shield assets and minimize federal/state liabilities.',
+    description: 'We architect legal structures to shield assets and minimize federal/state liabilities.',
     icon: 'FileText',
     category: 'core',
     blueprint: ['Nexus Study & Analysis', 'Strategic Entity Selection', 'Quarterly Liability Projections', 'State & Local Tax (SALT) Optimization']

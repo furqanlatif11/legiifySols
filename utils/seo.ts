@@ -48,3 +48,27 @@ export function setMeta(tags: { title?: string; description?: string; url?: stri
     link.setAttribute('href', tags.url);
   }
 }
+
+// absolute site origin (no trailing slash), used to build absolute URLs for schema/meta
+export function getSiteUrl(): string {
+  const site = import.meta.env.VITE_SITE_URL || (typeof window !== 'undefined' ? window.location.origin : '');
+  return site.replace(/\/$/, '');
+}
+
+// creates/updates/removes a <script type="application/ld+json"> tag identified by id;
+// pass data=null to remove it (e.g. on unmount) so stale structured data isn't left behind
+export function setJsonLd(id: string, data: object | null) {
+  const scriptId = `jsonld-${id}`;
+  const existing = document.getElementById(scriptId) as HTMLScriptElement | null;
+
+  if (!data) {
+    existing?.remove();
+    return;
+  }
+
+  const el = existing || document.createElement('script');
+  el.id = scriptId;
+  el.setAttribute('type', 'application/ld+json');
+  el.textContent = JSON.stringify(data);
+  if (!existing) document.head.appendChild(el);
+}
