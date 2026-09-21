@@ -72,7 +72,7 @@ const WhyPage: React.FC = () => {
       description:
         "The positions behind our accounting work: published prices, statements reviewed before they leave us, and clarity about what we do and don't handle.",
       url: window.location.href,
-      image: "/assets/logos/ledgifySols_OGImage.webp",
+      image: "/assets/logos/ledgify_solutionss_ogImage.png",
     });
   }, []);
 

@@ -9,7 +9,7 @@ const FinancialAnalysis: React.FC<{ handleInquire: (s?: string) => void }> = ({ 
       title: financialAnalysisConfig.metaTitle,
       description: financialAnalysisConfig.metaDescription,
       url: window.location.href,
-      image: '/assets/logos/ledgifySols_OGImage.webp'
+      image: '/assets/logos/ledgify_solutionss_ogImage.png'
     });
   }, []);
 

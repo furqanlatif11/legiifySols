@@ -50,7 +50,7 @@ const AboutPage: React.FC = () => {
       description:
         "Ledgify Solutions LLC, based in Walnut Ridge, Arkansas, provides accounting, bookkeeping and tax support for individuals and businesses at every stage across the USA.",
       url: window.location.href,
-      image: "/assets/logos/ledgifySols_OGImage.webp",
+      image: "/assets/logos/ledgify_solutionss_ogImage.png",
     });
   }, []);
 

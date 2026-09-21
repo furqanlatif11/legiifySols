@@ -9,7 +9,7 @@ const TaxResolution: React.FC<{ handleInquire: (s?: string) => void }> = ({ hand
       title: taxResolutionConfig.metaTitle,
       description: taxResolutionConfig.metaDescription,
       url: window.location.href,
-      image: '/assets/logos/ledgifySols_OGImage.webp'
+      image: '/assets/logos/ledgify_solutionss_ogImage.png'
     });
   }, []);
 

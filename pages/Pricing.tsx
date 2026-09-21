@@ -12,7 +12,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ handleInquire }) => {
       title: 'Accounting Solutions Pricing | Ledgify Solutions',
       description: 'Published monthly pricing for bookkeeping, accounting, tax planning, and fractional finance support, from $80 for individuals to $1,199 for enterprise tier.',
       url: window.location.href,
-      image: '/assets/logos/ledgifySols_OGImage.webp'
+      image: '/assets/logos/ledgify_solutionss_ogImage.png'
     });
   }, []);
 

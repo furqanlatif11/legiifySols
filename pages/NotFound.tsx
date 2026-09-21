@@ -10,7 +10,7 @@ const NotFoundPage: React.FC<{ handleInquire: (s?: string) => void }> = ({ handl
       title: 'Page Not Found | Ledgify Solutions',
       description: 'The page you are looking for does not exist or has moved.',
       url: window.location.href,
-      image: '/assets/logos/ledgifySols_OGImage.webp'
+      image: '/assets/logos/ledgify_solutionss_ogImage.png'
     });
 
     // error pages should never be indexed

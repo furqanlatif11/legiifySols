@@ -99,7 +99,7 @@ const ServicesPage: React.FC<ServicesProps> = ({
       description:
         "What runs every month inside a plan, and what you add when the situation calls for it. Accounting, bookkeeping, payroll, tax and advisory support across the USA.",
       url: window.location.href,
-      image: "/assets/logos/ledgifySols_OGImage.webp",
+      image: "/assets/logos/ledgify_solutionss_ogImage.png",
     });
   }, []);
 

@@ -81,7 +81,7 @@ const ContactPage: React.FC<ContactPageProps> = ({
       description:
         "Tell us what you're running and we'll come back with a plan and a price. Accounting, bookkeeping, payroll and tax support across the USA.",
       url: window.location.href,
-      image: "/assets/logos/ledgifySols_OGImage.webp",
+      image: "/assets/logos/ledgify_solutionss_ogImage.png",
     });
   }, []);
 

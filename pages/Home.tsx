@@ -27,7 +27,7 @@ const HomePage: React.FC<HomeProps> = ({
       description:
         "Outsourced accounting and bookkeeping for individuals, founders, agencies, ecommerce brands, and businesses at every stage, with tax planning and finance support.",
       url: window.location.href,
-      image: "/assets/logos/ledgifySols_OGImage.webp",
+      image: "/assets/logos/ledgify_solutionss_ogImage.png",
     });
   }, []);
 

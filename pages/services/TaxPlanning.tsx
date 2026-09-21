@@ -9,7 +9,7 @@ const TaxPlanning: React.FC<{ handleInquire: (s?: string) => void }> = ({ handle
       title: taxPlanningConfig.metaTitle,
       description: taxPlanningConfig.metaDescription,
       url: window.location.href,
-      image: '/assets/logos/ledgifySols_OGImage.webp'
+      image: '/assets/logos/ledgify_solutionss_ogImage.png'
     });
   }, []);
 
