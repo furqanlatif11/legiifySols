@@ -13,11 +13,11 @@ const ReviewedBy: React.FC<ReviewedByProps> = ({ name, credential, date, headsho
   if (isPlaceholder(name) || isPlaceholder(credential) || isPlaceholder(date)) return null;
 
   return (
-    <div className="flex items-center gap-4 text-sm text-slate-500 font-medium">
+    <div className="flex items-center gap-4 text-sm text-muted font-medium">
       {headshotUrl && (
         <img src={headshotUrl} alt="" className="w-10 h-10 rounded-full object-cover" width={40} height={40} loading="lazy" />
       )}
-      <p>Reviewed by <span className="font-black text-emerald-950">{name}</span>, {credential} — last reviewed {date}</p>
+      <p>Reviewed by <span className="font-semibold text-ink">{name}</span>, {credential} — last reviewed {date}</p>
     </div>
   );
 };

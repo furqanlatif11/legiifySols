@@ -1,43 +1,62 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { setMeta } from '../utils/seo';
-import Hero from '../components/Hero';
-import WhyChoose from '../components/WhyChoose';
-import CoreServices from '../components/CoreServices';
-import PremiumServices from '../components/PremiumServices';
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import { setMeta } from "../utils/seo";
+import Hero from "../components/Hero";
+import WhyChoose from "../components/WhyChoose";
+import CoreServices from "../components/CoreServices";
+import PremiumServices from "../components/PremiumServices";
 // import ProvenResults from '../components/ProvenResults';
 // import Testimonials from '../components/Testimonials';
-import TrustBadges from '../components/TrustBadges';
-import ClientTypes from '../components/ClientTypes';
-import PricingSection from '@/components/PricingSection';
+import TrustBadges from "../components/TrustBadges";
+import ClientTypes from "../components/ClientTypes";
+import PricingSection from "@/components/PricingSection";
+import FAQ from "@/components/faq";
 
 type HomeProps = {
   handleInquire: (s?: string) => void;
   handleShowDetails: (item: any) => void;
 };
 
-const HomePage: React.FC<HomeProps> = ({ handleInquire, handleShowDetails }) => {
+const HomePage: React.FC<HomeProps> = ({
+  handleInquire,
+  handleShowDetails,
+}) => {
   useEffect(() => {
     setMeta({
-      title: 'Ledgify Solutions — Institutional Accounting & Tax Strategy',
-      description: 'Ledgify Solutions provides specialized accounting, tax architecture, and CFO leadership for individuals, founders, and growth companies in the USA.',
+      title: "Accounting Solutions for Every Business Stage | Ledgify Solutions",
+      description:
+        "Outsourced accounting and bookkeeping for individuals, founders, agencies, ecommerce brands, and businesses at every stage, with tax planning and finance support.",
       url: window.location.href,
-      image: '/assets/logos/ledgifySols_OGImage.webp'
+      image: "/assets/logos/ledgifySols_OGImage.webp",
     });
   }, []);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-    <Hero onInquire={() => handleInquire()} />
-    <WhyChoose />
-    <CoreServices onInquire={handleInquire} onShowDetails={handleShowDetails} />
-    <PremiumServices onInquire={handleInquire} onShowDetails={handleShowDetails} />
-    {/* <ProvenResults /> */}
-    <PricingSection onInquire={(plan) => handleInquire(plan)} />
-    {/* <Testimonials /> */}
-    <TrustBadges />
-    <ClientTypes onInquire={handleInquire} onShowDetails={handleShowDetails} />
-  </motion.div>
-);
-}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <Hero onInquire={() => handleInquire()} />
+      <WhyChoose />
+      <CoreServices
+        onInquire={handleInquire}
+        onShowDetails={handleShowDetails}
+      />
+      <PremiumServices
+        onInquire={handleInquire}
+        onShowDetails={handleShowDetails}
+      />
+      {/* <ProvenResults /> */}
+      <PricingSection onInquire={(plan) => handleInquire(plan)} />
+      {/* <Testimonials /> */}
+      <TrustBadges />
+      <ClientTypes
+        onInquire={handleInquire}
+        onShowDetails={handleShowDetails}
+      />
+      <FAQ pageId="home" tone="paper" />
+    </motion.div>
+  );
+};
 export default HomePage;

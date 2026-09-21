@@ -114,12 +114,10 @@ const StickyConsultationButton: React.FC<
               relative
               text-[11px]
               font-semibold
-              uppercase
-              tracking-[0.18em]
               text-white
             "
           >
-            Book Consultation
+            Book a consultation
           </span>
 
           {/* Hover Shine */}

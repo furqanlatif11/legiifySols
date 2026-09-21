@@ -16,7 +16,7 @@ const TechStack: React.FC<TechStackProps> = ({ tools }) => {
   return (
     <ul className="flex flex-wrap gap-3">
       {tools.map((tool, i) => (
-        <li key={i} className="bg-slate-100 text-slate-700 font-bold text-sm px-4 py-2 rounded-lg">
+        <li key={i} className="bg-rule text-muted font-semibold text-sm px-4 py-2 rounded-lg">
           {tool.name}{tool.certified ? ' (Certified)' : ''}
         </li>
       ))}

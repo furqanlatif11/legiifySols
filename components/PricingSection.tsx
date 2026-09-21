@@ -1,12 +1,13 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Check, Zap } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface PricingPlan {
   name: string;
   price: number;
   description: string;
-  features: string[];
+  transactions: string;
+  support: string;
+  extras: string[];
   isPopular?: boolean;
   isCustom?: boolean;
   minPrice?: number;
@@ -19,17 +20,16 @@ interface PricingSectionProps {
 }
 
 const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
+  // same prices/tiers/features as before, restructured into comparable rows instead of five separate bullet lists
   const plans: PricingPlan[] = [
     {
       name: "Individual",
       price: 80,
       minPrice: 80,
       description: "Starting from $80 for individuals and solopreneurs",
-      features: [
-        "Up to 50 transactions",
-        "Monthly summary",
-        "Email support",
-      ],
+      transactions: "Up to 50 transactions",
+      support: "Email support",
+      extras: ["Monthly summary"],
       onInquire: () => onInquire("Individual"),
     },
     {
@@ -38,12 +38,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
       minPrice: 100,
       maxPrice: 199,
       description: "Perfect for small businesses",
-      features: [
-        "Up to 200 transactions",
-        "Monthly reports",
-        "Email support",
-        "Basic analytics",
-      ],
+      transactions: "Up to 200 transactions",
+      support: "Email support",
+      extras: ["Monthly reports", "Basic analytics"],
       onInquire: () => onInquire("Starter"),
     },
     {
@@ -52,13 +49,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
       minPrice: 200,
       maxPrice: 399,
       description: "For scaling enterprises",
-      features: [
-        "Higher volume transactions",
-        "Priority support",
-        "Advanced financial insights",
-        "Custom reporting",
-        "Quarterly strategy sessions",
-      ],
+      transactions: "Higher volume transactions",
+      support: "Priority support",
+      extras: ["Advanced financial insights", "Custom reporting", "Quarterly strategy sessions"],
       isPopular: true,
       onInquire: () => onInquire("Growth"),
     },
@@ -68,12 +61,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
       minPrice: 400,
       maxPrice: 599,
       description: "Advanced features for growing teams",
-      features: [
-        "Up to 2,000 transactions",
-        "Dedicated support",
-        "Advanced analytics",
-        "Integration assistance",
-      ],
+      transactions: "Up to 2,000 transactions",
+      support: "Dedicated support",
+      extras: ["Advanced analytics", "Integration assistance"],
       onInquire: () => onInquire("Pro"),
     },
     {
@@ -82,188 +72,106 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
       minPrice: 600,
       maxPrice: 1199,
       description: "Full enterprise package with premium services",
-      features: [
-        "Unlimited transactions",
-        "Dedicated account manager",
-        "Custom integrations",
-        "24/7 premium support",
-        "Strategic consulting",
-      ],
+      transactions: "Unlimited transactions",
+      support: "24/7 premium support",
+      extras: ["Dedicated account manager", "Custom integrations", "Strategic consulting"],
       onInquire: () => onInquire("Enterprise"),
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
+  // union of tier-specific extras, first-appearance order, so the table only lists rows that actually exist in the data above
+  const extraRows = Array.from(new Set(plans.flatMap((p) => p.extras)));
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-      },
-    },
+  const priceLabel = (plan: PricingPlan) => {
+    if (plan.isCustom) return "Custom";
+    if (plan.minPrice !== undefined && plan.maxPrice !== undefined) return `$${plan.minPrice}\u2013$${plan.maxPrice}`;
+    if (plan.minPrice !== undefined) return `$${plan.minPrice}`;
+    return `$${plan.price}`;
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-slate-50 to-white px-6">
-      <div className="container mx-auto max-w-7xl">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-20"
-        >
-          <div className="inline-block mb-6 px-4 py-2 bg-emerald-50 rounded-full border border-emerald-200">
-            <p className="text-emerald-700 font-black uppercase tracking-widest text-xs">
-              💰 Transparent Pricing
-            </p>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-black text-emerald-950 tracking-tight mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-2xl text-slate-600 font-bold">
-            Starting as low as{" "}
-            <span className="text-emerald-600">$80</span>
+    <section className="py-20 lg:py-28 bg-paper px-6">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <p className="text-brandDeep font-semibold text-xs mb-4">Transparent pricing</p>
+          <h2 className="text-[2.5rem] font-semibold leading-[1.04] tracking-[-0.03em] text-ink sm:text-5xl lg:text-[3.5rem]">Simple, transparent pricing</h2>
+          <p className="text-xl text-muted font-medium">
+            Starting as low as <span className="text-brand font-semibold">$80</span>
           </p>
-        </motion.div>
+        </div>
 
-        {/* Pricing Cards */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6"
-        >
-          {plans.map((plan, index) => (
-            <motion.div
-              key={plan.name}
-              variants={cardVariants}
-              className={`relative rounded-[2rem] overflow-hidden transition-all duration-300 ${
-                plan.isPopular
-                  ? "md:scale-105 md:ring-2 md:ring-emerald-400 shadow-2xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-200"
-                  : "bg-white border border-slate-200 hover:border-emerald-300 hover:shadow-xl"
-              }`}
-            >
-              {/* Popular Badge */}
-              {plan.isPopular && (
-                <div className="absolute top-0 right-0 left-0 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white py-3 text-center">
-                  <div className="flex items-center justify-center gap-2 font-black uppercase tracking-widest text-xs">
-                    <Zap className="w-4 h-4" />
-                    Most Popular
-                  </div>
-                </div>
-              )}
-
-              <div className={`p-10 ${plan.isPopular ? "pt-20" : ""}`}>
-                {/* Plan Name */}
-                <h3 className="text-2xl font-black text-emerald-950 mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-slate-600 font-medium mb-6 text-sm">
-                  {plan.description}
-                </p>
-
-                {/* Price */}
-                <div className="mb-8">
-                  {plan.isCustom ? (
-                    <div className="text-4xl font-black text-emerald-600 mb-2">
-                      Custom
-                    </div>
-                  ) : (
-                    <>
-                      {plan.minPrice !== undefined && plan.maxPrice !== undefined ? (
-                        <span className="text-4xl font-black text-emerald-950">
-                          ${plan.minPrice} - ${plan.maxPrice}
-                        </span>
-                      ) : plan.minPrice !== undefined ? (
-                        <>
-                        <p className="text-slate-600 font-medium text-sm">Starting From</p>
-                        <span className="text-4xl font-black text-emerald-950">
-                           ${plan.minPrice}
-                        </span>
-                        </>
-                      ) : (
-                        <span className="text-5xl font-black text-emerald-950">
-                          ${plan.price}
-                        </span>
-                      )}
-                      <span className="text-slate-500 font-bold text-sm ml-2">
-                        
-                      </span>
-                    </>
-                  )}
-                </div>
-
-                {/* CTA Button */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={plan.onInquire}
-                  className={`w-full py-4 px-6 rounded-xl font-black uppercase tracking-widest text-sm transition-all duration-300 mb-10 ${
-                    plan.isPopular
-                      ? "bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white shadow-lg hover:shadow-emerald-600/50"
-                      : "bg-slate-100 hover:bg-emerald-50 text-emerald-950 border-2 border-slate-200 hover:border-emerald-300"
-                  }`}
-                >
-                  {plan.isCustom ? "Schedule Consultation" : "Get Started"}
-                </motion.button>
-
-                {/* Features List */}
-                <div className="space-y-4">
-                  {plan.features.map((feature, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-3"
-                    >
-                      <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse" style={{ fontVariantNumeric: "tabular-nums lining-nums" }}>
+            <caption className="sr-only">Plan comparison by feature</caption>
+            <thead>
+              <tr>
+                <th scope="col" className="sticky left-0 bg-paper text-left p-4 align-bottom"></th>
+                {plans.map((plan) => (
+                  <th
+                    key={plan.name}
+                    scope="col"
+                    className={`text-left p-4 align-bottom min-w-[11rem] ${plan.isPopular ? "border-l-2 border-brand" : ""}`}
+                  >
+                    {plan.isPopular && (
+                      <p className="text-brand text-xs font-semibold mb-2">Recommended</p>
+                    )}
+                    <p className="text-h4 font-semibold text-ink">{plan.name}</p>
+                    <p className="text-muted text-small mb-4">{plan.description}</p>
+                    <p className="text-h3 font-semibold text-ink mb-4">{priceLabel(plan)}</p>
+                    <button
+                      onClick={plan.onInquire}
+                      className={`w-full py-3 px-4 rounded-control font-semibold text-small transition-colors ${
                         plan.isPopular
-                          ? "text-emerald-600"
-                          : "text-slate-400"
-                      }`} />
-                      <span className="text-slate-700 font-medium text-sm">
-                        {feature}
-                      </span>
-                    </motion.div>
+                          ? "bg-brand text-white hover:bg-brandDeep"
+                          : "border border-ruleStrong text-ink hover:border-brand hover:text-brand"
+                      }`}
+                    >
+                      {plan.isCustom ? "Schedule consultation" : "Get started"}
+                    </button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t border-rule">
+                <th scope="row" className="sticky left-0 bg-paper text-left p-4 font-medium text-ink">Transactions</th>
+                {plans.map((plan) => (
+                  <td key={plan.name} className={`p-4 text-muted ${plan.isPopular ? "border-l-2 border-brand" : ""}`}>{plan.transactions}</td>
+                ))}
+              </tr>
+              <tr className="border-t border-rule">
+                <th scope="row" className="sticky left-0 bg-paper text-left p-4 font-medium text-ink">Support</th>
+                {plans.map((plan) => (
+                  <td key={plan.name} className={`p-4 text-muted ${plan.isPopular ? "border-l-2 border-brand" : ""}`}>{plan.support}</td>
+                ))}
+              </tr>
+              {extraRows.map((row) => (
+                <tr key={row} className="border-t border-rule">
+                  <th scope="row" className="sticky left-0 bg-paper text-left p-4 font-medium text-ink">{row}</th>
+                  {plans.map((plan) => (
+                    <td key={plan.name} className={`p-4 ${plan.isPopular ? "border-l-2 border-brand" : ""}`}>
+                      {plan.extras.includes(row) ? (
+                        <Check className="w-5 h-5 text-brand" aria-label="Included" />
+                      ) : (
+                        <span className="text-muted" aria-hidden="true">&mdash;</span>
+                      )}
+                    </td>
                   ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-        {/* Footer Note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mt-16 pt-12 border-t border-slate-200"
-        >
-          <p className="text-slate-600 font-medium">
-            All plans include a{" "}
-            <span className="text-emerald-600 font-black">free consultation</span> with our strategists to ensure the right fit for individuals and businesses.
-          </p>
-        </motion.div>
+        {/* TODO_VERIFY: none of the five tiers state what happens once a month runs past its listed transaction count (e.g. 201st transaction on Starter) — needs a real answer before it ships, not guessed here. */}
+        <p className="text-small text-muted mt-6">
+          Transaction limits above are per plan per month. What happens if a month goes over the listed limit is not yet published — confirm before this goes live.
+        </p>
+
+        <p className="text-center text-muted font-medium mt-12">
+          All plans include a{" "}
+          <span className="text-brand font-semibold">free consultation</span> with our strategists to ensure the right fit for individuals and businesses.
+        </p>
       </div>
     </section>
   );

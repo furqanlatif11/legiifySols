@@ -5,17 +5,17 @@ import { ServicePageConfig } from '../../types';
 // copy already avoids claiming representation authority ("Documentation
 // Preparation", "Record Organization", "Communication Coordination", "Resolution
 // Strategy Support") and this page follows the same scoping per spec Part 7:
-// no one's Circular 230 credential is published on the site, so this content
+// no Circular 230 credential is published on the site, so this content
 // does not use "representation" or "we represent you" and is scoped to
 // preparation and support. If Ledgify holds attorney/CPA/enrolled-agent
 // authority, confirm it and this page's scope should be revisited.
 export const taxResolutionConfig: ServicePageConfig = {
   slug: 'tax-resolution',
   h1: 'IRS Tax Resolution & Audit Support',
-  metaTitle: 'IRS Tax Resolution & Audit Support | Ledgify Solutions',
-  metaDescription: 'Document preparation and resolution strategy support for IRS notices and audits: notice triage, record organization, and a realistic path forward.',
+  metaTitle: 'Tax Resolution Support for Business Owners | Ledgify',
+  metaDescription: 'Support for business owners responding to tax notices: document organization, notice triage, response planning, and realistic next steps with clear guidance.',
   heroSubhead: 'For business owners who received an IRS or state notice and need their documentation organized and a resolution strategy mapped out.',
-  credentialLine: 'TODO_VERIFY: who at Ledgify is authorised to represent clients before the IRS, and under what credential — until confirmed, this page is scoped to preparation and support only.',
+  credentialLine: undefined,
   problems: [
     'You received a CP2000 or similar notice and are not sure what it means or how many days you actually have to respond.',
     'You are facing a field audit and need your records organized before your first meeting or call.',
@@ -41,7 +41,7 @@ export const taxResolutionConfig: ServicePageConfig = {
   ],
   pricing: {
     model: 'Scoped per matter based on complexity, not a flat fee promised upfront',
-    note: 'Because every notice and audit is different, pricing for tax resolution support is scoped after the initial review call. TODO_VERIFY: publish what the first call covers and what it costs.'
+    note: 'Because every notice and audit is different, pricing for tax resolution support is scoped after the initial review call.'
   },
   audience: {
     fitFor: [
@@ -55,18 +55,18 @@ export const taxResolutionConfig: ServicePageConfig = {
     ]
   },
   faqs: [
-    { q: 'Can you represent me in front of the IRS?', a: 'Representation before the IRS is limited to attorneys, CPAs, enrolled agents, and certain other authorized categories under Treasury Circular 230. TODO_VERIFY: confirm which credential, if any, applies here before this answer is finalized. Until then, our support is scoped to document preparation and resolution strategy.' },
+    { q: 'Can you represent me in front of the IRS?', a: 'Representation before the IRS is limited to attorneys, CPAs, enrolled agents, and certain other authorized categories under Treasury Circular 230. Our support is scoped to document preparation and resolution strategy unless an appropriately authorized professional is separately engaged.' },
     { q: 'What is a CP2000 notice?', a: 'A CP2000 is a notice the IRS sends when income reported to them by third parties (like employers or banks) does not match what was reported on your return. It is not an audit, but it does have a response deadline, and we help you understand and respond to it.' },
     { q: 'Can you guarantee you will reduce what I owe?', a: 'No. We do not make guaranteed-outcome claims. Resolution strategies are based on your specific facts, and realistic timelines and outcomes are set from the first conversation.' },
     { q: 'How long does resolution usually take?', a: 'Months, not days, in most cases. We set expectations upfront rather than promising a fast turnaround.' },
-    { q: 'What happens on the first call?', a: 'We review your notice or audit letter, explain what it means and what deadline applies, and outline what documentation and next steps the matter requires. TODO_VERIFY: confirm whether the first call is free.' },
+    { q: 'What happens on the first call?', a: 'We review your notice or audit letter, explain what it means and what deadline applies, and outline what documentation and next steps the matter requires.' },
     { q: 'Is this the same as tax planning?', a: 'No. This service responds to an existing notice or audit. If you want ongoing planning to reduce the chance of future notices, see our Tax Planning & Strategy service.' }
   ],
   relatedSlugs: ['tax-planning', 'financial-analysis'],
   reviewedBy: {
-    name: 'TODO_VERIFY',
-    credential: 'TODO_VERIFY',
-    date: 'TODO_VERIFY'
+    name: undefined,
+    credential: undefined,
+    date: undefined
   },
   disclaimer: 'This page describes document preparation and resolution strategy support, not legal representation before the IRS or any state tax authority, and no outcome is guaranteed. Representation before the IRS is restricted under Treasury Circular 230 to attorneys, CPAs, enrolled agents, and certain other authorized categories.'
 };

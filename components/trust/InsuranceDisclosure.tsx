@@ -11,8 +11,8 @@ const InsuranceDisclosure: React.FC<InsuranceDisclosureProps> = ({ hasCoverage, 
   if (!hasCoverage) return null;
 
   return (
-    <div className="flex items-center gap-3 text-slate-600 font-medium">
-      <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+    <div className="flex items-center gap-3 text-muted font-medium">
+      <ShieldCheck className="w-5 h-5 text-brand shrink-0" />
       <p>{note || 'Professional liability (E&O) coverage held.'}</p>
     </div>
   );

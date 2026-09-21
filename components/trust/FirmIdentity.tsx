@@ -14,12 +14,12 @@ const FirmIdentity: React.FC<FirmIdentityProps> = ({ legalName, address, phone, 
   if (!legalName || !address) return null;
 
   return (
-    <address className="not-italic bg-white border border-slate-200 rounded-2xl p-8 space-y-4">
-      <p className="font-black text-emerald-950 text-lg">{legalName}</p>
-      <p className="flex items-center gap-3 text-slate-600 font-medium"><MapPin className="w-5 h-5 text-emerald-600 shrink-0" />{address}</p>
-      {phone && <p className="flex items-center gap-3 text-slate-600 font-medium"><Phone className="w-5 h-5 text-emerald-600 shrink-0" />{phone}</p>}
-      {email && <p className="flex items-center gap-3 text-slate-600 font-medium"><Mail className="w-5 h-5 text-emerald-600 shrink-0" />{email}</p>}
-      {ein && <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">EIN {ein}</p>}
+    <address className="not-italic bg-white border border-rule rounded-2xl p-8 space-y-4">
+      <p className="font-semibold text-ink text-lg">{legalName}</p>
+      <p className="flex items-center gap-3 text-muted font-medium"><MapPin className="w-5 h-5 text-brand shrink-0" />{address}</p>
+      {phone && <p className="flex items-center gap-3 text-muted font-medium"><Phone className="w-5 h-5 text-brand shrink-0" />{phone}</p>}
+      {email && <p className="flex items-center gap-3 text-muted font-medium"><Mail className="w-5 h-5 text-brand shrink-0" />{email}</p>}
+      {ein && <p className="text-xs text-muted font-semibold">EIN {ein}</p>}
     </address>
   );
 };

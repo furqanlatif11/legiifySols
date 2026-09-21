@@ -28,24 +28,24 @@ const template = fs.readFileSync(templatePath, 'utf8');
 
 const metadata = {
   '/': {
-    title: 'Ledgify Solutions — Institutional Accounting & Tax Strategy',
-    description: 'Ledgify Solutions provides specialized accounting, tax architecture, and CFO leadership for individuals, founders, and growth companies in the USA.'
+    title: 'Accounting Solutions for Every Business Stage | Ledgify Solutions',
+    description: 'Outsourced accounting and bookkeeping for individuals, founders, agencies, ecommerce brands, and businesses at every stage, with tax planning and finance support.'
   },
-  '/about': { title: 'About — Ledgify Solutions', description: 'Learn about Ledgify Solutions, our mission, culture, and institutional approach to accounting and tax strategy.' },
-  '/services': { title: 'Services — Ledgify Solutions | Tax, CFO & Financial Planning', description: 'Five in-depth guides for founders covering tax planning, financial analysis, virtual CFO leadership, IRS resolution support, and succession planning.' },
-  '/industries': { title: 'Industries — Ledgify Solutions', description: 'Accounting, tax strategy, and CFO support for the industries and business stages Ledgify Solutions serves.' },
-  '/pricing': { title: 'Pricing — Ledgify Solutions', description: 'Transparent, tiered monthly pricing for tax strategy, bookkeeping, and CFO services — from $80/month for individuals up to enterprise-scale plans.' },
-  '/philosophy': { title: 'Philosophy — Ledgify Solutions', description: 'The Ledgify Solutions approach to precise accounting, tax strategy, security, and long-term financial clarity.' },
-  '/contact': { title: 'Contact — Ledgify Solutions', description: 'Contact Ledgify Solutions to discuss accounting, tax planning, financial analysis, or CFO support.' },
-  '/404': { title: 'Page Not Found — Ledgify Solutions', description: 'The page you are looking for does not exist or has moved.' }
+  '/about': { title: 'About Ledgify Solutions | Accounting Solutions', description: 'Ledgify Solutions provides accessible accounting, bookkeeping, tax planning, and fractional finance support for individuals and businesses at every stage in the USA.' },
+  '/services': { title: 'Accounting, Tax Planning & CFO Support Services | Ledgify', description: 'Accounting and bookkeeping for individuals, founders, agencies, ecommerce brands, and businesses at every stage, with tax planning and fractional finance support.' },
+  '/industries': { title: 'Accounting Services for Businesses at Every Stage | Ledgify', description: 'Bookkeeping, accounting, and tax-planning support for individuals, founders, agencies, ecommerce brands, and businesses at every stage in the USA.' },
+  '/pricing': { title: 'Accounting Solutions Pricing | Ledgify Solutions', description: 'Published monthly pricing for bookkeeping, accounting, tax planning, and fractional finance support, from $80 for individuals to $1,199 for enterprise tier.' },
+  '/philosophy': { title: 'Our Approach to Accounting Solutions | Ledgify Solutions', description: 'An accessible, precise, and transparent approach to bookkeeping, accounting, tax planning, and fractional finance support for businesses at every stage.' },
+  '/contact': { title: 'Contact Ledgify Solutions | Get an Accounting Quote', description: 'Contact Ledgify Solutions for bookkeeping, accounting, tax planning, or fractional finance support with clear pricing and practical next steps.' },
+  '/404': { title: 'Page Not Found | Ledgify Solutions', description: 'The page you are looking for does not exist or has moved.' }
 };
 
 const serviceMetadata = {
-  '/services/tax-planning': ['Tax Planning & Strategy for Growth Companies | Ledgify', 'Forward-looking tax planning for founders and growing businesses: entity structure, SALT optimization, and a quarterly liability projection calendar.'],
-  '/services/financial-analysis': ['Financial Analysis & Reporting Services | Ledgify Solutions', 'Board-ready financial reporting: GAAP-aligned statements, KPI dashboards, and pattern-recognition review that flags discrepancies before they compound.'],
-  '/services/virtual-cfo': ['Virtual CFO Services for Growing Companies | Ledgify', 'Fractional CFO leadership for growing companies: capital allocation strategy, budget vs. actual modeling, board representation, and funding round support.'],
-  '/services/tax-resolution': ['IRS Tax Resolution & Audit Support | Ledgify Solutions', 'Document preparation and resolution strategy support for IRS notices and audits: notice triage, record organization, and a realistic path forward.'],
-  '/services/succession-planning': ['Business Succession & Exit Planning | Ledgify Solutions', 'Tax-efficient exit planning for business owners: entity restructuring, exit tax modeling, owner compensation, and coordination with your attorney and adviser.']
+  '/services/tax-planning': ['Tax Planning & Strategy for Businesses | Ledgify', 'Tax planning for founders and businesses at every stage: entity choices, estimated payments, state obligations, and a clear quarterly planning calendar.'],
+  '/services/financial-analysis': ['Financial Reporting & Analysis | Ledgify Solutions', 'Monthly and annual financial reporting, KPI review, and practical analysis for founders, agencies, ecommerce brands, and businesses at every stage.'],
+  '/services/virtual-cfo': ['Fractional CFO Support for Businesses | Ledgify', 'Fractional finance support for businesses at every stage: monthly financial reviews, budget vs. actual, cash flow forecasting, and lender-ready materials.'],
+  '/services/tax-resolution': ['Tax Resolution Support for Business Owners | Ledgify', 'Support for business owners responding to tax notices: document organization, notice triage, response planning, and realistic next steps with clear guidance.'],
+  '/services/succession-planning': ['Business Exit & Succession Tax Planning Services | Ledgify', 'Tax and structural planning for business owners considering a sale, succession, or ownership transition, with attorney coordination where needed.']
 };
 
 function buildHtml(route) {

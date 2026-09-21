@@ -64,7 +64,7 @@ const App: React.FC<{ ssrPath?: string }> = ({ ssrPath }) => {
 
   return (
     <RouterProvider>
-      <div className="min-h-screen bg-white text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+      <div className="min-h-screen bg-white text-ink selection:bg-emerald-100 selection:text-ink">
         <Header onInquire={() => handleInquire()} />
         
         <main className="overflow-x-hidden">

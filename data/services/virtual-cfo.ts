@@ -2,16 +2,16 @@ import { ServicePageConfig } from '../../types';
 
 // Content sourced from existing published site copy (constants.tsx PREMIUM_SERVICES
 // "fractional-cfo" entry, Footer firm details, PricingSection tiers). Unpublished
-// facts (named CFO, hours model specifics, exact pricing) remain TODO_VERIFY.
+// Unpublished facts remain omitted rather than invented.
 export const virtualCfoConfig: ServicePageConfig = {
   slug: 'virtual-cfo',
   h1: 'Virtual CFO Services',
-  metaTitle: 'Virtual CFO Services for Growing Companies | Ledgify',
-  metaDescription: 'Fractional CFO leadership for growing companies: capital allocation strategy, budget vs. actual modeling, board representation, and funding round support.',
+  metaTitle: 'Fractional CFO Support for Businesses | Ledgify',
+  metaDescription: 'Fractional finance support for businesses at every stage: monthly financial reviews, budget vs. actual, cash flow forecasting, and lender-ready materials.',
   heroSubhead: 'For founders who need CFO-level financial leadership without the cost of a full-time hire.',
   supportingHeading: 'Fractional CFO Leadership',
   supportingIntro: 'Fractional CFO support gives your team a recurring finance leadership cadence for capital allocation, board preparation, forecasting, and funding decisions without a full-time hire.',
-  credentialLine: 'TODO_VERIFY: named CFO, background, and jurisdiction to be published here.',
+  credentialLine: undefined,
   problems: [
     'You are making capital allocation decisions without a finance leader in the room to model the trade-offs.',
     'You are heading into a funding round and do not have a data room, investor reporting package, or diligence-ready financials.',
@@ -52,7 +52,7 @@ export const virtualCfoConfig: ServicePageConfig = {
   },
   faqs: [
     { q: 'What is a virtual CFO versus a fractional CFO?', a: 'The terms are used near-interchangeably in this market. Both describe CFO-level financial leadership delivered part-time or remotely rather than through a full-time in-house hire — that is what this service provides.' },
-    { q: 'How many hours does this include?', a: 'Hours and cadence are scoped to your stage and needs during onboarding and agreed upfront as part of the engagement — TODO_VERIFY: publish the specific hours model here once confirmed.' },
+    { q: 'How many hours does this include?', a: 'Hours and cadence are scoped to your stage and needs during onboarding and agreed upfront as part of the engagement.' },
     { q: 'Will someone actually attend our board meetings?', a: 'Yes, board meeting representation and materials preparation are part of the scope table above.' },
     { q: 'Can you help us prepare for a funding round?', a: 'Yes, funding round support including data room preparation and investor reporting is included when a raise is active.' },
     { q: 'How is this different from a controller or bookkeeper?', a: 'A bookkeeper records transactions and a controller manages the close process. A virtual CFO sits above both, focused on capital allocation, board strategy, and forward-looking financial decisions.' },
@@ -60,9 +60,9 @@ export const virtualCfoConfig: ServicePageConfig = {
   ],
   relatedSlugs: ['financial-analysis', 'tax-planning'],
   reviewedBy: {
-    name: 'TODO_VERIFY',
-    credential: 'TODO_VERIFY',
-    date: 'TODO_VERIFY'
+    name: undefined,
+    credential: undefined,
+    date: undefined
   }
 };
 

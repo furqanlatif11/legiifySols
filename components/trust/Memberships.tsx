@@ -19,7 +19,7 @@ const Memberships: React.FC<MembershipsProps> = ({ items }) => {
       {items.map((item, i) => (
         <div key={i} className="flex items-center gap-3">
           {item.logoUrl && <img src={item.logoUrl} alt="" className="h-8 object-contain" loading="lazy" />}
-          <span className="font-bold text-slate-700 text-sm">
+          <span className="font-semibold text-muted text-sm">
             {item.name}{item.status ? ` — ${item.status}` : ''}
           </span>
         </div>

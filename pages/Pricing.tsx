@@ -9,8 +9,8 @@ interface PricingPageProps {
 const PricingPage: React.FC<PricingPageProps> = ({ handleInquire }) => {
   useEffect(() => {
     setMeta({
-      title: 'Pricing — Ledgify Solutions',
-      description: 'Transparent, tiered monthly pricing for tax strategy, bookkeeping, and CFO services — from $80/month for individuals up to enterprise-scale plans.',
+      title: 'Accounting Solutions Pricing | Ledgify Solutions',
+      description: 'Published monthly pricing for bookkeeping, accounting, tax planning, and fractional finance support, from $80 for individuals to $1,199 for enterprise tier.',
       url: window.location.href,
       image: '/assets/logos/ledgifySols_OGImage.webp'
     });
@@ -26,10 +26,10 @@ const PricingPage: React.FC<PricingPageProps> = ({ handleInquire }) => {
       <section className="py-24 px-6 bg-white">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-emerald-950 tracking-tight mb-4">
+            <h2 className="text-4xl font-semibold text-ink tracking-tight mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-slate-600 font-medium text-lg">
+            <p className="text-muted font-medium text-lg">
               Have questions about our pricing? We've got answers.
             </p>
           </div>
@@ -59,12 +59,12 @@ const PricingPage: React.FC<PricingPageProps> = ({ handleInquire }) => {
             ].map((faq, index) => (
               <div
                 key={index}
-                className="bg-slate-50 border border-slate-200 rounded-2xl p-8 hover:border-emerald-300 transition-all"
+                className="bg-paper border border-rule rounded-2xl p-8 hover:border-emerald-300 transition-all"
               >
-                <h3 className="text-lg font-black text-emerald-950 mb-3">
+                <h3 className="text-lg font-semibold text-ink mb-3">
                   {faq.question}
                 </h3>
-                <p className="text-slate-600 font-medium leading-relaxed">
+                <p className="text-muted font-medium leading-relaxed">
                   {faq.answer}
                 </p>
               </div>

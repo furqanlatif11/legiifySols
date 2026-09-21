@@ -3,16 +3,16 @@ import { ServicePageConfig } from '../../types';
 // Content sourced from existing published site copy (constants.tsx CORE_SERVICES
 // "tax-strategy" entry, Footer firm details, PricingSection tiers). Facts not
 // published anywhere on the site (named practitioner, licence, exact per-service
-// price) remain TODO_VERIFY rather than invented — see spec Part 7.
+// Unpublished facts remain omitted rather than invented.
 export const taxPlanningConfig: ServicePageConfig = {
   slug: 'tax-planning',
   h1: 'Tax Planning & Strategy',
-  metaTitle: 'Tax Planning & Strategy for Growth Companies | Ledgify',
-  metaDescription: 'Forward-looking tax planning for founders and growing businesses: entity structure, SALT optimization, and a quarterly liability projection calendar.',
+  metaTitle: 'Tax Planning & Strategy for Businesses | Ledgify',
+  metaDescription: 'Tax planning for founders and businesses at every stage: entity choices, estimated payments, state obligations, and a clear quarterly planning calendar.',
   heroSubhead: 'For founders and business owners who want a plan for next year\u2019s tax bill, not just a form filed after the fact.',
   supportingHeading: 'Our Tax Architecture Approach',
   supportingIntro: 'Tax architecture is the structure behind the plan: entity selection, compensation, state obligations, and estimated payments working together before the next filing deadline.',
-  credentialLine: 'TODO_VERIFY: named practitioner, credential, and jurisdiction to be published here.',
+  credentialLine: undefined,
   problems: [
     'Your CPA files your return every spring, but nobody has looked at your entity structure or estimated payments since you formed the company.',
     'You are growing into new states and are not sure whether you have created a payroll or sales tax nexus you have not accounted for.',
@@ -62,9 +62,9 @@ export const taxPlanningConfig: ServicePageConfig = {
   ],
   relatedSlugs: ['financial-analysis', 'virtual-cfo'],
   reviewedBy: {
-    name: 'TODO_VERIFY',
-    credential: 'TODO_VERIFY',
-    date: 'TODO_VERIFY'
+    name: undefined,
+    credential: undefined,
+    date: undefined
   },
   disclaimer: 'This page describes tax planning services. It is not tax return preparation, and it is not investment or securities advice. Return preparation is quoted and delivered as a separate engagement.'
 };

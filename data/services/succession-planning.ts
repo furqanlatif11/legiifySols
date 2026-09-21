@@ -11,10 +11,10 @@ import { ServicePageConfig } from '../../types';
 export const successionPlanningConfig: ServicePageConfig = {
   slug: 'succession-planning',
   h1: 'Business Succession & Exit Planning',
-  metaTitle: 'Business Succession & Exit Planning | Ledgify Solutions',
-  metaDescription: 'Tax-efficient exit planning for business owners: entity restructuring, exit tax modeling, owner compensation, and coordination with your attorney and adviser.',
+  metaTitle: 'Business Exit & Succession Tax Planning Services | Ledgify',
+  metaDescription: 'Tax and structural planning for business owners considering a sale, succession, or ownership transition, with attorney coordination where needed.',
   heroSubhead: 'For business owners planning a sale, succession, or ownership transition who need the tax and structural work done before the deal, not during it.',
-  credentialLine: 'TODO_VERIFY: named practitioner, credential, and jurisdiction to be published here.',
+  credentialLine: undefined,
   problems: [
     'You are considering selling the business in the next few years and have not modeled what the exit will actually cost you in taxes.',
     'You are transitioning ownership to a partner, family member, or key employee and need a buy-sell structure that actually works.',
@@ -40,7 +40,7 @@ export const successionPlanningConfig: ServicePageConfig = {
   ],
   pricing: {
     model: 'Scoped per engagement based on complexity of the transaction',
-    note: 'TODO_VERIFY: publish a starting price or pricing model for succession and exit planning engagements.'
+    note: 'Pricing is scoped per engagement based on the complexity of the transaction.'
   },
   audience: {
     fitFor: [
@@ -59,13 +59,13 @@ export const successionPlanningConfig: ServicePageConfig = {
     { q: 'How far in advance should we start this?', a: 'Ideally a few years before a planned sale or transition — entity restructuring and tax modeling both take time to implement properly before a deal is in motion.' },
     { q: 'Can you work alongside our existing attorney and financial adviser?', a: 'Yes, coordination with your attorney and financial adviser is part of the scope table above; we handle the tax and structural piece, not theirs.' },
     { q: 'What does "exit tax modeling" actually produce?', a: 'A written comparison of the estimated tax cost of your transition under a few realistic structures, so you can make a decision with the numbers in front of you rather than after the fact.' },
-    { q: 'What does this cost?', a: 'Pricing is scoped per engagement based on the complexity of the transaction. TODO_VERIFY: publish a starting price or pricing model here.' }
+    { q: 'What does this cost?', a: 'Pricing is scoped per engagement based on the complexity of the transaction.' }
   ],
   relatedSlugs: ['tax-planning', 'virtual-cfo'],
   reviewedBy: {
-    name: 'TODO_VERIFY',
-    credential: 'TODO_VERIFY',
-    date: 'TODO_VERIFY'
+    name: undefined,
+    credential: undefined,
+    date: undefined
   },
   disclaimer: 'This page describes tax and structural work related to business succession and exit planning. It is not investment advice, securities selection, portfolio management, or insurance product sales, and Ledgify does not act as an investment adviser under this engagement.'
 };

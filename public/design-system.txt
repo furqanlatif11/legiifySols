@@ -1,0 +1,440 @@
+# Ledgify Solutions — Site-Wide Design System
+
+Applies the hero's language to the rest of the site. Written to be handed to Copilot section by section.
+
+---
+
+## The through-line
+
+**The site should look like the work.**
+
+Accounting has a visual grammar already: ruled lines, aligned columns, figures on a shared axis, a clear total. It is one of the few professions whose native visual language is genuinely distinctive, and almost no accounting firm uses it — they all reach for gradient cards and cityscapes instead.
+
+Using it does two things. It makes the site look unlike competitors, and it makes a claim that adjectives can't: a firm whose own numbers line up is a firm that lines up numbers.
+
+Every decision below follows from that. Where a choice is open, pick the one a careful bookkeeper would make.
+
+### The authenticity test
+
+Before shipping any element, ask: **could a business paying $80–$1,199/month expect this?**
+
+That question resolves most design arguments here. It rules out the prestige signalling the copy rewrite is already removing, and it rules in the things that actually build trust at this price: published numbers, stated limits, named people, specific commitments.
+
+Authenticity on a small firm's site comes from specificity, not polish. "Closed in 6 business days" beats "uncompromising precision" — and a slightly plain site that tells the truth reads as more professional than a slick one that oversells.
+
+---
+
+## 1. Tokens
+
+### Color
+
+```js
+// tailwind.config.js → theme.extend.colors
+{
+  ink:      '#0C1F18',  // primary text. Deep green-black, carries the brand hue.
+  paper:    '#FCFBF8',  // page background
+  surface:  '#FFFFFF',  // raised surfaces, table stripes, inputs
+  rule:     '#DFE4E0',  // hairlines, borders
+  ruleStrong:'#C3CCC6', // input borders, stronger dividers
+  brand:    '#0B6B4F',  // primary actions, key figures
+  brandDeep:'#08543E',  // hover on brand
+  muted:    '#58655D',  // secondary text. AA on paper.
+  flag:     '#9B2C1F',  // errors and required-attention only. Never decorative.
+}
+```
+
+Six working colors. That is the whole palette.
+
+**Rules:**
+- `brand` is for actions and one figure per view. If everything is emerald, nothing is.
+- `flag` appears only for errors and deadlines. Never as an accent, never in a chart, never for emphasis.
+- No gradients anywhere. Not in buttons, not as section washes, not behind headings.
+- Never use pure `#000000` or pure `#FFFFFF` for text. `ink` on `paper` is the pairing.
+
+### Type
+
+One family: **IBM Plex Sans**. Weights 400, 500, 600. Nothing heavier.
+
+```
+display   3.5rem / 1.08 / 400  tracking -0.021em   page H1 only
+h2        2rem   / 1.15 / 600  tracking -0.015em
+h3        1.375rem / 1.3 / 600
+h4        1.0625rem / 1.4 / 600
+body-lg   1.125rem / 1.65 / 400   lede paragraphs
+body      1rem    / 1.6  / 400
+small     0.875rem / 1.55 / 400   captions, helper text
+figure    inherits size, 500 weight, tabular-nums
+```
+
+**Rules:**
+- Delete every `font-black` and `font-extrabold` in the codebase. Weight 900 is not loaded and will silently fall back.
+- Hierarchy comes from scale and space, not weight. Two adjacent headings should differ in size, not in boldness.
+- No all-caps labels. No letter-spacing above 0.02em. The tracked-out uppercase eyebrow is the single most recognisable template tell.
+- Sentence case for every heading, button and label. Not Title Case.
+- Body copy maxes out at 68 characters per line (`max-w-[34rem]` at 1rem).
+- **Every figure on the site uses `font-variant-numeric: tabular-nums`.** Set it once on `<body>`. This is the detail the whole design rests on.
+
+### Spacing
+
+4px base. Use 4, 8, 12, 16, 24, 32, 48, 64, 96, 128.
+
+Section rhythm: `py-20` mobile, `py-28` desktop. Consistent everywhere, no bespoke section padding — inconsistent vertical rhythm is what makes a site feel assembled rather than designed.
+
+### Radius
+
+Radius carries meaning. Do not put one value on everything.
+
+```
+0px     tables, rules, ledger blocks, dividers
+6px     buttons, inputs, badges, small controls
+10px    selectable cards (pricing tiers only)
+```
+
+Nothing above 10px. `rounded-2xl` and `rounded-3xl` should not appear in the codebase.
+
+### Elevation
+
+Essentially none.
+
+```
+none    default for everything
+sm      0 1px 2px rgba(12,31,24,0.05)     — inputs on focus, sticky header once scrolled
+overlay 0 24px 48px -16px rgba(12,31,24,0.18)  — modals and dropdowns only
+```
+
+**Surfaces are separated by borders and space, not shadows.** Delete every `shadow-lg`, `shadow-xl`, `shadow-2xl` on non-overlay elements. A grid of eight identically shadowed cards is the clearest sign of a template.
+
+---
+
+## 2. The structural decision: rules or cards
+
+Most of what is currently a card should not be.
+
+**Use rules and spacing** (the default) when items are: sequential, referential, or read rather than chosen. Scope tables, FAQs, process steps, service lists, credentials, footer columns, resource lists.
+
+**Use cards** only when items are genuinely parallel and the user picks one. In practice on this site that means pricing tiers, and almost nothing else.
+
+**Use neither** — just headings and paragraphs — for narrative sections. About, philosophy, and problem-framing copy do not need containers at all.
+
+### The ledger block
+
+The reusable pattern from the hero. Any set of label/value pairs uses it:
+
+```
+Heading                                    Context
+────────────────────────────────────────────────   2px ink rule
+Label                                       Value  } hairline between
+Label                                       Value  } rows
+Label                                       Value
+════════════════════════════════════════════════   double rule under a total
+Total label                                 Value
+```
+
+Labels left in `muted`, values right in `ink`, one shared right axis, tabular figures. The double rule is how an accountant marks a closing figure — use it only on an actual total, never decoratively.
+
+This pattern covers: the hero close summary, service scope tables, pricing comparison, deliverable lists, "what's included", and the security section. Build it once as `<LedgerBlock>` and reuse it everywhere.
+
+---
+
+## 3. Components
+
+### Header / navigation
+
+Sticky, `paper` background, `rule` bottom border once scrolled. Height 72px, no shrink-on-scroll animation.
+
+One primary action in the header ("Get a quote"), everything else plain text links. Current nav renders "Inquiry" as an undifferentiated item — it should be the only button up there.
+
+Active route gets a 2px `brand` underline, not a background fill. Mobile: full-height panel, not a dropdown, with the primary action pinned at the bottom where the thumb is.
+
+### Buttons
+
+Three levels, and **exactly one primary per viewport**.
+
+```
+primary     bg-brand, white text, radius 6, px-7 py-3.5, weight 600
+            hover → bg-ink
+secondary   1px ruleStrong border, transparent bg, ink text, weight 500
+            hover → brand border + brand text
+tertiary    brand text, 1px underline offset 4px, no box
+```
+
+**Rules:**
+- Never append `→` to button or link text. Arrows in labels are template chrome.
+- Label says what happens: "Get a quote", "Book a call", "See plans". Not "Initiate Inquiry", "Inquire Mandate", "Learn more", "Get started".
+- Same action keeps the same name everywhere. If the header says "Get a quote", the footer does not say "Request pricing".
+- Visible focus ring on every interactive element: 2px `brand`, 2px offset. Never `outline-none` without a replacement.
+- Minimum 44px touch target.
+
+### Pricing
+
+**The five tiers should not be five identical cards.** Pricing is a comparison, and five parallel cards force the reader to scan horizontally across five separate feature lists to answer one question: what's different?
+
+Build it as a comparison table — one feature column on the left, five value columns across, figures on a shared axis. It is the correct pattern for the content, it matches the ledger grammar, and it is what a finance-literate buyer expects.
+
+- Prices in `ink` at h3 scale, weight 600, tabular figures. Currency formatting identical across all tiers ("$80" not "$80.00" in one place and "80$" in another).
+- Mark one tier as recommended with a 2px `brand` left border and a small inline label. No ribbon, no scale transform, no glow.
+- Feature rows: a check in `brand` or an em-dash in `muted`. Never a red cross — absence of a feature is not an error.
+- State the billing period and what happens at the tier boundary. "Up to 200 transactions" should say what happens at 201.
+- Mobile: horizontal scroll with the feature column pinned, or an accordion per tier. Do not collapse to five stacked cards, which reintroduces the problem.
+
+### Service pages
+
+Already specified in the service-page spec. Two design notes:
+
+- The **scope table** and the **price** are the visual anchors on every service page. They get the strongest treatment; everything else stays quiet.
+- Do not render the twelve sections as twelve identical cards. Problem framing, scope table, and credentials do different jobs and should look like it.
+
+### FAQ
+
+Rules, not cards, not accordions-inside-boxes. Question in `ink` weight 600, answer in `muted`. Hairline between items, no container.
+
+Accordion is fine — use a native `<details>`/`<summary>` so it works without JS and lands in the prerendered HTML. Answers must be in the DOM whether open or closed, or they're invisible to search and to AI answer engines.
+
+### Trust block
+
+The credentials, security and firm-identity cluster. This is where authenticity is won or lost.
+
+- Plain, dense, unstyled. Resist the urge to make it pretty — a verifiable licence number in plain text is worth more than a designed badge.
+- Firm identity in a real `<address>`: legal name, street address, phone, email. Shown plainly, not hidden in the footer.
+- Credentials with a number and jurisdiction, linked to the state board's verification page where one exists.
+- Security claims describe what you do, not what you're certified as, unless you hold the certification. **"SOC2-aligned" is not a thing.** Either you have a SOC 2 report or you describe your actual controls.
+- No shields, no padlock icons, no "100% secure" seals. Trust seals with no issuer behind them read as the opposite of trustworthy.
+
+### Testimonials
+
+Name, title, company, and a photo or LinkedIn link. All four, or don't render it — the component should refuse to render on missing props rather than degrade to an anonymous quote.
+
+Plain text with a rule above, attribution beneath. No quotation-mark graphics, no carousel, no star ratings.
+
+### Forms and the inquiry modal
+
+- Label above the field, always. Never placeholder-as-label — it disappears on focus and fails screen readers.
+- Mark optional fields, not required ones, when most are required.
+- Inline validation on blur, not on every keystroke. Error text below the field in `flag`, with `aria-describedby` wired up.
+- Errors say what to do: "Enter a phone number we can reach you on", not "Invalid input".
+- Say what happens after submit and when: "We'll reply within one business day." Only if true.
+- Disabled submit button with a spinner on pending, and a real success state — not an alert.
+- Modal: `role="dialog"`, `aria-modal="true"`, focus trapped, `Esc` closes, focus returns to the trigger, background scroll locked.
+
+### Footer
+
+Currently has two bugs to fix: "Partner Network" self-links to the current page, and two social icons render as bare `/`.
+
+Four columns on desktop, stacked on mobile. Columns separated by space, not borders. Legal name, address and disclaimers in `small` `muted`. The tax-filing disclaimer stays exactly as written — it is doing real work.
+
+Payment logos get `alt=""`. They're decorative.
+
+---
+
+## 4. Iconography
+
+lucide-react, 1.5px stroke, 20px default, `currentColor`. Never filled, never multicolour.
+
+**Icons appear only where they disambiguate or mark state.** Not next to headings, not as decoration in feature grids.
+
+The current site pairs `TrendingUp` with "Data Security" — a metaphor mismatch that a careful reader clocks instantly. If an icon doesn't obviously mean the thing, remove it rather than substitute a different one.
+
+**No emoji anywhere in the UI.** The 💰 in "Transparent Pricing" and the 🔒 in "Security & Privacy" should go. Emoji in section headings on a financial services site undercuts everything else the design is doing.
+
+---
+
+## 5. Imagery
+
+**No stock photography.** No cityscapes, no handshakes, no anonymous people at laptops. A prospect who recognises the stock photo learns you have nothing real to show, and on a trust-driven site that costs more than a blank space.
+
+Ranked, use:
+
+1. **Real photos** — the team, the office, a screen of actual work. Even an imperfect real photo beats a perfect stock one.
+2. **Real artefacts** — a redacted close package, a reporting sample, a dashboard screenshot. Proof and illustration in one.
+3. **Type and rules** — the hero's approach. Always available, always on-brand, costs nothing to load.
+
+Every image: WebP with fallback, explicit width and height, `loading="lazy"` below the fold, descriptive alt, self-hosted. No third-party image hosts on the critical path.
+
+---
+
+## 6. Motion
+
+One orchestrated moment per page at most. Usually zero.
+
+- No scroll-triggered fade-ups on every section. This is the clearest generated-page signal there is, and the site currently does it throughout via framer-motion.
+- No hover lift, scale, or shadow-grow on cards. Hover changes color or border. That's it.
+- Motion that answers an action — a modal opening, an accordion expanding, a form confirming — is welcome and should be 150–250ms.
+- Every animation respects `prefers-reduced-motion`.
+- Remove framer-motion from anything above the fold. It is 50kb+ on the LCP path for effects the design doesn't need.
+
+---
+
+## 7. Words in the UI
+
+- Sentence case everywhere.
+- Active voice, plain verbs. "We close your books in 10 business days", not "book closure is executed with precision".
+- An action keeps its name through the whole flow. "Get a quote" produces a confirmation that says "Quote requested".
+- Errors explain what happened and how to fix it. They don't apologise and they're never vague.
+- Empty states invite an action rather than reporting emptiness.
+- No superlatives: elite, world-class, best-in-class, premium, cutting-edge, uncompromising, institutional-grade.
+- Every number is real. Never round a claim upward, never invent a count, never state a turnaround you don't hit.
+
+---
+
+## 8. Accessibility floor
+
+Not optional, and on a finance site it overlaps with credibility.
+
+- Text contrast 4.5:1 minimum, 3:1 for large text. `muted` on `paper` passes; do not lighten it.
+- Every interactive element reachable and operable by keyboard with a visible focus ring.
+- One `<h1>` per page; heading levels descend without skipping.
+- Landmarks: `<header>`, `<nav aria-label>`, `<main>`, `<section aria-labelledby>`, `<footer>`, `<address>`.
+- Tables use real `<th>` with `scope`. The pricing comparison especially.
+- Icon-only buttons carry `aria-label`.
+- Never convey meaning by color alone.
+- Test at 200% zoom and 320px width.
+
+---
+
+## 9. Performance floor
+
+- LCP under 2.5s, CLS under 0.1, INP under 200ms.
+- Fonts self-hosted, three weights only, one preloaded.
+- Explicit dimensions on every image and embed.
+- Route-level code splitting; modals lazy-loaded.
+- No third-party requests above the fold.
+
+---
+
+## 10. Anti-patterns
+
+Ship-blockers, all currently present somewhere on the site:
+
+- [ ] `font-black` / `font-extrabold` anywhere
+- [ ] All-caps tracked-out eyebrow labels
+- [ ] `rounded-2xl` or larger
+- [ ] `shadow-lg` / `shadow-xl` / `shadow-2xl` on non-overlay elements
+- [ ] Emoji in headings
+- [ ] Stock photography
+- [ ] `→` appended to button or link text
+- [ ] Gradient backgrounds or gradient text
+- [ ] Scroll-triggered fade-up on every section
+- [ ] Hover lift or scale on cards
+- [ ] Icons that don't match their label
+- [ ] Anonymous testimonials
+- [ ] Trust seals with no issuer
+- [ ] Unsubstantiated certification claims
+- [ ] Placeholder-as-label in forms
+- [ ] Fabricated counts, ratings, or statistics
+- [ ] More than one primary button in a viewport
+- [ ] Self-linking navigation items
+
+---
+
+## 11. Copilot rollout prompts
+
+Run in order, in Agent mode, on a branch. Commit after each. Reference this file with `#file:DESIGN-SYSTEM.md`.
+
+### Prompt 1 — Tokens
+
+```
+Read #codebase and #file:DESIGN-SYSTEM.md.
+
+Add the color tokens, font family, radius scale and shadow scale from section 1 to tailwind.config. Set font-variant-numeric: tabular-nums lining-nums once on body in the global stylesheet.
+
+Then replace hardcoded and arbitrary color values throughout pages/ and components/ with the tokens. Report any color in the codebase that doesn't map cleanly to one of the six — don't invent a seventh, tell me and I'll decide.
+
+Do not change layout or copy in this pass.
+```
+
+### Prompt 2 — Type and weight
+
+```
+Per #file:DESIGN-SYSTEM.md section 1:
+
+1. Replace every font-black and font-extrabold with font-semibold. Weight 900 is not loaded and currently falls back silently.
+2. Apply the type scale to every heading. Hierarchy comes from size, not weight — if two adjacent headings differ only in boldness, fix the sizes.
+3. Remove every all-caps tracked-out label. Delete the label if the heading beneath it already says the same thing.
+4. Convert Title Case headings, buttons and labels to sentence case.
+5. Constrain body paragraphs to max-w-[34rem].
+
+Report every file changed with a before/after for headings.
+```
+
+### Prompt 3 — Structure: rules over cards
+
+```
+Per #file:DESIGN-SYSTEM.md sections 2 and 3.
+
+1. Build components/ui/LedgerBlock.tsx implementing the ledger pattern: 2px ink top rule, hairline rows, label left / value right on a shared axis, optional double-rule total. Props for heading, context, rows, and total.
+2. Find every section currently rendered as a grid of identical cards. For each, tell me whether the items are parallel-and-selectable (stays a card) or sequential/referential (becomes rules or a LedgerBlock). Wait for my confirmation before converting.
+3. Remove shadow-lg, shadow-xl and shadow-2xl from all non-overlay elements. Replace with a 1px rule border where separation is needed.
+4. Replace rounded-2xl and rounded-3xl with the radius scale: 0 for tables and rules, 6px for controls, 10px for selectable cards.
+```
+
+### Prompt 4 — Pricing comparison
+
+```
+Rebuild the pricing section as a comparison table per #file:DESIGN-SYSTEM.md section 3, replacing the five parallel cards.
+
+One feature column, five value columns, prices on a shared right axis with tabular figures. Recommended tier marked with a 2px brand left border and an inline label — no ribbon, no transform, no glow. Check in brand or em-dash in muted for feature presence; never a red cross.
+
+Use real table markup with th scope. Mobile: horizontal scroll with the feature column pinned.
+
+Do not change any price, tier name or feature. Structure only.
+
+Also: state what happens at each transaction-count boundary. Currently "up to 200 transactions" doesn't say what happens at 201 — flag this for me to answer rather than guessing.
+```
+
+### Prompt 5 — Buttons, icons, imagery
+
+```
+Per #file:DESIGN-SYSTEM.md sections 3, 4 and 5:
+
+1. Consolidate every button into primary / secondary / tertiary. Audit each page for more than one primary in a viewport and report violations.
+2. Rewrite CTA labels to say what happens. Replace "Initiate Inquiry", "Inquire Mandate", "Learn more", "Get started". The same action must use the same label everywhere.
+3. Remove any → appended to button or link text.
+4. Remove all emoji from headings and UI, including 💰 and 🔒.
+5. Audit every lucide icon against its label and report mismatches — TrendingUp on "Data Security" is one. Remove icons that are decorative rather than disambiguating.
+6. Remove the Unsplash hotlink and every other third-party image. List every remaining image with its source so I can confirm what's real.
+7. Add explicit width and height to all images; loading="lazy" below the fold; alt="" on payment logos.
+```
+
+### Prompt 6 — Motion
+
+```
+Per #file:DESIGN-SYSTEM.md section 6:
+
+Remove framer-motion from all above-the-fold components and every scroll-triggered fade-up. Remove hover lift, scale and shadow-grow on cards — hover changes color or border only.
+
+Keep motion only where it answers a user action: modal open, accordion expand, form confirm. 150-250ms, and wrapped in prefers-reduced-motion.
+
+Report the bundle size before and after.
+```
+
+### Prompt 7 — Trust, forms and footer
+
+```
+Per #file:DESIGN-SYSTEM.md section 3:
+
+1. Rebuild the trust cluster as plain dense text, not designed badges. Real <address> with legal name, street, phone, email.
+2. Remove every trust seal, shield and padlock graphic.
+3. Flag every certification claim in the codebase — "SOC2-compliant", "SOC2-aligned" — and list them for me. Do not rewrite them; I need to confirm what we actually hold.
+4. Testimonial component must require name, title, company and a photo or link, and render nothing if any are missing.
+5. Forms: labels above fields, no placeholder-as-label, validation on blur, errors in flag with aria-describedby, real success state. Modal gets role="dialog", aria-modal, focus trap, Esc to close, focus return.
+6. Fix the footer: "Partner Network" self-links to the current page, and two social links render as bare "/".
+```
+
+### Prompt 8 — Audit
+
+```
+Report pass/fail against #file:DESIGN-SYSTEM.md section 10, with file and line for every violation. No edits.
+
+Then run an accessibility pass per section 8: contrast ratios, focus rings, heading order, landmarks, table headers, icon-button labels. List failures only.
+```
+
+---
+
+## 12. Order of work
+
+The design changes are cheap and safe. Two things on this list are neither, and they matter more:
+
+1. **Certification claims.** "SOC2-compliant" on the homepage and "SOC2-aligned" on service pages are different claims, and neither is safe without a report. This is a legal exposure, not a copy preference. Resolve it before anything cosmetic.
+2. **A named human.** No design system fixes an anonymous finance firm. One person, one credential, one real photo, one verifiable licence number will move trust further than every prompt above combined.
+
+Everything else in this document is refinement on top of those two.

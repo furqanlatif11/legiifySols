@@ -38,7 +38,7 @@ export interface ServicePageConfig {
   heroSubhead: string;
   supportingHeading?: string;
   supportingIntro?: string;
-  credentialLine: string;
+  credentialLine?: string;
   problems: string[];
   scope: { deliverable: string; cadence: string; format: string }[];
   outOfScope: string[];
@@ -47,7 +47,7 @@ export interface ServicePageConfig {
   audience: { fitFor: string[]; notFor: string[] };
   faqs: { q: string; a: string }[];
   relatedSlugs: string[];
-  reviewedBy: { name: string; credential: string; date: string };
+  reviewedBy: { name?: string; credential?: string; date?: string };
   disclaimer?: string;
 }
 

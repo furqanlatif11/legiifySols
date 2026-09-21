@@ -2,14 +2,14 @@ import { ServicePageConfig } from '../../types';
 
 // Content sourced from existing published site copy (constants.tsx PREMIUM_SERVICES
 // "financial-analysis" and CORE_SERVICES "reporting" entries, Footer firm details,
-// PricingSection tiers). Unpublished facts remain TODO_VERIFY — see spec Part 7.
+// PricingSection tiers). Unpublished facts remain omitted rather than invented.
 export const financialAnalysisConfig: ServicePageConfig = {
   slug: 'financial-analysis',
   h1: 'Financial Analysis & Reporting',
-  metaTitle: 'Financial Analysis & Reporting Services | Ledgify Solutions',
-  metaDescription: 'Board-ready financial reporting: GAAP-aligned statements, KPI dashboards, and pattern-recognition review that flags discrepancies before they compound.',
+  metaTitle: 'Financial Reporting & Analysis | Ledgify Solutions',
+  metaDescription: 'Monthly and annual financial reporting, KPI review, and practical analysis for founders, agencies, ecommerce brands, and businesses at every stage.',
   heroSubhead: 'For founders and boards who need to see what their numbers actually mean, not just a spreadsheet of transactions.',
-  credentialLine: 'TODO_VERIFY: named practitioner, credential, and jurisdiction to be published here.',
+  credentialLine: undefined,
   problems: [
     'Your books close every month, but nobody produces a summary your board or investors can actually read.',
     'You suspect there are discrepancies or unusual patterns in your financials but do not have the bandwidth to dig through every line.',
@@ -59,9 +59,9 @@ export const financialAnalysisConfig: ServicePageConfig = {
   ],
   relatedSlugs: ['tax-planning', 'virtual-cfo'],
   reviewedBy: {
-    name: 'TODO_VERIFY',
-    credential: 'TODO_VERIFY',
-    date: 'TODO_VERIFY'
+    name: undefined,
+    credential: undefined,
+    date: undefined
   },
   disclaimer: 'This page describes financial analysis and reporting services. It is not an independent audit or attestation engagement, and it is not investment or securities advice.'
 };

@@ -11,28 +11,28 @@ interface CredentialBadgeProps {
   verifyUrl?: string;
 }
 
-// Renders nothing if the core credential facts are missing or still TODO_VERIFY placeholders — never show an empty or fake badge.
+// Renders nothing if the core credential facts are missing or unverified.
 const CredentialBadge: React.FC<CredentialBadgeProps> = ({ name, credential, licenseNumber, jurisdiction, status, verifyUrl }) => {
   if (isPlaceholder(name) || isPlaceholder(credential) || isPlaceholder(licenseNumber)) return null;
 
   const content = (
-    <div className="flex items-center gap-4 bg-white border border-slate-200 rounded-2xl p-6">
-      <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
+    <div className="flex items-center gap-4 bg-white border border-rule rounded-2xl p-6">
+      <div className="w-12 h-12 bg-emerald-50 text-brand rounded-xl flex items-center justify-center shrink-0">
         <ShieldCheck className="w-6 h-6" />
       </div>
       <div>
-        <p className="font-black text-emerald-950">{name} — {credential}</p>
-        <p className="text-sm text-slate-500 font-medium">
+        <p className="font-semibold text-ink">{name} — {credential}</p>
+        <p className="text-sm text-muted font-medium">
           {licenseNumber}{jurisdiction ? `, ${jurisdiction}` : ''}{status ? ` (${status})` : ''}
         </p>
       </div>
-      {verifyUrl && <ExternalLink className="w-4 h-4 text-slate-400 ml-auto shrink-0" />}
+      {verifyUrl && <ExternalLink className="w-4 h-4 text-muted ml-auto shrink-0" />}
     </div>
   );
 
   if (verifyUrl) {
     return (
-      <a href={verifyUrl} target="_blank" rel="noopener noreferrer" className="block hover:border-emerald-500 transition-all rounded-2xl">
+      <a href={verifyUrl} target="_blank" rel="noopener noreferrer" className="block hover:border-brand transition-all rounded-2xl">
         {content}
       </a>
     );

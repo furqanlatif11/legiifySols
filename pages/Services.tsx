@@ -1,168 +1,292 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
-import { setMeta, setJsonLd, getSiteUrl } from '../utils/seo';
-import { servicePageConfigs } from '../data/services';
-import { PREMIUM_SERVICES, CORE_SERVICES, ICON_MAP } from '../constants';
-import { ArrowRight, ArrowUpRight, TrendingUp } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import { setMeta, setJsonLd, getSiteUrl } from "../utils/seo";
+import { servicePageConfigs } from "../data/services";
+import { PREMIUM_SERVICES, CORE_SERVICES } from "../constants";
+import FAQ from "../components/faq";
 
-// legacy constants.tsx ids that now have a dedicated in-depth page (ids predate the new slugs,
-// so this maps old-id -> new-slug rather than assuming they match) — excluded below so each service
-// appears exactly once instead of twice
-const IDS_WITH_DEDICATED_PAGE = new Set(['tax-strategy', 'fractional-cfo', 'irs-dispute', 'financial-analysis']);
-const otherPremiumServices = PREMIUM_SERVICES.filter((s) => !IDS_WITH_DEDICATED_PAGE.has(s.id));
-const otherCoreServices = CORE_SERVICES.filter((s) => !IDS_WITH_DEDICATED_PAGE.has(s.id));
+
+/* ⚠ Move to data/services.ts as a `legacyId` on each config. */
+const GUIDE_BY_LEGACY_ID: Record<string, string> = {
+  "tax-strategy": "tax-planning",
+  "fractional-cfo": "virtual-cfo",
+  "irs-dispute": "tax-resolution",
+  "financial-analysis": "financial-analysis",
+};
+
+interface ServiceEntry {
+  id: string;
+  title: string;
+  description: string;
+  guideSlug?: string;
+  priceFrom?: string;
+  source: any;
+}
 
 type ServicesProps = {
   handleInquire: (s?: string) => void;
   handleShowDetails: (item: any) => void;
 };
 
-const ServicesPage: React.FC<ServicesProps> = ({ handleInquire, handleShowDetails }) => {
+const ServicesPage: React.FC<ServicesProps> = ({
+  handleInquire,
+  handleShowDetails,
+}) => {
   const location = useLocation();
+  const [highlighted, setHighlighted] = useState<string | null>(null);
+
+  const configsBySlug: Record<string, any> = useMemo(
+    () =>
+      Object.values(servicePageConfigs).reduce(
+        (acc: Record<string, any>, config: any) => ({
+          ...acc,
+          [config.slug]: config,
+        }),
+        {},
+      ),
+    [],
+  );
+
+  /* A service is defined by the constants; a guide page is something it may
+     or may not have. That's the inversion the old file was missing. */
+  const toEntry = (service: any): ServiceEntry => {
+    const slug = GUIDE_BY_LEGACY_ID[service.id];
+    const config = slug ? configsBySlug[slug] : undefined;
+
+    return {
+      id: service.id,
+      title: config?.h1 ?? service.title,
+      description: config?.heroSubhead ?? service.description,
+      guideSlug: config ? slug : undefined,
+      priceFrom: config?.pricing?.from,
+      source: service,
+    };
+  };
+
+  const monthly = useMemo(
+    () => (CORE_SERVICES ?? []).map(toEntry),
+    [configsBySlug],
+  );
+
+  const mandates = useMemo(() => {
+    const base = (PREMIUM_SERVICES ?? []).map(toEntry);
+    const covered = new Set(
+      [...(CORE_SERVICES ?? []), ...(PREMIUM_SERVICES ?? [])]
+        .map((s: any) => GUIDE_BY_LEGACY_ID[s.id])
+        .filter(Boolean),
+    );
+
+    /* Any guide with no matching constant still deserves a row rather than
+       disappearing off the hub. */
+    const orphans = Object.values(servicePageConfigs)
+      .filter((config: any) => !covered.has(config.slug))
+      .map((config: any) => ({
+        id: config.slug,
+        title: config.h1,
+        description: config.heroSubhead,
+        guideSlug: config.slug,
+        priceFrom: config.pricing?.from,
+        source: config,
+      }));
+
+    return [...base, ...orphans];
+  }, [configsBySlug]);
 
   useEffect(() => {
     setMeta({
-      title: 'Services — Ledgify Solutions | Tax, CFO & Financial Planning',
-      description: 'Five in-depth guides for founders covering tax planning, financial analysis, virtual CFO leadership, IRS resolution support, and succession planning.',
+      title: "Accounting, Tax Planning and CFO Support | Ledgify Solutions",
+      description:
+        "What runs every month inside a plan, and what you add when the situation calls for it. Accounting, bookkeeping, payroll, tax and advisory support across the USA.",
       url: window.location.href,
-      image: '/assets/logos/ledgifySols_OGImage.webp'
+      image: "/assets/logos/ledgifySols_OGImage.webp",
     });
   }, []);
 
-  // ItemList schema pointing at the five dedicated service pages, mirroring the cards rendered below
   useEffect(() => {
     const site = getSiteUrl();
-    setJsonLd('services-hub', {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      itemListElement: Object.values(servicePageConfigs).map((config, i) => ({
-        '@type': 'ListItem',
-        position: i + 1,
-        item: {
-          '@type': 'Service',
-          name: config.h1,
-          url: `${site}/services/${config.slug}`
-        }
-      }))
+    setJsonLd("services-hub", {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: Object.values(servicePageConfigs).map(
+        (config: any, i: number) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "Service",
+            name: config.h1,
+            url: `${site}/services/${config.slug}`,
+          },
+        }),
+      ),
     });
-    return () => setJsonLd('services-hub', null);
+    return () => setJsonLd("services-hub", null);
   }, []);
 
-  // Deep-link support: scroll to and briefly highlight the service referenced by the URL hash
+  /* Deep links. React owns the highlight rather than classList. */
   useEffect(() => {
     if (!location.hash) return;
-    const id = location.hash.replace('#', '');
+    const id = location.hash.replace("#", "");
     const el = document.getElementById(id);
     if (!el) return;
-    const timer = setTimeout(() => {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      el.classList.add('ring-4', 'ring-emerald-500', 'ring-offset-4');
-      setTimeout(() => el.classList.remove('ring-4', 'ring-emerald-500', 'ring-offset-4'), 2000);
+
+    const scroll = setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      setHighlighted(id);
     }, 100);
-    return () => clearTimeout(timer);
+    const clear = setTimeout(() => setHighlighted(null), 2400);
+
+    return () => {
+      clearTimeout(scroll);
+      clearTimeout(clear);
+    };
   }, [location.hash]);
 
-  return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="pt-48 pb-24 bg-slate-50">
-    <div className="container mx-auto px-6">
-      <div className="text-center mb-24 max-w-3xl mx-auto">
-        <h2 className="text-emerald-600 font-black uppercase tracking-[0.4em] text-xs mb-6">Capabilities</h2>
-        <h1 className="text-6xl md:text-8xl font-black text-emerald-950 tracking-tighter leading-none mb-8">Full Service Spectrum.</h1>
-        <p className="text-xl text-slate-600 font-medium leading-relaxed">
-          Start with a planning-stage need (tax strategy, succession) or an operating-stage need (financial analysis, CFO leadership, an active IRS notice). Each guide below covers scope, pricing, and process in full — pick the one that matches where you are right now.
+  const renderRow = (entry: ServiceEntry) => (
+    <div
+      key={entry.id}
+      id={entry.id}
+      className={`grid scroll-mt-32 grid-cols-1 gap-x-12 gap-y-5 border-b border-rule py-9 transition-colors duration-300 lg:grid-cols-12 lg:py-10 ${
+        highlighted === entry.id ? "bg-emerald-50" : "hover:bg-white"
+      }`}
+    >
+      <div className="lg:col-span-7">
+        <h3 className="text-xl font-semibold tracking-[-0.01em] text-ink sm:text-2xl">
+          {entry.title}
+        </h3>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">
+          {entry.description}
         </p>
       </div>
 
-      {/* In-depth service guides — the 5 dedicated pages */}
-      <section aria-labelledby="guides-heading" className="mb-32">
-        <div className="mb-10 border-b-4 border-emerald-900/10 pb-8">
-          <h2 id="guides-heading" className="text-4xl font-black text-emerald-900 tracking-tight">In-Depth Service Guides</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {Object.values(servicePageConfigs).map((config) => (
+      <div className="lg:col-span-5">
+        {entry.priceFrom && (
+          <p className="text-[0.9375rem] font-medium text-ink">
+            {entry.priceFrom}
+          </p>
+        )}
+
+        <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3">
+          {entry.guideSlug ? (
             <Link
-              key={config.slug}
-              to={`/services/${config.slug}`}
-              className="group bg-white p-10 rounded-[3rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:border-emerald-500 transition-all flex flex-col"
+              to={`/services/${entry.guideSlug}`}
+              className="border-b-2 border-brand/30 pb-0.5 text-base font-semibold text-brand transition-colors duration-200 hover:border-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
             >
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-3xl font-black tracking-tight text-emerald-950 group-hover:text-emerald-600 transition-colors">{config.h1}</h3>
-                <ArrowUpRight className="w-6 h-6 text-emerald-500 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 group-hover:-translate-y-1 shrink-0" />
-              </div>
-              <p className="text-slate-600 text-lg mb-6 leading-relaxed font-medium flex-1">{config.heroSubhead}</p>
-              {config.pricing.from && (
-                <p className="text-sm font-black uppercase tracking-widest text-emerald-600">{config.pricing.from}</p>
-              )}
+              Read the guide
             </Link>
-          ))}
-        </div>
-      </section>
-
-      {otherPremiumServices.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-32">
-          <div className="col-span-full mb-10 border-b-4 border-emerald-900/10 pb-8">
-            <h2 className="text-4xl font-black text-emerald-900 tracking-tight">Institutional Growth (Premium)</h2>
-          </div>
-          {otherPremiumServices.map((s) => (
-            <div
-              key={s.id}
-              id={s.id}
-              className="bg-white p-16 rounded-[4rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all group cursor-pointer scroll-mt-32"
-              onClick={() => handleShowDetails(s)}
+          ) : (
+            <button
+              type="button"
+              onClick={() => handleShowDetails(entry.source)}
+              className="border-b-2 border-transparent pb-0.5 text-base font-semibold text-ink transition-colors duration-200 hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
             >
-              <div className="flex justify-between items-start mb-10">
-                <div className="text-emerald-600 p-5 bg-emerald-50 rounded-2xl group-hover:bg-emerald-900 group-hover:text-white transition-colors">
-                  {ICON_MAP[s.icon]}
-                </div>
-                <TrendingUp className="text-emerald-100 w-16 h-16" />
-              </div>
-              <h3 className="text-4xl font-black mb-6 tracking-tight group-hover:text-emerald-600 transition-colors">{s.title}</h3>
-              <p className="text-slate-600 text-xl mb-10 leading-relaxed font-medium">{s.description}</p>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleInquire(s.title);
-                }}
-                className="bg-emerald-950 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-emerald-800 transition-all flex items-center gap-3 shadow-xl"
-              >
-                Book Deep Dive <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+              See what's covered
+            </button>
+          )}
 
-      {otherCoreServices.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-          <div className="col-span-full mb-10 border-b-4 border-emerald-900/10 pb-8">
-            <h2 className="text-4xl font-black text-emerald-900 tracking-tight">Essential Compliance (Core)</h2>
-          </div>
-          {otherCoreServices.map((s) => (
-            <div
-              key={s.id}
-              id={s.id}
-              className="bg-white p-10 rounded-[3rem] border border-slate-100 hover:border-emerald-500 transition-all shadow-sm cursor-pointer scroll-mt-32"
-              onClick={() => handleShowDetails(s)}
-            >
-              <div className="text-emerald-500 mb-8">{ICON_MAP[s.icon]}</div>
-              <h4 className="text-2xl font-black mb-4 leading-tight">{s.title}</h4>
-              <p className="text-slate-500 text-lg mb-8 leading-relaxed font-medium">{s.description}</p>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleInquire(s.title);
-                }}
-                className="text-emerald-600 font-black uppercase text-xs tracking-[0.2em] border-b-2 border-emerald-600 pb-1"
-              >
-                Inquire Now
-              </button>
-            </div>
-          ))}
+          <button
+            type="button"
+            onClick={() => handleInquire(entry.title)}
+            className="border-b-2 border-transparent pb-0.5 text-base font-medium text-muted transition-colors duration-200 hover:border-muted hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+          >
+            Get a quote
+          </button>
         </div>
-      )}
+      </div>
     </div>
-  </motion.div>
-);
-}
+  );
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-paper pt-40 lg:pt-48"
+      style={{ fontVariantNumeric: "tabular-nums lining-nums" }}
+    >
+      <div className="container mx-auto px-6">
+        {/* -------------------------------------------------------- heading */}
+        <div className="max-w-3xl">
+          <h1 className="text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.03em] text-ink sm:text-[3.5rem] lg:text-[4.25rem]">
+            Everything we do, and when you'd need it.
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">
+            Some of this runs every month whether or not anything happens —
+            that's what a plan is. The rest you reach for when the situation
+            arrives: a sale, a dispute, a year of books nobody kept. Both lists
+            are below, with prices where they're published.
+          </p>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link
+              to="/pricing"
+              className="rounded-full bg-brand px-8 py-4 text-center text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink hover:shadow-[0_12px_26px_-14px_rgba(12,31,24,.6)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              See plans and prices
+            </Link>
+            <button
+              type="button"
+              onClick={() => handleInquire("Services overview")}
+              className="rounded-full border border-rule px-8 py-4 text-center text-base font-medium text-ink transition-colors duration-200 hover:border-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              Ask what you need
+            </button>
+          </div>
+        </div>
+
+        {/* ------------------------------------------------- every month */}
+        {monthly.length > 0 && (
+          <section aria-labelledby="monthly-heading" className="mt-20 lg:mt-24">
+            <div className="max-w-2xl">
+              <h2
+                id="monthly-heading"
+                className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.025em] text-ink sm:text-[2.5rem]"
+              >
+                Every month.
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-muted">
+                Included in every plan, from $80 a month. What changes between
+                tiers is volume and depth, not which of these you get.
+              </p>
+            </div>
+
+            <div className="mt-10 border-t-2 border-ink">
+              {monthly.map(renderRow)}
+            </div>
+          </section>
+        )}
+
+        {/* ------------------------------------------------ when it comes up */}
+        {mandates.length > 0 && (
+          <section aria-labelledby="mandates-heading" className="mt-20 lg:mt-28">
+            <div className="max-w-2xl">
+              <h2
+                id="mandates-heading"
+                className="text-[2rem] font-semibold leading-[1.06] tracking-[-0.025em] text-ink sm:text-[2.5rem]"
+              >
+                When it comes up.
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-muted">
+                Added to any plan by mandate, scoped and quoted before work
+                starts. None of it is bundled into your monthly fee.
+              </p>
+            </div>
+
+            <div className="mt-10 border-t-2 border-ink">
+              {mandates.map(renderRow)}
+            </div>
+          </section>
+        )}
+
+        <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted">
+          We prepare, organize and review your tax documentation. Filing stays
+          with you or your designated filer, and we walk you through that step.
+        </p>
+      </div>
+
+      <FAQ pageId="services" tone="paper" />
+    </motion.div>
+  );
+};
+
 export default ServicesPage;
