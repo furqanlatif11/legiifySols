@@ -1,7 +1,10 @@
 
 import React, { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Mail, PhoneCall } from "lucide-react";
 import { getFaqs, getFaqMeta, type FaqPageId, type FaqItem } from "../constants";
+import { firmIdentity } from "../data/firm";
 
 /* ---------------------------------------------------------------------------
    FAQ — Ledgify Solutions
@@ -155,16 +158,60 @@ const FAQ: React.FC<FAQProps> = ({
         <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-12 lg:gap-x-16">
           {/* ------------------------------------------------------ heading */}
           <div className="lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
-            <h2
-              className={`max-w-sm text-[2rem] font-semibold leading-[1.06] tracking-[-0.025em] sm:text-[2.5rem] ${t.heading}`}
-            >
-              {heading ?? meta.heading}
-            </h2>
-            {meta.intro && (
-              <p className={`mt-5 max-w-sm text-base leading-relaxed ${t.body}`}>
-                {meta.intro}
-              </p>
-            )}
+            <div className="relative overflow-hidden rounded-card bg-brandDeep px-8 py-10 text-white sm:px-10 sm:py-12">
+              {/* decorative, purely visual — fills the panel so it doesn't read as empty space */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/5"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-24 -left-10 h-48 w-48 rounded-full bg-black/10"
+              />
+
+              <h2 className="relative max-w-sm text-[2rem] font-semibold leading-[1.06] tracking-[-0.025em] sm:text-[2.5rem]">
+                {heading ?? meta.heading}
+              </h2>
+              {meta.intro && (
+                <p className="relative mt-5 max-w-sm text-base leading-relaxed text-white/75">
+                  {meta.intro}
+                </p>
+              )}
+
+              <div className="relative mt-10 border-t border-white/15 pt-8">
+                <p className="text-sm font-semibold uppercase tracking-wide text-white/60">
+                  Still have questions?
+                </p>
+                <p className="mt-2 max-w-sm text-base leading-relaxed text-white/80">
+                  Talk to a specialist directly — no forms, no ticket queue.
+                </p>
+
+                <Link
+                  to="/contact"
+                  className="mt-6 inline-flex items-center gap-2 rounded-control bg-white px-5 py-3 text-sm font-semibold text-brandDeep transition-colors hover:bg-white/90"
+                >
+                  Book a free consultation
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <div className="mt-6 flex flex-col gap-3 text-sm text-white/75">
+                  <a
+                    href={`tel:${firmIdentity.phone.replace(/[^+\d]/g, "")}`}
+                    className="inline-flex items-center gap-2 transition-colors hover:text-white"
+                  >
+                    <PhoneCall className="h-4 w-4 shrink-0" />
+                    {firmIdentity.phone}
+                  </a>
+                  <a
+                    href={`mailto:${firmIdentity.email}`}
+                    className="inline-flex items-center gap-2 transition-colors hover:text-white"
+                  >
+                    <Mail className="h-4 w-4 shrink-0" />
+                    {firmIdentity.email}
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* -------------------------------------------------------- list */}

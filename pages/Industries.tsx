@@ -43,17 +43,52 @@ const IndustriesPage: React.FC<IndustriesProps> = ({
         <div className="container mx-auto px-6">
           {/* -------------------------------------------------------- heading
             Left aligned, one colour, one weight. */}
-          <div className="max-w-3xl">
-            <h1 className="text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.03em] text-ink sm:text-[3.5rem] lg:text-[4.25rem]">
-              Industries we work in.
-            </h1>
-            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">
-              Some sectors carry accounting rules of their own — revenue that
-              can't be recognized when it arrives, depreciation that runs on its
-              own schedule, privacy obligations that sit on top of every entry.
-              These are the ones we work in most, and what each engagement
-              usually has to account for.
-            </p>
+          {/* -------------------------------------------------------- heading
+            Prose on the left; a quick-reference ledger on the right so the
+            hero doesn't read as a single lonely column, same shape as the
+            About page's firm record. */}
+          <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-12 lg:gap-x-16">
+            <div className="max-w-3xl lg:col-span-7">
+              <h1 className="text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.03em] text-ink sm:text-[3.5rem] lg:text-[4.25rem]">
+                Industries we work in.
+              </h1>
+              <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">
+                Some sectors carry accounting rules of their own — revenue that
+                can't be recognized when it arrives, depreciation that runs on its
+                own schedule, privacy obligations that sit on top of every entry.
+                These are the ones we work in most, and what each engagement
+                usually has to account for.
+              </p>
+            </div>
+
+            <div className="lg:col-span-5">
+              <figure className="lg:sticky lg:top-28">
+                <figcaption className="flex items-baseline justify-between gap-6 border-b-2 border-ink pb-3">
+                  <span className="text-base font-semibold text-ink">
+                    At a glance
+                  </span>
+                  <span className="text-sm text-muted">As published</span>
+                </figcaption>
+                <dl>
+                  {[
+                    { label: "Sectors covered", value: `${industries.length} on this page` },
+                    { label: "Engagements", value: "Monthly plans from $80" },
+                    { label: "Coverage", value: "Federal and 50-state" },
+                    { label: "Data handling", value: "AES-256, strict non-disclosure" },
+                  ].map((row) => (
+                    <div
+                      key={row.label}
+                      className="flex items-baseline justify-between gap-6 border-b border-rule py-4"
+                    >
+                      <dt className="text-sm text-muted">{row.label}</dt>
+                      <dd className="text-right text-sm font-semibold text-ink">
+                        {row.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </figure>
+            </div>
           </div>
 
           {/* ---------------------------------------------------------- index

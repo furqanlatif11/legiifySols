@@ -101,8 +101,8 @@ const DEFAULT_PLANS: Plan[] = [
   {
     id: "starter",
     name: "Starter",
-    price: "$100 – $199",
-    priceLabel: "Per month",
+    price: "$199",
+    priceLabel: "From",
     values: {
       suitableFor: "Small businesses finding their footing",
       transactions: "Up to 200 a month",
@@ -114,8 +114,8 @@ const DEFAULT_PLANS: Plan[] = [
   {
     id: "growth",
     name: "Growth",
-    price: "$200 – $399",
-    priceLabel: "Per month",
+    price: "$499",
+    priceLabel: "From",
     badge: "Most chosen",
     values: {
       suitableFor: "Agencies and ecommerce brands scaling up",
@@ -128,8 +128,8 @@ const DEFAULT_PLANS: Plan[] = [
   {
     id: "pro",
     name: "Pro",
-    price: "$400 – $599",
-    priceLabel: "Per month",
+    price: "$999",
+    priceLabel: "From",
     values: {
       suitableFor: "Growing teams on multiple systems",
       transactions: "Up to 2,000 a month",
@@ -141,8 +141,8 @@ const DEFAULT_PLANS: Plan[] = [
   {
     id: "enterprise",
     name: "Enterprise",
-    price: "$600 – $1,199",
-    priceLabel: "Per month",
+    price: "$1999",
+    priceLabel: "From",
     values: {
       suitableFor: "Multi-entity groups and complex structures",
       transactions: "Unlimited",

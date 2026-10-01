@@ -16,7 +16,9 @@ export async function sendInquiryEmail(data: InquiryData): Promise<void> {
   }
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: process.env.SMTP_HOST || 'smtp.titan.email',
+    port: Number(process.env.SMTP_PORT) || 465,
+    secure: true,
     auth: { user: emailUser, pass: emailPass },
   });
 

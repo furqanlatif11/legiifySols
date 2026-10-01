@@ -94,23 +94,33 @@ const ContactPage: React.FC<ContactPageProps> = ({
     ) =>
       setValues((current) => ({ ...current, [field]: event.target.value }));
 
-  /* Fallback only. Replace by passing onSubmit. */
-  const mailtoFallback = (data: ContactValues) => {
-    const body = [
-      `Name: ${data.name}`,
-      `Email: ${data.email}`,
+  /* Fallback only. Replace by passing onSubmit. Posts through the same
+     /api/inquiry channel (and Titan mailbox) as the inquiry modal, rather
+     than opening the visitor's own mail client. */
+  const apiFallback = async (data: ContactValues) => {
+    const extra = [
       data.phone && `Phone: ${data.phone}`,
-      `Situation: ${data.situation}`,
-      `Looking for: ${data.need}`,
-      "",
-      data.message,
+      data.situation && `Situation: ${data.situation}`,
     ]
       .filter(Boolean)
       .join("\n");
 
-    window.location.href = `mailto:${inbox}?subject=${encodeURIComponent(
-      `Quote request — ${data.name}`,
-    )}&body=${encodeURIComponent(body)}`;
+    const base = import.meta.env.VITE_API_BASE || process.env.API_BASE || "/api";
+    const response = await fetch(`${base}/inquiry`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullName: data.name,
+        email: data.email,
+        service: data.need || undefined,
+        message: extra ? `${extra}\n\n${data.message}` : data.message,
+      }),
+    });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.error || "Submission failed");
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -131,7 +141,7 @@ const ContactPage: React.FC<ContactPageProps> = ({
       if (onSubmit) {
         await onSubmit(values);
       } else {
-        mailtoFallback(values);
+        await apiFallback(values);
       }
       setStatus("sent");
       setValues(EMPTY);
