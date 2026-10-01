@@ -608,12 +608,12 @@ export const POLICIES: Record<PolicyId, Policy> = {
         ],
       },
       {
-        /* ⚠ REVIEW — support hours are given in MST, while the firm is in
+        /* ⚠ REVIEW — support hours are given in CST, while the firm is in
            Arkansas (Central). Worth confirming which is correct, since this
            is the only place on the site that states hours at all. */
         heading: "Contacting us",
         paragraphs: [
-          "Support is available Monday to Friday, 9am–7pm CST, and Saturday to Sunday, 10am–5pm MST. Phone and chat support are available during standard hours. Tickets are responded to within 12 business hours. For privacy concerns, email us at info@ledgifysolutions.com.",
+          "Support is available Monday to Friday, 9am–7pm CST, and Saturday to Sunday, 10am–5pm CST. Phone and chat support are available during standard hours. Tickets are responded to within 12 business hours. For privacy concerns, email us at info@ledgifysolutions.com.",
         ],
       },
       {
