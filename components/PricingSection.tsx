@@ -163,11 +163,6 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onInquire }) => {
           </table>
         </div>
 
-        {/* TODO_VERIFY: none of the five tiers state what happens once a month runs past its listed transaction count (e.g. 201st transaction on Starter) — needs a real answer before it ships, not guessed here. */}
-        <p className="text-small text-muted mt-6">
-          Transaction limits above are per plan per month. What happens if a month goes over the listed limit is not yet published — confirm before this goes live.
-        </p>
-
         <p className="text-center text-muted font-medium mt-12">
           All plans include a{" "}
           <span className="text-brand font-semibold">free consultation</span> with our strategists to ensure the right fit for individuals and businesses.

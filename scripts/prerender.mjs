@@ -35,7 +35,7 @@ const metadata = {
   '/services': { title: 'Accounting, Tax Planning & CFO Support Services | Ledgify', description: 'Accounting and bookkeeping for individuals, founders, agencies, ecommerce brands, and businesses at every stage, with tax planning and fractional finance support.' },
   '/industries': { title: 'Accounting Services for Businesses at Every Stage | Ledgify', description: 'Bookkeeping, accounting, and tax-planning support for individuals, founders, agencies, ecommerce brands, and businesses at every stage in the USA.' },
   '/pricing': { title: 'Accounting Solutions Pricing | Ledgify Solutions', description: 'Published monthly pricing for bookkeeping, accounting, tax planning, and fractional finance support, from $80 for individuals to $1,199 for enterprise tier.' },
-  '/philosophy': { title: 'Our Approach to Accounting Solutions | Ledgify Solutions', description: 'An accessible, precise, and transparent approach to bookkeeping, accounting, tax planning, and fractional finance support for businesses at every stage.' },
+  '/philosophy': { title: 'How We Work — Accounting and Bookkeeping | Ledgify Solutions', description: 'The positions behind our accounting work: published prices, statements reviewed before they leave us, and clarity about what we do and dont handle.' },
   '/contact': { title: 'Contact Ledgify Solutions | Get an Accounting Quote', description: 'Contact Ledgify Solutions for bookkeeping, accounting, tax planning, or fractional finance support with clear pricing and practical next steps.' },
   '/404': { title: 'Page Not Found | Ledgify Solutions', description: 'The page you are looking for does not exist or has moved.' }
 };
