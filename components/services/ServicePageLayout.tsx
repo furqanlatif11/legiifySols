@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { ServicePageConfig } from '../../types';
 import { servicePageConfigs } from '../../data/services';
+import { consultationPageConfigs } from '../../data/consultation';
 import { setJsonLd, getSiteUrl } from '../../utils/seo';
 import { isPlaceholder } from '../../utils/verify';
 import CredentialBadge from '../trust/CredentialBadge';
@@ -26,6 +27,7 @@ import {
 
 // title lookup by slug, derived from each service's own h1 so labels never drift out of sync
 const titleForSlug = (slug: string): string => servicePageConfigs[slug]?.h1 || slug;
+const titleForConsultationSlug = (slug: string): string => consultationPageConfigs[slug]?.h1 || slug;
 
 const ServicePageLayout: React.FC<{
   config: ServicePageConfig;
@@ -240,6 +242,25 @@ const ServicePageLayout: React.FC<{
                     className="bg-white border border-rule px-6 py-3 rounded-xl font-semibold text-ink hover:border-brand transition-all"
                   >
                     {titleForSlug(slug)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Related business consultation modules */}
+        {config.relatedConsultationSlugs && config.relatedConsultationSlugs.length > 0 && (
+          <section aria-labelledby="related-consultation-heading" className="mb-24">
+            <h2 id="related-consultation-heading" className="text-2xl font-semibold text-ink tracking-tight mb-6">Pairs Well With</h2>
+            <ul className="flex flex-wrap gap-4">
+              {config.relatedConsultationSlugs.map((slug) => (
+                <li key={slug}>
+                  <Link
+                    to={`/consultation/${slug}`}
+                    className="bg-white border border-rule px-6 py-3 rounded-xl font-semibold text-ink hover:border-brand transition-all"
+                  >
+                    {titleForConsultationSlug(slug)}
                   </Link>
                 </li>
               ))}

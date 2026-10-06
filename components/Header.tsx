@@ -4,10 +4,16 @@ import { Menu, X, PhoneCall, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { lockScroll, unlockScroll } from "../utils/scrollLock";
 import { servicePageConfigs } from "../data/services";
+import { consultationPageConfigs } from "../data/consultation";
 
 const serviceNavItems = Object.values(servicePageConfigs).map((c) => ({
   name: c.h1,
   path: `/services/${c.slug}`,
+}));
+
+const consultationNavItems = Object.values(consultationPageConfigs).map((c) => ({
+  name: c.h1,
+  path: `/consultation/${c.slug}`,
 }));
 
 const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
@@ -15,6 +21,8 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [isMobileConsultationOpen, setIsMobileConsultationOpen] = useState(false);
   const location = useLocation();
 
   const isHome = location.pathname === "/";
@@ -39,11 +47,14 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
     setIsMenuOpen(false);
     setIsServicesOpen(false);
     setIsMobileServicesOpen(false);
+    setIsConsultationOpen(false);
+    setIsMobileConsultationOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
     { name: "Philosophy", path: "/philosophy" },
     { name: "Services", path: "/services" },
+    { name: "Business Consultation", path: "/consultation" },
     { name: "Pricing", path: "/pricing" },
     { name: "Who We Serve", path: "/industries" },
     { name: "About Us", path: "/about" },
@@ -68,7 +79,7 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
             <img
               src="/assets/logos/ls-mainLogo600x200_main.svg"
               alt="Ledgify Solutions Logo"
-              className="w-44"
+              className="w-12 sm:w-16"
             />
           </Link>
 
@@ -144,6 +155,82 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                               className="block px-4 py-3 mt-1 rounded-xl text-xs font-semibold text-brand border-t border-ink/10 hover:bg-emerald-50 transition-colors"
                             >
                               View all services
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
+              if (link.name === "Business Consultation") {
+                const isConsultationActive =
+                  location.pathname.startsWith("/consultation");
+
+                return (
+                  <div
+                    key={link.name}
+                    className="relative"
+                    onMouseEnter={() => setIsConsultationOpen(true)}
+                    onMouseLeave={() => setIsConsultationOpen(false)}
+                  >
+                    <Link
+                      to={link.path}
+                      className="relative flex items-center gap-1 text-xs font-semibold py-2"
+                      aria-haspopup="true"
+                      aria-expanded={isConsultationOpen}
+                    >
+                      <span
+                        className={`transition-colors ${
+                          isConsultationActive ? "text-brand" : "hover:text-brand"
+                        }`}
+                      >
+                        {link.name}
+                      </span>
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform ${
+                          isConsultationOpen ? "rotate-180" : ""
+                        }`}
+                      />
+
+                      {isConsultationActive && (
+                        <motion.div
+                          layoutId="activeNavIndicator"
+                          className="absolute -bottom-1 left-0 right-0 h-[2px] bg-brand rounded-full"
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                    </Link>
+
+                    <AnimatePresence>
+                      {isConsultationOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute top-full left-0 -translate-x-1/2 pt-3 w-72"
+                        >
+                          <div className="bg-white text-ink rounded-2xl shadow-2xl border border-ink/10 p-3 normal-case">
+                            {consultationNavItems.map((item) => (
+                              <Link
+                                key={item.path}
+                                to={item.path}
+                                className="block px-4 py-3 rounded-xl text-sm font-semibold tracking-normal hover:bg-emerald-50 hover:text-brand transition-colors"
+                              >
+                                {item.name}
+                              </Link>
+                            ))}
+                            <Link
+                              to="/consultation"
+                              className="block px-4 py-3 mt-1 rounded-xl text-xs font-semibold text-brand border-t border-ink/10 hover:bg-emerald-50 transition-colors"
+                            >
+                              View all modules
                             </Link>
                           </div>
                         </motion.div>
@@ -243,7 +330,7 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                 <img
                   src="/assets/logos/ls-mainLogo600x200_main.svg"
                   alt="Mobile Logo"
-                  className="w-32"
+                  className="w-12 sm:w-16"
                 />
 
                 <button
@@ -316,6 +403,72 @@ const Header: React.FC<{ onInquire: () => void }> = ({ onInquire }) => {
                                   className="text-sm font-semibold text-brand"
                                 >
                                   View all services
+                                </Link>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    );
+                  }
+
+                  if (link.name === "Business Consultation") {
+                    const isConsultationActive =
+                      location.pathname.startsWith("/consultation");
+
+                    return (
+                      <motion.div
+                        key={link.name}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <button
+                          onClick={() =>
+                            setIsMobileConsultationOpen((open) => !open)
+                          }
+                          className={`group flex items-center justify-between w-full text-xl font-medium transition-all ${
+                            isConsultationActive ? "text-brand" : "text-ink"
+                          }`}
+                          aria-expanded={isMobileConsultationOpen}
+                        >
+                          <span className="relative">
+                            {link.name}
+                            <span className="block h-[2px] w-0 bg-brand transition-all duration-300 group-hover:w-full" />
+                          </span>
+                          <ChevronDown
+                            className={`w-5 h-5 transition-transform ${
+                              isMobileConsultationOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {isMobileConsultationOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="flex flex-col gap-4 pt-5 pl-4">
+                                {consultationNavItems.map((item) => (
+                                  <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-base font-semibold text-ink/70 hover:text-brand transition-colors"
+                                  >
+                                    {item.name}
+                                  </Link>
+                                ))}
+                                <Link
+                                  to="/consultation"
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className="text-sm font-semibold text-brand"
+                                >
+                                  View all modules
                                 </Link>
                               </div>
                             </motion.div>

@@ -63,6 +63,7 @@ export const taxResolutionConfig: ServicePageConfig = {
     { q: 'Is this the same as tax planning?', a: 'No. This service responds to an existing notice or audit. If you want ongoing planning to reduce the chance of future notices, see our Tax Planning & Strategy service.' }
   ],
   relatedSlugs: ['tax-planning', 'financial-analysis'],
+  relatedConsultationSlugs: ['operational-excellence'],
   reviewedBy: {
     name: undefined,
     credential: undefined,

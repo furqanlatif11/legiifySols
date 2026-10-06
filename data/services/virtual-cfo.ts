@@ -59,6 +59,7 @@ export const virtualCfoConfig: ServicePageConfig = {
     { q: 'What does this cost?', a: 'Virtual CFO support is scoped within our published monthly plans starting at $80/month, with custom retainers available for heavier board or fundraising support — see the Pricing page for the full breakdown.' }
   ],
   relatedSlugs: ['financial-analysis', 'tax-planning'],
+  relatedConsultationSlugs: ['financial-architecture', 'strategic-acceleration'],
   reviewedBy: {
     name: undefined,
     credential: undefined,

@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import WhyChoose from "../components/WhyChoose";
 import CoreServices from "../components/CoreServices";
 import PremiumServices from "../components/PremiumServices";
+import BusinessConsultation from "../components/BusinessConsultation";
 // import ProvenResults from '../components/ProvenResults';
 // import Testimonials from '../components/Testimonials';
 import TrustBadges from "../components/TrustBadges";
@@ -48,6 +49,7 @@ const HomePage: React.FC<HomeProps> = ({
         onShowDetails={handleShowDetails}
       />
       {/* <ProvenResults /> */}
+      <BusinessConsultation onInquire={handleInquire} />
       <PricingSection onInquire={(plan) => handleInquire(plan)} />
       {/* <Testimonials /> */}
       <TrustBadges />

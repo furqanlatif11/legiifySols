@@ -38,6 +38,7 @@ export type FaqPageId =
   | "home"
   | "industries"
   | "services"
+  | "consultation"
   | "pricing"
   | "about"
   | "philosophy"
@@ -307,6 +308,39 @@ export const PAGE_FAQS: Record<FaqPageId, FaqPage> = {
         question: "How quickly does the month-end close land?",
         answer:
           "Close timing depends on how fast source documents reach us and how clean the starting records are. We agree a target date during the consultation and tell you if something is going to push it, rather than letting the date pass quietly.",
+      },
+    ],
+  },
+
+  consultation: {
+    heading: "Questions about business consultation",
+    intro:
+      "Specific to the four consulting modules on this page. General questions about getting started and data security are answered below them.",
+    shared: ["getting-started", "data-security", "location"],
+    items: [
+      {
+        id: "consultation-vs-plans",
+        question: "How is this different from the monthly accounting plans?",
+        answer:
+          "The monthly plans are ongoing compliance work — bookkeeping, tax strategy, payroll and reporting that runs every period whether or not anything changes. Business Consultation is project-based: a scoped engagement built around a specific outcome, like a growth roadmap or a financial architecture rebuild, with a defined start and finish.",
+      },
+      {
+        id: "consultation-pricing",
+        question: "Why isn't pricing published the way the monthly plans are?",
+        answer:
+          "Scope varies too much to publish one number. A growth roadmap for a 5-person business and a market-entry strategy for a 60-person company aren't the same engagement. Every module is scoped on a discovery call and quoted in writing before anything starts, so you're never billed against an assumption.",
+      },
+      {
+        id: "consultation-duration",
+        question: "How long does a typical engagement run?",
+        answer:
+          "Most modules open with a 2-4 week diagnostic and roadmap phase, followed by an implementation or review cadence that runs as long as you need it — monthly check-ins are common. We agree the shape of this during scoping, not after you've signed.",
+      },
+      {
+        id: "consultation-combine",
+        question: "Can we run a consulting engagement alongside an existing monthly plan?",
+        answer:
+          "Yes, and it's common. Clients on a monthly plan often add a consulting module when they hit a specific inflection point — a stalled growth curve, a messy reporting structure, a competitor gaining ground. The two run side by side without disrupting your existing plan.",
       },
     ],
   },

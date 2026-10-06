@@ -61,6 +61,7 @@ export const taxPlanningConfig: ServicePageConfig = {
     { q: 'What does this cost?', a: 'Tax planning is included in our published monthly plans starting at $80/month, scaled by transaction volume and complexity — see the Pricing page for the full breakdown.' }
   ],
   relatedSlugs: ['financial-analysis', 'virtual-cfo'],
+  relatedConsultationSlugs: ['financial-architecture', 'operational-excellence'],
   reviewedBy: {
     name: undefined,
     credential: undefined,

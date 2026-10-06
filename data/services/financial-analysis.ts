@@ -58,6 +58,7 @@ export const financialAnalysisConfig: ServicePageConfig = {
     { q: 'What does this cost?', a: 'Financial analysis and reporting is included in our published monthly plans starting at $80/month, scaled by volume and complexity — see the Pricing page for the full breakdown.' }
   ],
   relatedSlugs: ['tax-planning', 'virtual-cfo'],
+  relatedConsultationSlugs: ['financial-architecture', 'market-domination'],
   reviewedBy: {
     name: undefined,
     credential: undefined,

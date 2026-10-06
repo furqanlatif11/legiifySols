@@ -56,6 +56,13 @@ const SERVICE_LINKS = [
   { to: "/services#ma-advisory", label: "Books clean-up before a sale" },
 ];
 
+const CONSULTATION_LINKS = [
+  { to: "/consultation/strategic-acceleration", label: "Strategic Acceleration" },
+  { to: "/consultation/operational-excellence", label: "Operational Excellence" },
+  { to: "/consultation/financial-architecture", label: "Financial Architecture" },
+  { to: "/consultation/market-domination", label: "Market Domination" },
+];
+
 const COMPANY_LINKS = [
   { to: "/philosophy", label: "How we work" },
   { to: "/industries", label: "Who we serve" },
@@ -114,11 +121,11 @@ const Footer: React.FC<FooterProps> = ({ onInquire }) => {
 
           {/* ------------------------------------------------------ columns */}
           <div className="grid grid-cols-1 gap-x-12 gap-y-12 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:py-20">
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-3">
               <img
-                src="/assets/logos/ls-mainLogo600x200_footer.svg"
+                src="/assets/logos/ls-mainLogo600x200_main.svg"
                 alt="Ledgify Solutions"
-                className="w-56"
+                className="w-12 sm:w-20"
               />
               <p className="mt-6 max-w-sm text-[0.9375rem] leading-relaxed text-[#9DB2A7]">
                 Accounting and bookkeeping for individuals, founders, agencies,
@@ -128,10 +135,23 @@ const Footer: React.FC<FooterProps> = ({ onInquire }) => {
               </p>
             </div>
 
-            <nav aria-label="Services" className="lg:col-span-3">
+            <nav aria-label="Services" className="lg:col-span-2">
               <h3 className="text-sm font-semibold text-white">Services</h3>
               <ul className="mt-5 space-y-3.5">
                 {SERVICE_LINKS.map((item) => (
+                  <li key={item.to}>
+                    <Link to={item.to} className={linkClass}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Business Consultation" className="lg:col-span-2">
+              <h3 className="text-sm font-semibold text-white">Business Consultation</h3>
+              <ul className="mt-5 space-y-3.5">
+                {CONSULTATION_LINKS.map((item) => (
                   <li key={item.to}>
                     <Link to={item.to} className={linkClass}>
                       {item.label}

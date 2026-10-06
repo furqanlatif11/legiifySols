@@ -20,6 +20,11 @@ import FinancialAnalysis from './pages/services/FinancialAnalysis';
 import VirtualCFO from './pages/services/VirtualCFO';
 import TaxResolution from './pages/services/TaxResolution';
 import SuccessionPlanning from './pages/services/SuccessionPlanning';
+import ConsultationPage from './pages/Consultation';
+import StrategicAcceleration from './pages/consultation/StrategicAcceleration';
+import OperationalExcellence from './pages/consultation/OperationalExcellence';
+import FinancialArchitecture from './pages/consultation/FinancialArchitecture';
+import MarketDomination from './pages/consultation/MarketDomination';
 import { setJsonLd, getSiteUrl } from './utils/seo';
 import { firmIdentity } from './data/firm';
 
@@ -77,6 +82,11 @@ const App: React.FC<{ ssrPath?: string }> = ({ ssrPath }) => {
             <Route path="/services/virtual-cfo" element={<VirtualCFO handleInquire={handleInquire} />} />
             <Route path="/services/tax-resolution" element={<TaxResolution handleInquire={handleInquire} />} />
             <Route path="/services/succession-planning" element={<SuccessionPlanning handleInquire={handleInquire} />} />
+            <Route path="/consultation" element={<ConsultationPage handleInquire={handleInquire} />} />
+            <Route path="/consultation/strategic-acceleration" element={<StrategicAcceleration handleInquire={handleInquire} />} />
+            <Route path="/consultation/operational-excellence" element={<OperationalExcellence handleInquire={handleInquire} />} />
+            <Route path="/consultation/financial-architecture" element={<FinancialArchitecture handleInquire={handleInquire} />} />
+            <Route path="/consultation/market-domination" element={<MarketDomination handleInquire={handleInquire} />} />
             <Route path="/industries" element={<IndustriesPage handleInquire={handleInquire} handleShowDetails={handleShowDetails} />} />
             <Route path="/pricing" element={<PricingPage handleInquire={handleInquire} />} />
             <Route path="/philosophy" element={<WhyPage />} />

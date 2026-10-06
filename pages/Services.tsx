@@ -282,6 +282,23 @@ const ServicesPage: React.FC<ServicesProps> = ({
           We prepare, organize and review your tax documentation. Filing stays
           with you or your designated filer, and we walk you through that step.
         </p>
+
+        <div className="mt-16 rounded-3xl border border-rule bg-white p-10">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">
+            Need something more strategic than accounting?
+          </h2>
+          <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">
+            Business Consultation covers growth, operations, financial
+            structure and competitive strategy as scoped, project-based
+            engagements — separate from the monthly plans above.
+          </p>
+          <Link
+            to="/consultation"
+            className="mt-6 inline-flex items-center gap-2 text-base font-semibold text-brand hover:text-brandDeep transition-colors"
+          >
+            Explore Business Consultation
+          </Link>
+        </div>
       </div>
 
       <FAQ pageId="services" tone="paper" />

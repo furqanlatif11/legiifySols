@@ -62,6 +62,7 @@ export const successionPlanningConfig: ServicePageConfig = {
     { q: 'What does this cost?', a: 'Pricing is scoped per engagement based on the complexity of the transaction.' }
   ],
   relatedSlugs: ['tax-planning', 'virtual-cfo'],
+  relatedConsultationSlugs: ['strategic-acceleration', 'financial-architecture'],
   reviewedBy: {
     name: undefined,
     credential: undefined,

@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './App';
 import { servicePageConfigs } from './data/services';
+import { consultationPageConfigs } from './data/consultation';
 import { firmIdentity } from './data/firm';
 
 export function render(url: string): string {
@@ -27,15 +28,49 @@ export function getStructuredData(url: string): object[] {
   };
   const config = Object.values(servicePageConfigs).find((item) => `/services/${item.slug}` === url);
   if (!config) {
-    if (url !== '/services') return [organization];
-    return [organization, {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      itemListElement: Object.values(servicePageConfigs).map((item, index) => ({
-        '@type': 'ListItem', position: index + 1,
-        item: { '@type': 'Service', name: item.h1, url: `${site}/services/${item.slug}` }
-      }))
-    }];
+    if (url === '/services') {
+      return [organization, {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: Object.values(servicePageConfigs).map((item, index) => ({
+          '@type': 'ListItem', position: index + 1,
+          item: { '@type': 'Service', name: item.h1, url: `${site}/services/${item.slug}` }
+        }))
+      }];
+    }
+
+    const consultationConfig = Object.values(consultationPageConfigs).find((item) => `/consultation/${item.slug}` === url);
+    if (consultationConfig) {
+      const pageUrl = `${site}/consultation/${consultationConfig.slug}`;
+      return [organization, {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { '@type': 'Service', serviceType: consultationConfig.h1, name: consultationConfig.h1, description: consultationConfig.metaDescription, url: pageUrl, provider: { '@id': `${site}/#organization` }, areaServed: 'US' },
+          { '@type': 'BreadcrumbList', itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+            { '@type': 'ListItem', position: 2, name: 'Business Consultation', item: `${site}/consultation` },
+            { '@type': 'ListItem', position: 3, name: consultationConfig.h1, item: pageUrl }
+          ] },
+          ...(consultationConfig.faqs.length ? [{
+            '@type': 'FAQPage',
+            mainEntity: consultationConfig.faqs.map((faq) => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } }))
+          }] : [])
+        ]
+      }];
+    }
+
+    if (url === '/consultation') {
+      return [organization, {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: Object.values(consultationPageConfigs).map((item, index) => ({
+          '@type': 'ListItem', position: index + 1,
+          item: { '@type': 'Service', name: item.h1, url: `${site}/consultation/${item.slug}` }
+        }))
+      }];
+    }
+
+    return [organization];
   }
   const pageUrl = `${site}/services/${config.slug}`;
   return [organization, {
