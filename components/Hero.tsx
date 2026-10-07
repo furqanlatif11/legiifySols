@@ -74,7 +74,7 @@ interface HeroProps {
   trustMarks?: TrustMark[];
 }
 
-const DEFAULT_STATUS = "Taking on clients for the March close";
+// const DEFAULT_STATUS = "Taking on clients for the March close";
 
 const DEFAULT_ROWS = [
   { key: "suitableFor", label: "Suitable for" },
@@ -161,7 +161,7 @@ const DEFAULT_TRUST: TrustMark[] = [
 
 const Hero: React.FC<HeroProps> = ({
   onInquire,
-  statusNote = DEFAULT_STATUS,
+  // statusNote = DEFAULT_STATUS,
   plans = DEFAULT_PLANS,
   rows = DEFAULT_ROWS,
   trustMarks = DEFAULT_TRUST,
@@ -250,12 +250,12 @@ const Hero: React.FC<HeroProps> = ({
           {/* ------------------------------------------------ claim + actions
               lg: top-left.  mobile: first.                                  */}
           <div className="order-1 lg:col-span-6 lg:col-start-1 lg:row-start-1">
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#D6DDD7] bg-white/70 py-1.5 pl-3 pr-4 backdrop-blur">
+            {/* <div className="inline-flex items-center gap-2.5 rounded-full border border-[#D6DDD7] bg-white/70 py-1.5 pl-3 pr-4 backdrop-blur">
               <span className="ledgify-dot block h-1.5 w-1.5 rounded-full bg-[#0B6B4F]" />
               <span className="text-[0.8125rem] font-medium text-[#0C1F18]">
                 {statusNote}
               </span>
-            </div>
+            </div> */}
 
             <h1 className="mt-6 max-w-2xl text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.03em] text-[#0C1F18] sm:text-[3.5rem] lg:text-[4.25rem]">
               Build your financial legacy.
